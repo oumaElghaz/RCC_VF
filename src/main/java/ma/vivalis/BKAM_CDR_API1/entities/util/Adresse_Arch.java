@@ -20,6 +20,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Adresse_Arch {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String adresse;
     private String codPostal;

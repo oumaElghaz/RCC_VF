@@ -11,6 +11,7 @@ import ma.vivalis.BKAM_CDR_API1.entities.util.DonneesIntPM_interm;
 import ma.vivalis.BKAM_CDR_API1.entities.util.DonneesIntPP_interm;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,7 @@ import java.util.List;
 public class sss_cdr_inter_client_stat {
     @Id
     private String id_client;
-    private String id_lot;
+    private Integer id_lot;
     private Date dateExtraction;
     private String entObserv;
     private String entDeclar;
@@ -32,25 +33,25 @@ public class sss_cdr_inter_client_stat {
     @Enumerated(EnumType.STRING)
     private ActionType actionType;
     private String codClient;
-    private Boolean altCodClient;
+    private String altCodClient;
     private String natClient;
-    private Boolean entLieeEtab;
+    private String entLieeEtab;
     private String codAgEcon;
 
     @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
-    private List<Adresse_interm> adresses;
+    private List<Adresse_interm> adresses= new ArrayList<>();
 
     @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
-    private List<DonneesIntPP_interm> donneesInts_pp;
+    private List<DonneesIntPP_interm> donneesInts_pp= new ArrayList<>();
 
     @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
-    private List<DonneesIntPM_interm> donneesInts_pm;
+    private List<DonneesIntPM_interm> donneesInts_pm= new ArrayList<>();
 
     @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
-    private List<sss_cdr_snapshot_client_act_interm> actionnariats;
+    private List<sss_cdr_snapshot_client_act_interm> actionnariats= new ArrayList<>();
 
     @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
-    private List<sss_cdr_snapshot_client_benef_interm> benEffects;
+    private List<sss_cdr_snapshot_client_benef_interm> benEffects= new ArrayList<>();
 
 
 

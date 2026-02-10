@@ -16,6 +16,7 @@ import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_client_stat;
 @Builder
 public class sss_cdr_Adresse {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String adresse;
     private String codPostal;

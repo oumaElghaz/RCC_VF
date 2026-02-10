@@ -19,6 +19,7 @@ import java.util.Date;
 @Builder
 public class sss_cdr_DonneesIntPM {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String raisonSocial;
     private String sigle;

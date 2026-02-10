@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class sss_cdr_client_act {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String natActionnaire;
     private String formJurAct;

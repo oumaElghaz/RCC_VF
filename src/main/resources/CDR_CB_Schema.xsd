@@ -1,0 +1,970 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="RCC">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="controle"/>
+        <xs:element ref="contenu"/>
+      </xs:sequence>
+      <xs:attribute name="version" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="3"/>
+            <xs:maxLength value="15"/>
+            <xs:pattern value="1.0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="controle" type="controlType"/>
+  <xs:complexType name="controlType">
+    <xs:attribute ref="entObserv" use="required"/>
+    <xs:attribute ref="entDeclar" use="required"/>
+    <xs:attribute ref="dtCreation" use="required"/>
+    <xs:attribute ref="idDest" use="required"/>
+    <xs:attribute ref="idFichAss"/>
+  </xs:complexType>
+  <xs:attribute name="entObserv">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="3"/>
+        <xs:maxLength value="3"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="entDeclar">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="3"/>
+        <xs:maxLength value="3"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="idDest">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="3"/>
+        <xs:maxLength value="3"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="dtCreation" type="xs:dateTime"/>
+  <xs:attribute name="idFichAss">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="42"/>
+        <xs:maxLength value="46"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:element name="contenu" type="contentType"/>
+  <xs:complexType name="contentType">
+    <xs:choice>
+      <xs:element ref="comEnt"/>
+      <xs:element ref="comEntPer" maxOccurs="unbounded"/>
+      <xs:element ref="comGar"/>
+
+      <xs:element ref="comCon"/>
+      <xs:element ref="comConPer" maxOccurs="unbounded"/>
+      <xs:element ref="comInfNeg" maxOccurs="unbounded"/>
+      <xs:element ref="avisRec"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:element name="comEnt">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="donneesEnt" minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+
+            <xs:sequence>
+              <xs:element name="address" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="adresse" type="longString"/>
+                  <xs:attribute name="codPostal">
+                    <xs:simpleType>
+                      <xs:restriction base="string" >
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="25" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="codLocal" >
+                    <xs:simpleType>
+                      <xs:restriction base="domain" >
+                        <xs:length value="3" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="codPays" type="country"/>
+                  <xs:attribute name="numTeleph">
+                    <xs:simpleType>
+                      <xs:restriction base="string" >
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="25" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+
+              <xs:element name="lstActionnariat" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="actionnariat" minOccurs="1" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="natActionnaire" type="domain" />
+                        <xs:attribute name="formJurAct">
+                          <xs:simpleType>
+                            <xs:restriction base="domain" >
+                              <xs:minLength value="1" />
+                              <xs:maxLength value="2" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="tpIdPrincAct" type="domain" />
+                        <xs:attribute name="idPrincAct">
+                          <xs:simpleType>
+                            <xs:restriction base="string" >
+                              <xs:minLength value="1" />
+                              <xs:maxLength value="25" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="codTribunAct" type="string" />
+                        <xs:attribute name="regCommerAct" type="string" />
+                        <xs:attribute name="idSpecifiqueAct" type="string" />
+                        <xs:attribute name="ICEAct" type="string" />
+                        <xs:attribute name="LEIAct" type="string" />
+                        <xs:attribute name="payResAct" type="country"/>
+                        <xs:attribute name="nomRaisonSocAct" type="longString"/>
+                        <xs:attribute name="qtpartCapSocAct">
+                          <xs:simpleType>
+                            <xs:restriction base="rate" >
+                              <xs:totalDigits value="8"/>
+                              <xs:fractionDigits value="5"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+              <xs:element name="lstBenEffect" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="benEffect" minOccurs="1" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="typIdBenEffect" type="domain" />
+                        <xs:attribute name="idBenEffect">
+                          <xs:simpleType>
+                            <xs:restriction base="string" >
+                              <xs:minLength value="1" />
+                              <xs:maxLength value="25" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="nomBenEffect" type="longString"/>
+                        <xs:attribute name="preBenEffect" type="longString"/>
+                        <xs:attribute name="natBenEffect" type="country"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+
+            <xs:attribute name="dtRefEnt" type="minDate" />
+            <xs:attribute name="actionType" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="EI"/>
+                  <xs:enumeration value="EU"/>
+                  <xs:enumeration value="ED"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="codClient" use="required">
+              <xs:simpleType>
+                <xs:restriction base="string" >
+                  <xs:minLength value="1" />
+                  <xs:maxLength value="25" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="altCodClient">
+              <xs:simpleType>
+                <xs:restriction base="string" >
+                  <xs:minLength value="1" />
+                  <xs:maxLength value="25" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="natClient" type="domain" />
+            <xs:attribute name="entLieeEtab" type="domain" />
+            <xs:attribute name="codAgEcon">
+              <xs:simpleType>
+                <xs:restriction base="domain" >
+                  <xs:length value="3" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="tpIdPrincipal" type="domain" />
+            <xs:attribute name="idPrincipal">
+              <xs:simpleType>
+                <xs:restriction base="identifier" >
+                  <xs:minLength value="1" />
+                  <xs:maxLength value="25" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="prenom" type="longString" />
+            <xs:attribute name="nomFamille" type="longString" />
+            <xs:attribute name="paysDelivrance" type="country"/>
+            <xs:attribute name="dtDelivrance" type="minDate" />
+            <xs:attribute name="dtExpiration" type="minDate" />
+            <xs:attribute name="TypePPPro" type="domain" />
+            <xs:attribute name="RNAE" type="string" />
+            <xs:attribute name="dtNaissance" type="minDate" />
+            <xs:attribute name="codLocalNaissance">
+              <xs:simpleType>
+                <xs:restriction base="domain" >
+                  <xs:length value="3" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="sexe" type="domain" />
+            <xs:attribute name="nationalite" type="country" />
+            <xs:attribute name="sitFamille" type="domain" />
+            <xs:attribute name="codCatProf">
+              <xs:simpleType>
+                <xs:restriction base="domain" >
+                  <xs:minLength value="1" />
+                  <xs:maxLength value="2" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="menage" type="xs:integer" />
+            <xs:attribute name="qualAcadem" type="domain" />
+            <xs:attribute name="catClient" type="xs:string" />
+            <xs:attribute name="raisonSocial" type="string" />
+            <xs:attribute name="sigle" type="string" />
+            <xs:attribute name="formJur">
+              <xs:simpleType>
+                <xs:restriction base="domain" >
+                  <xs:minLength value="1" />
+                  <xs:maxLength value="2" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="codTrib">
+              <xs:simpleType>
+                <xs:restriction base="domain" >
+                  <xs:minLength value="2" />
+                  <xs:maxLength value="3" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="regCommerce" type="string" />
+            <xs:attribute name="ICE" type="string" />
+            <xs:attribute name="idFiscal" type="string" />
+            <xs:attribute name="numTaxeProf" type="string" />
+            <xs:attribute name="idSpecifique" type="string" />
+            <xs:attribute name="codLEI" type="string" />
+            <xs:attribute name="codActPrinc" type="domain" />
+            <xs:attribute name="codActSec">
+              <xs:simpleType>
+                <xs:restriction base="domain" >
+                  <xs:minLength value="1" />
+                  <xs:maxLength value="3" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="tailleEntrep" type="domain" />
+            <xs:attribute name="genre" type="domain" />
+            <xs:attribute name="dtCreation" type="minDate" />
+            <xs:attribute name="natMod" type="xs:string" />
+            <xs:attribute name="dtMod" type="minDate" />
+            <xs:attribute name="flagSuc" type="xs:boolean" />
+            <xs:attribute name="tpIdPrincSiege" type="domain" />
+            <xs:attribute name="idPrincSiege" type="string" />
+            <xs:attribute name="raisonSocSiege" type="longString" />
+            <xs:attribute name="groupAppart" type="string" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+
+  <xs:element name="comEntPer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="entPer" minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+
+              <xs:element name="dataCompta" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="annExercCompt" type="xs:integer" />
+                  <xs:attribute name="capSocial" type="amount" />
+                  <xs:attribute name="capPropres" type="amount" />
+                  <xs:attribute name="actImmobilises" type="amount" />
+                  <xs:attribute name="totBilan" type="amount" />
+                  <xs:attribute name="chiffreAffaire" type="amount" />
+                  <xs:attribute name="dtAffairesAnExp" type="amount" />
+                  <xs:attribute name="detteBancLMT" type="amount" />
+                  <xs:attribute name="detteBancCT" type="amount" />
+                  <xs:attribute name="passifCirculant" type="amount" />
+                  <xs:attribute name="dettesFourn" type="amount" />
+                  <xs:attribute name="compteCourAssoc" type="amount" />
+                  <xs:attribute name="tresoreriePassif" type="amount" />
+                  <xs:attribute name="actifCirculant" type="amount" />
+                  <xs:attribute name="créancesClients" type="amount" />
+                  <xs:attribute name="tresorerieActif" type="amount" />
+                  <xs:attribute name="caisse" type="amount" />
+                  <xs:attribute name="achatsRevendus" type="amount" />
+                  <xs:attribute name="achatsConsom" type="amount" />
+                  <xs:attribute name="chargesExternes" type="amount" />
+                  <xs:attribute name="chargesInterets" type="amount" />
+                  <xs:attribute name="resultatNet" type="amount" />
+                  <xs:attribute name="tpResultat">
+                    <xs:simpleType>
+                      <xs:restriction base="domain" >
+                        <xs:length value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="dataRiskCli" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="riskCli" minOccurs="1" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="PDCont" type="rate" />
+                        <xs:attribute name="dtEvalRisques" type="minDate" />
+                        <xs:attribute name="modIRBCont">
+                          <xs:simpleType>
+                            <xs:restriction base="string">
+                              <xs:minLength value="1"/>
+                              <xs:maxLength value="16"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="coteCli" type="domain" />
+                        <xs:attribute name="dateCoteCli" type="minDate" />
+                        <xs:attribute name="modCoteCli">
+                          <xs:simpleType>
+                            <xs:restriction base="string" >
+                              <xs:minLength value="1"/>
+                              <xs:maxLength value="16"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="notAgence" type="string" />
+                        <xs:attribute name="NomAgence" type="longString" />
+                        <xs:attribute name="dtnotAgc" type="minDate" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+            </xs:sequence>
+            <xs:attribute name="actionType" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="ESI"/>
+                  <xs:enumeration value="ESU"/>
+                  <xs:enumeration value="ESD"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="codClient" use="required">
+              <xs:simpleType>
+                <xs:restriction base="string" >
+                  <xs:minLength value="1" />
+                  <xs:maxLength value="25" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="watchList" type="xs:boolean" />
+            <xs:attribute name="etatAvProcJud" type="domain" />
+            <xs:attribute name="dtEtatAvProcJud" type="minDate" />
+            <xs:attribute name="revenu" type="amount" />
+            <xs:attribute name="dtRevenu" type="minDate" />
+
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="dtRef" type="minDate" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+
+  <xs:element name="comGar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="garantie" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="actionType" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="GAU"/>
+                  <xs:enumeration value="GAD"/>
+                  <xs:enumeration value="GAI"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="idGar" type="identifier" use="required"/>
+            <xs:attribute name="dtRefGar" type="minDate" />
+            <xs:attribute name="dtCreatGar" type="minDate" />
+            <xs:attribute name="dtFinGar" type="minDate" />
+            <xs:attribute name="renGar" type="xs:boolean" />
+            <xs:attribute name="dtRenGar" type="minDate" />
+            <xs:attribute name="dtFinRenGar" type="minDate" />
+            <xs:attribute name="tpGar" type="domain" />
+            <xs:attribute name="codClient">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                  <xs:maxLength value="25"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="codGarExt">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                  <xs:maxLength value="200"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="tpRefExtGar" type="domain" />
+            <xs:attribute name="refExtGar">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                  <xs:maxLength value="64"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="prixAcqProp" type="amount" />
+            <xs:attribute name="codLocalGar">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:length value="3"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="montGar" type="amount" />
+            <xs:attribute name="valOriGar" type="amount" />
+            <xs:attribute name="tpValInGar" type="domain" />
+            <xs:attribute name="valActGar" type="amount" />
+            <xs:attribute name="dtEvalGar" type="minDate" />
+            <xs:attribute name="tpValActGar" type="domain" />
+            <xs:attribute name="garEtat" type="xs:boolean" />
+            <xs:attribute name="nvGarAdossCred">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:length value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="etatExecGar" type="xs:boolean"/>
+            <xs:attribute name="dtExecGar" type="minDate" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="comCon">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="con" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="listCliContrat" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="cliContrat" minOccurs="1" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="codClient">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:minLength value="1"/>
+                              <xs:maxLength value="25"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="capAutoriseEnt" type="amount" />
+                        <xs:attribute name="valProcVersEnt" type="amount" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="listLinkContrat" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="linkContrat" minOccurs="1" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="idContAss" type="identifier" />
+                        <xs:attribute name="tpConnex" type="domain" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="listConsort" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="consort" minOccurs="1" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="idEnt" type="identifier" />
+                        <xs:attribute name="relEntPart" type="amount" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="listGarant" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="garant" minOccurs="1" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="idGar" type="identifier" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="dtRefCont" type="minDate" />
+            <xs:attribute name="actionType" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="CII"/>
+                  <xs:enumeration value="CIU"/>
+                  <xs:enumeration value="CID"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="idCont" type="identifier" use="required"/>
+            <xs:attribute name="guichetAgence">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                  <xs:maxLength value="6"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+
+            <xs:attribute name="codLocAgence">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:length value="3"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+
+            <xs:attribute name="tpCont" type="domain" />
+
+            <xs:attribute name="tpCred" type="domain" />
+            <xs:attribute name="dtlTpCred">
+              <xs:simpleType>
+                <xs:restriction base="domain" >
+                  <xs:minLength value="1" />
+                  <xs:maxLength value="4" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="creCoFin" type="xs:boolean" />
+            <xs:attribute name="creConsor" type="xs:boolean"/>
+            <xs:attribute name="objCred" type="domain" />
+            <xs:attribute name="objCredDetail">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                  <xs:maxLength value="200"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="monnaie">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:length value="3"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="montIniAccord" type="amount" />
+            <xs:attribute name="montCreCoFin" type="amount" />
+            <xs:attribute name="txChange" type="rate" />
+            <xs:attribute name="dtContCredt" type="minDate" />
+            <xs:attribute name="dtDebloCred" type="minDate" />
+            <xs:attribute name="dtClotIni" type="minDate" />
+            <xs:attribute name="dtClotCred" type="minDate" />
+            <xs:attribute name="motClotCont" type="domain" />
+            <xs:attribute name="flagDiff" type="xs:boolean" />
+            <xs:attribute name="dtModCondCred" type="minDate" />
+            <xs:attribute name="motModCondCred" type="domain" />
+            <xs:attribute name="dtDebPerGraCap" type="minDate" />
+            <xs:attribute name="dtFinPerGraCap" type="minDate" />
+            <xs:attribute name="modPaiement">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:length value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="tpEche">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:length value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+
+            <xs:attribute name="fxEche" type="xs:boolean" />
+
+            <xs:attribute name="nombreTotEche">
+              <xs:simpleType>
+                <xs:restriction base="xs:decimal">
+                  <xs:totalDigits value="18"/>
+                  <xs:fractionDigits value="0"/>
+                  <xs:maxExclusive value="1000000000000000000"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+
+            <xs:attribute name="periodEche" type="domain" />
+            <xs:attribute name="mtEche" type="amount" />
+            <xs:attribute name="dt1Eche" type="minDate" />
+            <xs:attribute name="mont1Eche" type="amount" />
+            <xs:attribute name="mont1EcheDiv" type="amount" />
+            <xs:attribute name="flagTxInt" type="domain" />
+            <xs:attribute name="txRef" type="domain" />
+            <xs:attribute name="txAnnuelPourc" type="rate" />
+            <xs:attribute name="txTAEG" type="rate" />
+            <xs:attribute name="hmRibh" type="amount" />
+            <xs:attribute name="cmFxWkl" type="amount" />
+            <xs:attribute name="freqMiseJourTxInt" type="domain" />
+            <xs:attribute name="LTVIni" type="rate" />
+            <xs:attribute name="tpSecuritization" type="xs:boolean" />
+            <xs:attribute name="exisGarant" type="xs:boolean" />
+            <xs:attribute name="mntGarant" type="amount" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="comConPer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="conPer" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="listCliCredit" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="cliCredit" minOccurs="1" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="codClient">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:minLength value="1"/>
+                              <xs:maxLength value="25"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="montEncCli" type="amount" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="dataRiskContrat" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="riskContrat" minOccurs="1" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="LGDCont" type="rate" />
+                        <xs:attribute name="dtLGD" type="minDate" />
+                        <xs:attribute name="EADCont" type="amount" />
+                        <xs:attribute name="dtEAD" type="minDate" />
+                        <xs:attribute name="ECLCont" type="amount" />
+                        <xs:attribute name="dtECL" type="minDate" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+
+            <xs:attribute name="actionType" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="IMI"/>
+                  <xs:enumeration value="IMU"/>
+                  <xs:enumeration value="IMD"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="idCont" type="identifier" use="required"/>
+            <xs:attribute name="montDu" type="amount" />
+            <xs:attribute name="montUtilCred" type="amount" />
+            <xs:attribute name="montUtilCredDev" type="amount" />
+            <xs:attribute name="montRest" type="amount" />
+            <xs:attribute name="montRestDev" type="amount" />
+            <xs:attribute name="montComAg" type="amount" />
+            <xs:attribute name="commSpecif" type="amount" />
+            <xs:attribute name="interCourMrg" type="amount" />
+            <xs:attribute name="caFactor" type="amount" />
+            <xs:attribute name="tpReembAntc" type="domain" />
+            <xs:attribute name="montReembAntc" type="amount" />
+            <xs:attribute name="dtProcRevTxInt" type="minDate" />
+            <xs:attribute name="colRefin" type="xs:boolean" />
+            <xs:attribute name="nbEcheRest">
+              <xs:simpleType>
+                <xs:restriction base="xs:decimal">
+                  <xs:totalDigits value="18"/>
+                  <xs:fractionDigits value="0"/>
+                  <xs:maxExclusive value="1000000000000000000"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+
+            <xs:attribute name="dtProcEche" type="minDate" />
+            <xs:attribute name="dtDernEchePay" type="minDate" />
+            <xs:attribute name="nbEcheImp" type="amount" />
+            <xs:attribute name="montEcheImp" type="amount" />
+            <xs:attribute name="stPaiement">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:length value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="dtStPaiement" type="minDate" />
+            <xs:attribute name="classCreanceSouff" type="domain" />
+            <xs:attribute name="dtClassCreanceSouff" type="minDate" />
+            <xs:attribute name="contentieux" type="xs:boolean" />
+            <xs:attribute name="creanceProv" type="xs:boolean" />
+            <xs:attribute name="montProv" type="amount" />
+            <xs:attribute name="txProvCont" type="rate" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="dtRef" type="minDate" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="comInfNeg">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="InfNeg" minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="actionType" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="INI"/>
+                  <xs:enumeration value="INU"/>
+                  <xs:enumeration value="IND"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="codClient" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="1"/>
+                  <xs:maxLength value="25"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="refInfoNeg" type="string" />
+            <xs:attribute name="tpInfNegInc">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:length value="1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="dtObsInfNegInc" type="minDate" />
+            <xs:attribute name="montInc" type="amount" />
+            <xs:attribute name="statInfoNeg" type="xs:boolean" />
+            <xs:attribute name="dtSortie" type="minDate" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="dtRef" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+
+  <xs:element name="avisRec">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="fichRej">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="erreur">
+                <xs:complexType>
+                  <xs:attribute name="codErreur" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="5"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="descErreur" type="longString" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="fichAce">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="lstNvAlert" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="regAlert" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="numReg" type="xs:integer" use="required"/>
+                        <xs:attribute name="nvAlert" type="xs:integer" use="required"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="lstErroAlert" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="regMsg" type="RegisterErrorType" maxOccurs="unbounded"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="numRegRec" type="xs:integer" use="required"/>
+            <xs:attribute name="numRegAce" type="xs:integer" use="required"/>
+            <xs:attribute name="numRegRej" type="xs:integer" use="required"/>
+            <xs:attribute name="numRegAlert" type="xs:integer" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Custom simpleTypes -->
+
+  <xs:complexType name="RegisterErrorType">
+    <xs:sequence>
+      <xs:element name="lstMsg">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="msgReg" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:attribute name="codMsg" use="required">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:minLength value="1"/>
+                      <xs:maxLength value="5"/>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute name="nvCrit" type="xs:integer" use="required"/>
+                <xs:attribute name="libele" use="required">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:minLength value="1"/>
+                      <xs:maxLength value="32"/>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="operOrig">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:minLength value="1"/>
+          <xs:maxLength value="3"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="dtRef" type="xs:date"/>
+    <xs:attribute name="codClient" type="identifier"/>
+    <xs:attribute name="idCont" type="identifier"/>
+    <xs:attribute name="idGar" type="identifier"/>
+    <xs:attribute name="refInfoNeg" type="identifier"/>
+  </xs:complexType>
+
+
+  <xs:complexType name="CtrPrtIdBase" abstract="true">
+    <xs:simpleContent>
+      <xs:extension base="xs:string"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="domain">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="identifier">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="32"/>
+      <xs:pattern value="[^&#xD;][^&#xA;]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="rate">
+    <xs:restriction base="xs:decimal">
+      <xs:totalDigits value="8"/>
+      <xs:fractionDigits value="5"/>
+      <xs:maxExclusive value="1000"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="string">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="amount">
+    <xs:restriction base="xs:decimal">
+      <xs:totalDigits value="20"/>
+      <xs:fractionDigits value="2"/>
+      <xs:maxExclusive value="1000000000000000000"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="country">
+    <xs:restriction base="xs:string">
+      <xs:length value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="minDate">
+    <xs:restriction base="xs:date">
+      <xs:minInclusive value="1801-01-01"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="longString">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="200"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

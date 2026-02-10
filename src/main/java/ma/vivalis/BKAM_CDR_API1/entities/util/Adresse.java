@@ -21,9 +21,13 @@ public class Adresse {
     @Id
     private Long id;
     private String adresse;
+    @Column(name = "codPostal")
     private String codPostal;
+    @Column(name = "codLocal")
     private String codLocal;
+    @Column(name = "codPays")
     private String codPays;
+    @Column(name = "numTeleph")
     private String numTeleph;
 
     @ManyToOne

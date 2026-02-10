@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RCC version="1.0">
+    <controle entObserv="nbdbdbdbdb" entDeclar="bdhhdnhd" dtCreation="2026-02-18T11:06:24.000+01:00"/>
+    <contenu>
+        <comEnt>
+            <donneesEnt dtRefEnt="2026-02-18T11:06:24.000+01:00" actionType="ED" codClient="01212" natClient="1" entLieeEtab="000000" codAgEcon="900" tpIdPrincipal="" idPrincipal="" prenom="" nomFamille="" paysDelivrance="" TypePPPro="" RNAE="" codLocalNaissance="" sexe="" nationalite="" sitFamille="" codCatProf="" qualAcadem="" catClient="" raisonSocial="HGGVGH" sigle="HJHHJ" formJur="90" codTrib="01" regCommerce="BBVHJ" ICE="VFVGFG" idFiscal="GFFGFG" numTaxeProf="VVVGJHHJ" idSpecifique="FGFGFG" codLEI="GG" codActPrinc="900" codActSec="900" tailleEntrep="554" genre="VCFCGFG" dtCreation="2026-02-18T10:58:07.000+01:00" natMod="VVVF" dtMod="2026-02-18T10:58:07.000+01:00" flagSuc="true" tpIdPrincSiege="NGHFGCF" idPrincSiege="VFVGFG" groupAppart="FCGFGFG">
+                <address adresse="hhgghggghgh" codPostal="545" codLocal="hhghgghghgh" codPays="AFG" numTeleph="555415"/>
+                <lstActionnariat>
+                    <actionnariat natActionnaire="1" formJurAct="90" codTribunAct="01" regCommerAct="DDDD" ICEAct="sss" LEIAct="ffff" payResAct="AFG" nomRaisonSocAct="eee" qtpartCapSocAct="11"/>
+                </lstActionnariat>
+                <lstBenEffect>
+                    <benEffect typIdBenEffect="hjjhdshj" idBenEffect="15655" nomBenEffect="hjdshjdshj" preBenEffect="hgszgs"/>
+                </lstBenEffect>
+            </donneesEnt>
+        </comEnt>
+    </contenu>
+</RCC>

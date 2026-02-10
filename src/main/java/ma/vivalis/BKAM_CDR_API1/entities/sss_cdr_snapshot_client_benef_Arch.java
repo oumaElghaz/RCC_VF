@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class sss_cdr_snapshot_client_benef_Arch {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String typIdBenEffect;
     private String idBenEffect;

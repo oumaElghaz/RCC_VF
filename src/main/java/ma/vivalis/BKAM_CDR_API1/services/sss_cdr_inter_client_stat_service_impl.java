@@ -18,7 +18,7 @@ import java.util.NoSuchElementException;
 public class sss_cdr_inter_client_stat_service_impl {
 
     private final sss_cdr_inter_client_stat_Repository sss_cdr_inter_client_stat_Repository;
-    //private final ComparisonService comparisonService;
+    private final LotSequenceService_impl lotSequenceService_impl;
     private final Comparaison comparaison;
     private final sss_cdr_snapshot_client_stat_Repository sss_cdr_snapshot_client_stat_Repository;
     private final sss_cdr_snapshot_arch_client_stat_Repository sss_cdr_snapshot_arch_client_stat_Repository;
@@ -37,10 +37,11 @@ public class sss_cdr_inter_client_stat_service_impl {
     private final sss_cdr_snapshot_client_benef_Repository sss_cdr_snapshot_client_benef_Repository;
     private final sss_cdr_snapshot_client_benef_interm_Repository sss_cdr_snapshot_client_benef_interm_Repository;
 
-    public sss_cdr_inter_client_stat_service_impl(sss_cdr_inter_client_stat_Repository sssCdrInterClientStatRepository, Comparaison comparaison, sss_cdr_snapshot_client_stat_Repository sssCdrSnapshotClientStatRepository, sss_cdr_snapshot_arch_client_stat_Repository sssCdrSnapshotArchClientStatRepository, Adresse_interm_Repository adresseIntermRepository, AdresseRepository adresseRepository, DonneesIntPM_Repository donneesIntPMRepository, DonneesIntPM_interm_Repository donneesIntPMIntermRepository, DonneesIntPP_Repository donneesIntPPRepository, DonneesIntPP_interm_Repository donneesIntPPIntermRepository, sss_cdr_snapshot_client_act_Repository sssCdrSnapshotClientActRepository, sss_cdr_snapshot_client_act_interm_Repository sssCdrSnapshotClientActIntermRepository, sss_cdr_snapshot_client_benef_Repository sssCdrSnapshotClientBenefRepository, sss_cdr_snapshot_client_benef_interm_Repository sssCdrSnapshotClientBenefIntermRepository) {
+    private final sss_cdr_snapshot_arch_client_stat_service_impl sss_cdr_snapshot_arch_client_stat_service_impl;
+    public sss_cdr_inter_client_stat_service_impl(sss_cdr_inter_client_stat_Repository sssCdrInterClientStatRepository, LotSequenceService_impl lotSequenceServiceImpl, Comparaison comparaison, sss_cdr_snapshot_client_stat_Repository sssCdrSnapshotClientStatRepository, sss_cdr_snapshot_arch_client_stat_Repository sssCdrSnapshotArchClientStatRepository, Adresse_interm_Repository adresseIntermRepository, AdresseRepository adresseRepository, DonneesIntPM_Repository donneesIntPMRepository, DonneesIntPM_interm_Repository donneesIntPMIntermRepository, DonneesIntPP_Repository donneesIntPPRepository, DonneesIntPP_interm_Repository donneesIntPPIntermRepository, sss_cdr_snapshot_client_act_Repository sssCdrSnapshotClientActRepository, sss_cdr_snapshot_client_act_interm_Repository sssCdrSnapshotClientActIntermRepository, sss_cdr_snapshot_client_benef_Repository sssCdrSnapshotClientBenefRepository, sss_cdr_snapshot_client_benef_interm_Repository sssCdrSnapshotClientBenefIntermRepository, sss_cdr_snapshot_arch_client_stat_service_impl sssCdrSnapshotArchClientStatServiceImpl) {
         sss_cdr_inter_client_stat_Repository = sssCdrInterClientStatRepository;
+        lotSequenceService_impl = lotSequenceServiceImpl;
         this.comparaison = comparaison;
-        //this.comparisonService = comparisonService;
         sss_cdr_snapshot_client_stat_Repository = sssCdrSnapshotClientStatRepository;
         sss_cdr_snapshot_arch_client_stat_Repository = sssCdrSnapshotArchClientStatRepository;
         adresse_interm_Repository = adresseIntermRepository;
@@ -53,11 +54,15 @@ public class sss_cdr_inter_client_stat_service_impl {
         sss_cdr_snapshot_client_act_interm_Repository = sssCdrSnapshotClientActIntermRepository;
         sss_cdr_snapshot_client_benef_Repository = sssCdrSnapshotClientBenefRepository;
         sss_cdr_snapshot_client_benef_interm_Repository = sssCdrSnapshotClientBenefIntermRepository;
+        sss_cdr_snapshot_arch_client_stat_service_impl = sssCdrSnapshotArchClientStatServiceImpl;
     }
 
 
     public void sss_cdr_inter_client_stat_create() {
         List<String> id_clients_modifies = comparaison.findModifiedAndNewIdsClients();
+        int idLot = lotSequenceService_impl.getNextLotId();
+        for (String s:id_clients_modifies){
+        System.out.println("id_clients_modifies"+s);}
         List<sss_cdr_snapshot_client_stat> clients_snapshot = new ArrayList<>();
 
         for (String id : id_clients_modifies) {
@@ -68,7 +73,8 @@ public class sss_cdr_inter_client_stat_service_impl {
         for (sss_cdr_snapshot_client_stat client : clients_snapshot) {
             sss_cdr_inter_client_stat client_inter = new sss_cdr_inter_client_stat();
             client_inter.setId_client(client.getId_client());
-            client_inter.setId_lot(sss_cdr_snapshot_arch_client_stat_Repository.findIdLotById(client.getId_client()));
+            //client_inter.setId_lot(sss_cdr_snapshot_arch_client_stat_Repository.findIdLotById(client.getId_client()));
+            client_inter.setId_lot(idLot);
             client_inter.setDateExtraction(client.getDateDeclaration());
             client_inter.setEntObserv(client.getEntObserv());
             client_inter.setEntDeclar(client.getEntDeclar());
@@ -143,7 +149,7 @@ public class sss_cdr_inter_client_stat_service_impl {
             for (sss_cdr_snapshot_client_act a : client.getActionnariats()) {
                 sss_cdr_snapshot_client_act_interm ai = new sss_cdr_snapshot_client_act_interm();
 
-                ai.setId(a.getId());
+                //ai.setId(a.getId());
                 ai.setNatActionnaire(a.getNatActionnaire());
                 ai.setFormJurAct(a.getFormJurAct());
                 ai.setTpIdPrincAct(a.getTpIdPrincAct());
@@ -163,7 +169,7 @@ public class sss_cdr_inter_client_stat_service_impl {
             for (sss_cdr_snapshot_client_benef a : client.getBenEffects()) {
                 sss_cdr_snapshot_client_benef_interm ai = new sss_cdr_snapshot_client_benef_interm();
 
-                ai.setId(a.getId());
+                //ai.setId(a.getId());
                 ai.setTypIdBenEffect(a.getTypIdBenEffect());
                 ai.setIdBenEffect(a.getIdBenEffect());
                 ai.setNomBenEffect(a.getNomBenEffect());
@@ -175,12 +181,24 @@ public class sss_cdr_inter_client_stat_service_impl {
 
 
             sss_cdr_inter_client_stat_Repository.save(client_inter);
+            //Appel service de archivage des clients
+            sss_cdr_snapshot_arch_client_stat_service_impl.create_arch_client_stat(client_inter);
+
+
 
 
         }
 
-
+        //suppression des snapshot client apres traitement
+        sss_cdr_snapshot_client_stat_Repository.deleteAll();
     }
+
+
+
+
+
+
+
 }
 
 

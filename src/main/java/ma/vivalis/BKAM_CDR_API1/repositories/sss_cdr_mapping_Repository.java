@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface sss_cdr_mapping_Repository extends JpaRepository <sss_cdr_mapping, Long> {
-    @Query(value = "select CODCIBL from SSS_CDR_MAPP where ctab:=ctab  and codesrc:=codesrc ", nativeQuery = true)
+    @Query(value = "select codCibl from sss_cdr_mapping where ctab= :ctab  and codSrc= :codesrc ", nativeQuery = true)
     String findCodCiblByCtabAndCodSrc(@Param("ctab") String ctab, @Param("codesrc") String codesrc);
 
 }

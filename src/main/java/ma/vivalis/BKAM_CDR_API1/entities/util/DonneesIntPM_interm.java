@@ -21,6 +21,7 @@ import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_inter_client_stat;
 @Builder
 public class DonneesIntPM_interm {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String raisonSocial;
     private String sigle;

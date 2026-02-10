@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class sss_cdr_snapshot_client_act_Arch {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String natActionnaire;
     private String formJurAct;

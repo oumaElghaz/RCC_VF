@@ -22,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class DonneesIntPM_Arch {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String raisonSocial;
     private String sigle;

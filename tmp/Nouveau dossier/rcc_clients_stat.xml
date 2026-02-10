@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RCC version="1.0">
+    <controle entObserv="nbdbdbdbdb" entDeclar="bdhhdnhd" dtCreation="2026-02-04T11:35:28.000+01:00"/>
+    <contenu>
+        <comEnt>
+            <donneesEnt dtRefEnt="2026-02-11T11:35:28.000+01:00" actionType="ED" codClient="121212" entLieeEtab="nnbzdnbdn" codAgEcon="gdgdgd" tpIdPrincipal="" idPrincipal="" prenom="" nomFamille="" paysDelivrance="" TypePPPro="" RNAE="" codLocalNaissance="" sexe="" nationalite="" sitFamille="" codCatProf="" qualAcadem="" catClient="" raisonSocial="NBHGGFFGY" sigle="BNVGHGH" formJur="VVGH" codTrib="01" regCommerce="BVGHGH" ICE="HBVGGHGHY" idFiscal="GHGGH" numTaxeProf="HHGHGH" idSpecifique="HBVGH" codLEI="GHGGYT" codActPrinc="DZDCZEZED" codActSec="ZEZZ" tailleEntrep="BHGHHG" genre="GHGHGY" dtCreation="2026-02-11T11:39:15.000+01:00" natMod="HHHNB" dtMod="2026-02-17T11:39:15.000+01:00" flagSuc="false" tpIdPrincSiege="HGHGHU" idPrincSiege="BNHGHG" groupAppart="HGGYU">
+                <address adresse="dfffdffd" codPostal="DDFFDFD" codLocal="fdfdffd" codPays="AFG" numTeleph="EDEEDED"/>
+                <lstActionnariat>
+                    <actionnariat natActionnaire="ZAAZAZ" formJurAct="ZEDEZE" codTribunAct="1" regCommerAct="ZEZE" ICEAct="ZEZDZE" LEIAct="AZSAZAZ" payResAct="AF" nomRaisonSocAct="AZAZAZ" qtpartCapSocAct="11"/>
+                </lstActionnariat>
+                <lstBenEffect>
+                    <benEffect typIdBenEffect="ZEZEE" idBenEffect="DZZEEZ" nomBenEffect="ZEZEZE" preBenEffect="EZEZZE" natBenEffect="ZEZEZE"/>
+                </lstBenEffect>
+            </donneesEnt>
+        </comEnt>
+    </contenu>
+</RCC>

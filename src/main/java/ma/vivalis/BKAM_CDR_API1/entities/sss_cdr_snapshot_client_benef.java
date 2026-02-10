@@ -16,10 +16,15 @@ import lombok.NoArgsConstructor;
 public class sss_cdr_snapshot_client_benef {
     @Id
     private Long id;
+    @Column(name = "typIdBenEffect")
     private String typIdBenEffect;
+    @Column(name = "idBenEffect")
     private String idBenEffect;
+    @Column(name = "nomBenEffect")
     private String nomBenEffect;
+    @Column(name = "preBenEffect")
     private String preBenEffect;
+    @Column(name = "natBenEffect")
     private String natBenEffect;
 
 

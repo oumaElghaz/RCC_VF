@@ -23,16 +23,26 @@ import java.util.List;
 public class sss_cdr_snapshot_client_stat {
     @Id
     private String id_client;
+    //@Column(name = "dateDeclaration")
     private Date dateDeclaration;
+    //@Column(name = "entObserv")
     private String entObserv;
+    //@Column(name = "entDeclar")
     private String entDeclar;
+    //@Column(name = "dtRefEnt")
     private Date dtRefEnt;
+    //@Column(name = "actionType")
     @Enumerated(EnumType.STRING)
     private ActionType actionType;
+    //@Column(name = "codClient")
     private String codClient;
-    private Boolean altCodClient;
+    //@Column(name = "altCodClient")
+    private String altCodClient;
+    //@Column(name = "natClient")
     private String natClient;
-    private Boolean entLieeEtab;
+    //@Column(name = "entLieeEtab")
+    private String entLieeEtab;
+    //@Column(name = "codAgEcon")
     private String codAgEcon;
 
     @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)

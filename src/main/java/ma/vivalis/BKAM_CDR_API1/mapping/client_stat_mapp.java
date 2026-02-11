@@ -39,6 +39,9 @@ public class client_stat_mapp {
         String codAgEcon=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("SACT",inter_client_stat.getCodAgEcon());
         sss_cdr_client_stat.setCodAgEcon(codAgEcon);
 
+        sss_cdr_client_stat.setFlag_envoi(inter_client_stat.getFlag_envoi());
+
+
 //--------------adresse-------------------------------------------
         for (Adresse_interm a : inter_client_stat.getAdresses()) {
             sss_cdr_Adresse adr = new sss_cdr_Adresse();

@@ -13,7 +13,9 @@ public class LotSequenceService_impl {
     public LotSequenceService_impl(LotSequenceRepository lotSequenceRepository) {
         this.lotSequenceRepository = lotSequenceRepository;
     }
-
+    public Integer getMax(){
+        return lotSequenceRepository.findMaxVal();
+    }
 
     public synchronized int getNextLotId() {
 

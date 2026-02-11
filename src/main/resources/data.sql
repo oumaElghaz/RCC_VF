@@ -66,28 +66,38 @@ VALUES ('2026-02-18 10:06:24.000000', '2026-02-03 10:06:24.000000', '17', '', ''
 
 
 
---client snapshot 1 PM
-INSERT INTO SSS_CDR_SNAPSHOT_CLIENT_STAT (altCodClient, entLieeEtab, dateDeclaration, dtRefent, codAgEcon, codClient, entDeclar, entObserv, id_client, natClient, actionType)
-VALUES ('1', 'EAG', '2026-02-18 10:06:24.000000', '2026-02-18 10:06:24.000000', '100', '01212', 'bdhhdnhd', 'nbdbdbdbdb', '01212', 'P', 'ED');
+--client snapshot 1 PM ET PP
+INSERT INTO SSS_CDR_SNAPSHOT_CLIENT_STAT (altCodClient, entLieeEtab, dateDeclaration, dtRefent, codAgEcon, codClient, entDeclar, entObserv, id_client, natClient, actionType,flag_envoi)
+VALUES ('1', 'EAG', '2026-02-18 10:06:24.000000', '2026-02-18 10:06:24.000000', '100', '01212', 'bdhhdnhd', 'nbdbdbdbdb', '01212', 'P', 'ED','AUTOMATIQUE');
 
 --adresse 1
 
 INSERT INTO  adresse  ( id ,  adresse ,  codLocal ,  codPays ,  codPostal ,  id_client ,  numTeleph )
 VALUES ('1', 'hhgghggghgh', 'AZ', 'AF', '545', '01212', '555415');
+INSERT INTO  adresse  ( id ,  adresse ,  codLocal ,  codPays ,  codPostal ,  id_client ,  numTeleph )
+VALUES ('4', 'hhgghggghgh', 'AZ', 'AF', '545', '01212', '555415');
 --donneees pm 1
 INSERT INTO  donneesintpm  ( flagSuc ,  dtCreation ,  dtMod ,  id ,  codActPrinc ,  codActSec ,  codTrib ,  codlei ,  formJur ,  genre ,  groupAppart ,  ice ,  id_client ,  idFiscal ,  idPrincSiege ,  idSpecifique ,  natMod ,  numTaxeProf ,  raisonSocSiege ,  raisonSocial ,  regCommerce ,  sigle ,  tailleEntrep ,  tpIdPrincSiege )
 VALUES (true, '2026-02-18 09:58:07.000000', '2026-02-18 09:58:07.000000', '1', '100', '100', '1', 'GG', 'A', 'VCFCGFG', 'A', 'VFVGFG', '01212', 'GFFGFG', 'VFVGFG', 'FGFGFG', 'NA', 'VVVGJHHJ', 'FGFGFGD', 'HGGVGH', 'BBVHJ', 'HJHHJ', 'TPE', 'CIN');
+--donnees pp 1
+INSERT INTO  donneesintpp  (idPrincipal,tpIdPrincipal,prenom,nomFamille,paysDelivrance,dtDelivrance,dtExpiration,TypePPPro,RNAE,dtNaissance,codLocalNaissance,sexe,nationalite,sitFamille,codCatProf,menage,qualAcadem,catClient,  id_client)
+VALUES ('1', 'CIN', 'John', 'Doe', 'AF', '2026-02-18 09:58:07.000000', '2023-02-18 09:58:07.000000', '100', 'RNAEValue', '1995-12-31 23:59:59.000000', 'AZ', '1', 'AFG', 'C', '0', 5, 'N1', 'MAR','01212');
+
 --actionnaire 1
 INSERT INTO  sss_cdr_snapshot_client_act  ( qtpartCapSocAct ,  id ,  codTribunAct ,  formJurAct ,  iceact ,  id_client ,  idPrincAct ,  idSpecifiqueAct ,  leiact ,  natActionnaire ,  nomRaisonSocAct ,  payResAct ,  regCommerAct ,  tpIdPrincAct )
 VALUES ('11', '1', '1', 'A', 'sss', '01212', '96655', 'ddff', 'ffff', 'P', 'eee', 'AF', 'DDDD', 'CIN');
+INSERT INTO  sss_cdr_snapshot_client_act  ( qtpartCapSocAct ,  id ,  codTribunAct ,  formJurAct ,  iceact ,  id_client ,  idPrincAct ,  idSpecifiqueAct ,  leiact ,  natActionnaire ,  nomRaisonSocAct ,  payResAct ,  regCommerAct ,  tpIdPrincAct )
+VALUES ('11', '4', '1', 'A', 'sss', '01212', '96655', 'ddff', 'ffff', 'P', 'eee', 'AF', 'DDDD', 'CIN');
 --beneficiaire 1
 INSERT INTO SSS_CDR_SNAPSHOT_CLIENT_BENEF (ID, IDBENEFFECT, ID_CLIENT, NATBENEFFECT, NOMBENEFFECT, PREBENEFFECT, TYPIDBENEFFECT)
 VALUES ('1', '15655', '01212', 'P', 'hjdshjdshj', 'hgszgs', 'CIN');
+INSERT INTO SSS_CDR_SNAPSHOT_CLIENT_BENEF (ID, IDBENEFFECT, ID_CLIENT, NATBENEFFECT, NOMBENEFFECT, PREBENEFFECT, TYPIDBENEFFECT)
+VALUES ('4', '15655', '01212', 'P', 'hjdshjdshj', 'hgszgs', 'CIN');
 
 
 --client snapshot 2 PM
-INSERT INTO SSS_CDR_SNAPSHOT_CLIENT_STAT (altCodClient, entLieeEtab, dateDeclaration, dtRefent, codAgEcon, codClient, entDeclar, entObserv, id_client, natClient, actionType)
-VALUES ('2', 'EAG', '2025-02-18 10:06:24.000000', '2025-02-18 10:06:24.000000', '100', '01215', 'bdhhdnhd', 'nbdbdbdbdb', '01215', 'P', 'ED');
+INSERT INTO SSS_CDR_SNAPSHOT_CLIENT_STAT (altCodClient, entLieeEtab, dateDeclaration, dtRefent, codAgEcon, codClient, entDeclar, entObserv, id_client, natClient, actionType,flag_envoi)
+VALUES ('2', 'EAG', '2025-02-18 10:06:24.000000', '2025-02-18 10:06:24.000000', '100', '01215', 'bdhhdnhd', 'nbdbdbdbdb', '01215', 'P', 'ED','AUTOMATIQUE');
 
 --adresse 2
 
@@ -105,10 +115,11 @@ VALUES ('2', '15655', '01215', 'P', 'hjdshjdshj', 'hgszgs', 'CIN');
 
 
 --client snapshot 3 PP
-INSERT INTO SSS_CDR_SNAPSHOT_CLIENT_STAT (altCodClient, entLieeEtab, dateDeclaration, dtRefent, codAgEcon, codClient, entDeclar, entObserv, id_client, natClient, actionType)
-VALUES ('3', 'EAG', '2025-02-18 10:06:24.000000', '2025-02-18 10:06:24.000000', '100', '01219', 'bdhhdnhd', 'nbdbdbdbdb', '01219', 'P', 'ED');
+INSERT INTO SSS_CDR_SNAPSHOT_CLIENT_STAT (altCodClient, entLieeEtab, dateDeclaration, dtRefent, codAgEcon, codClient, entDeclar, entObserv, id_client, natClient, actionType,flag_envoi)
+VALUES ('3', 'EAG', '2025-02-18 10:06:24.000000', '2025-02-18 10:06:24.000000', '100', '01219', 'bdhhdnhd', 'nbdbdbdbdb', '01219', 'P', 'ED','AUTOMATIQUE');
+--donnees pp 3
 INSERT INTO  donneesintpp  (idPrincipal,tpIdPrincipal,prenom,nomFamille,paysDelivrance,dtDelivrance,dtExpiration,TypePPPro,RNAE,dtNaissance,codLocalNaissance,sexe,nationalite,sitFamille,codCatProf,menage,qualAcadem,catClient,  id_client)
-VALUES ('1', 'CIN', 'John', 'Doe', 'AF', '2026-02-18 09:58:07.000000', '2023-02-18 09:58:07.000000', '100', 'RNAEValue', '1995-12-31 23:59:59.000000', 'AZ', '1', 'AFG', 'C', '0', 5, 'N1', 'MAR','01219');
+VALUES ('2', 'CIN', 'John', 'Doe', 'AF', '2026-02-18 09:58:07.000000', '2023-02-18 09:58:07.000000', '100', 'RNAEValue', '1995-12-31 23:59:59.000000', 'AZ', '1', 'AFG', 'C', '0', 5, 'N1', 'MAR','01219');
 --adresse 3
 
 INSERT INTO  adresse  ( id ,  adresse ,  codLocal ,  codPays ,  codPostal ,  id_client ,  numTeleph )

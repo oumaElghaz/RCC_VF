@@ -31,6 +31,7 @@ public class ComparaisonImpl implements Comparaison{
                         OR IFNULL(snap.natClient, 'X') <> IFNULL(arch.natClient, 'X')
                         OR IFNULL(snap.entLieeEtab, 'X') <> IFNULL(arch.entLieeEtab, 'X')
                         OR IFNULL(snap.codAgEcon, 'X') <> IFNULL(arch.codAgEcon, 'X')
+                        OR IFNULL(snap.flag_envoi, 'X') <> IFNULL(arch.flag_envoi, 'X')
                 
                     UNION
                 

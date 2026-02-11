@@ -85,6 +85,7 @@ public class sss_cdr_inter_client_stat_service_impl {
             client_inter.setNatClient(client.getNatClient());
             client_inter.setEntLieeEtab(client.getEntLieeEtab());
             client_inter.setCodAgEcon(client.getCodAgEcon());
+            client_inter.setFlag_envoi(client.getFlag_envoi());
             for (Adresse a : client.getAdresses()) {
                 Adresse_interm a_inter = new Adresse_interm();
                 a_inter.setAdresse(a.getAdresse());

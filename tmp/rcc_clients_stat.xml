@@ -3,7 +3,19 @@
     <controle entObserv="nbdbdbdbdb" entDeclar="bdhhdnhd" dtCreation="2026-02-18T11:06:24.000+01:00"/>
     <contenu>
         <comEnt>
-            <donneesEnt dtRefEnt="2026-02-18T11:06:24.000+01:00" actionType="ED" codClient="01212" natClient="1" entLieeEtab="02" codAgEcon="900" tpIdPrincipal="" idPrincipal="" prenom="" nomFamille="" paysDelivrance="" TypePPPro="" RNAE="" codLocalNaissance="" sexe="" nationalite="" sitFamille="" codCatProf="" qualAcadem="" catClient="" raisonSocial="HGGVGH" sigle="HJHHJ" formJur="90" codTrib="01" regCommerce="BBVHJ" ICE="VFVGFG" idFiscal="GFFGFG" numTaxeProf="VVVGJHHJ" idSpecifique="FGFGFG" codLEI="GG" codActPrinc="900" codActSec="900" tailleEntrep="1" genre="VCFCGFG" dtCreation="2026-02-18T10:58:07.000+01:00" natMod="1" dtMod="2026-02-18T10:58:07.000+01:00" flagSuc="true" tpIdPrincSiege="01" idPrincSiege="VFVGFG" groupAppart="01">
+            <donneesEnt dtRefEnt="2026-02-18T11:06:24.000+01:00" actionType="ED" codClient="01212" natClient="1" entLieeEtab="02" codAgEcon="900" tpIdPrincipal="01" idPrincipal="1" prenom="John" nomFamille="Doe" paysDelivrance="AFG" dtDelivrance="2026-02-18T10:58:07.000+01:00" dtExpiration="2023-02-18T10:58:07.000+01:00" TypePPPro="900" RNAE="RNAEValue" dtNaissance="1996-01-01T00:59:59.000+01:00" codLocalNaissance="132" sexe="M" nationalite="AFG" sitFamille="C" codCatProf="5" menage="5" qualAcadem="01" catClient="1" raisonSocial="HGGVGH" sigle="HJHHJ" formJur="90" codTrib="01" regCommerce="BBVHJ" ICE="VFVGFG" idFiscal="GFFGFG" numTaxeProf="VVVGJHHJ" idSpecifique="FGFGFG" codLEI="GG" codActPrinc="900" codActSec="900" tailleEntrep="1" genre="VCFCGFG" dtCreation="2026-02-18T10:58:07.000+01:00" natMod="1" dtMod="2026-02-18T10:58:07.000+01:00" flagSuc="true" tpIdPrincSiege="01" idPrincSiege="VFVGFG" groupAppart="01">
+                <address adresse="hhgghggghgh" codPostal="545" codLocal="132" codPays="AFG" numTeleph="555415"/>
+                <address adresse="hhgghggghgh" codPostal="545" codLocal="132" codPays="AFG" numTeleph="555415"/>
+                <lstActionnariat>
+                    <actionnariat natActionnaire="1" formJurAct="90" codTribunAct="01" regCommerAct="DDDD" ICEAct="sss" LEIAct="ffff" payResAct="AFG" nomRaisonSocAct="eee" qtpartCapSocAct="11"/>
+                    <actionnariat natActionnaire="1" formJurAct="90" codTribunAct="01" regCommerAct="DDDD" ICEAct="sss" LEIAct="ffff" payResAct="AFG" nomRaisonSocAct="eee" qtpartCapSocAct="11"/>
+                </lstActionnariat>
+                <lstBenEffect>
+                    <benEffect typIdBenEffect="01" idBenEffect="15655" nomBenEffect="hjdshjdshj" preBenEffect="hgszgs"/>
+                    <benEffect typIdBenEffect="01" idBenEffect="15655" nomBenEffect="hjdshjdshj" preBenEffect="hgszgs"/>
+                </lstBenEffect>
+            </donneesEnt>
+            <donneesEnt dtRefEnt="2025-02-18T11:06:24.000+01:00" actionType="ED" codClient="01215" natClient="1" entLieeEtab="02" codAgEcon="900" raisonSocial="HGGVGH" sigle="HJHHJ" formJur="90" codTrib="01" regCommerce="BBVHJ" ICE="VFVGFG" idFiscal="GFFGFG" numTaxeProf="VVVGJHHJ" idSpecifique="FGFGFG" codLEI="GG" codActPrinc="900" codActSec="900" tailleEntrep="1" genre="VCFCGFG" dtCreation="2025-02-18T10:58:07.000+01:00" natMod="1" dtMod="2025-02-18T10:58:07.000+01:00" flagSuc="false" tpIdPrincSiege="01" idPrincSiege="VFVGFG" groupAppart="01">
                 <address adresse="hhgghggghgh" codPostal="545" codLocal="132" codPays="AFG" numTeleph="555415"/>
                 <lstActionnariat>
                     <actionnariat natActionnaire="1" formJurAct="90" codTribunAct="01" regCommerAct="DDDD" ICEAct="sss" LEIAct="ffff" payResAct="AFG" nomRaisonSocAct="eee" qtpartCapSocAct="11"/>
@@ -12,16 +24,7 @@
                     <benEffect typIdBenEffect="01" idBenEffect="15655" nomBenEffect="hjdshjdshj" preBenEffect="hgszgs"/>
                 </lstBenEffect>
             </donneesEnt>
-            <donneesEnt dtRefEnt="2025-02-18T11:06:24.000+01:00" actionType="ED" codClient="01215" natClient="1" entLieeEtab="02" codAgEcon="900" tpIdPrincipal="" idPrincipal="" prenom="" nomFamille="" paysDelivrance="" TypePPPro="" RNAE="" codLocalNaissance="" sexe="" nationalite="" sitFamille="" codCatProf="" qualAcadem="" catClient="" raisonSocial="HGGVGH" sigle="HJHHJ" formJur="90" codTrib="01" regCommerce="BBVHJ" ICE="VFVGFG" idFiscal="GFFGFG" numTaxeProf="VVVGJHHJ" idSpecifique="FGFGFG" codLEI="GG" codActPrinc="900" codActSec="900" tailleEntrep="1" genre="VCFCGFG" dtCreation="2025-02-18T10:58:07.000+01:00" natMod="1" dtMod="2025-02-18T10:58:07.000+01:00" flagSuc="false" tpIdPrincSiege="01" idPrincSiege="VFVGFG" groupAppart="01">
-                <address adresse="hhgghggghgh" codPostal="545" codLocal="132" codPays="AFG" numTeleph="555415"/>
-                <lstActionnariat>
-                    <actionnariat natActionnaire="1" formJurAct="90" codTribunAct="01" regCommerAct="DDDD" ICEAct="sss" LEIAct="ffff" payResAct="AFG" nomRaisonSocAct="eee" qtpartCapSocAct="11"/>
-                </lstActionnariat>
-                <lstBenEffect>
-                    <benEffect typIdBenEffect="01" idBenEffect="15655" nomBenEffect="hjdshjdshj" preBenEffect="hgszgs"/>
-                </lstBenEffect>
-            </donneesEnt>
-            <donneesEnt dtRefEnt="2025-02-18T11:06:24.000+01:00" actionType="ED" codClient="01219" natClient="1" entLieeEtab="02" codAgEcon="900" tpIdPrincipal="01" idPrincipal="1" prenom="John" nomFamille="Doe" paysDelivrance="AFG" dtDelivrance="2026-02-18T10:58:07.000+01:00" dtExpiration="2023-02-18T10:58:07.000+01:00" TypePPPro="900" RNAE="RNAEValue" dtNaissance="1996-01-01T00:59:59.000+01:00" codLocalNaissance="132" sexe="M" nationalite="AFG" sitFamille="C" codCatProf="5" menage="5" qualAcadem="01" catClient="1" raisonSocial="" sigle="" formJur="" codTrib="" regCommerce="" ICE="" idFiscal="" numTaxeProf="" idSpecifique="" codLEI="" codActPrinc="" codActSec="" tailleEntrep="" genre="" natMod="" tpIdPrincSiege="" idPrincSiege="" raisonSocSiege="" groupAppart="">
+            <donneesEnt dtRefEnt="2025-02-18T11:06:24.000+01:00" actionType="ED" codClient="01219" natClient="1" entLieeEtab="02" codAgEcon="900" tpIdPrincipal="01" idPrincipal="2" prenom="John" nomFamille="Doe" paysDelivrance="AFG" dtDelivrance="2026-02-18T10:58:07.000+01:00" dtExpiration="2023-02-18T10:58:07.000+01:00" TypePPPro="900" RNAE="RNAEValue" dtNaissance="1996-01-01T00:59:59.000+01:00" codLocalNaissance="132" sexe="M" nationalite="AFG" sitFamille="C" codCatProf="5" menage="5" qualAcadem="01" catClient="1">
                 <address adresse="hhgghggghgh" codPostal="545" codLocal="132" codPays="AFG" numTeleph="555415"/>
                 <lstActionnariat>
                     <actionnariat natActionnaire="1" formJurAct="90" codTribunAct="01" regCommerAct="DDDD" ICEAct="sss" LEIAct="ffff" payResAct="AFG" nomRaisonSocAct="eee" qtpartCapSocAct="11"/>

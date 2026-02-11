@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ma.vivalis.BKAM_CDR_API1.entities.Enums.ActionType;
+import ma.vivalis.BKAM_CDR_API1.entities.Enums.Flag_envoi;
 import ma.vivalis.BKAM_CDR_API1.entities.Enums.NatClient;
 import ma.vivalis.BKAM_CDR_API1.entities.util.*;
 
@@ -34,6 +35,8 @@ public class sss_cdr_snapshot_arch_client_stat {
     private String natClient;
     private String entLieeEtab;
     private String codAgEcon;
+    @Enumerated(EnumType.STRING)
+    private Flag_envoi flag_envoi;
 
     @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
     private List<Adresse_Arch> adresses= new ArrayList<>();

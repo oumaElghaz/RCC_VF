@@ -30,6 +30,7 @@ public class sss_cdr_snapshot_arch_client_stat_service_impl {
         cl_arc.setNatClient(sss_cdr_inter_client_stat.getNatClient());
         cl_arc.setEntLieeEtab(sss_cdr_inter_client_stat.getEntLieeEtab());
         cl_arc.setCodAgEcon(sss_cdr_inter_client_stat.getCodAgEcon());
+        cl_arc.setFlag_envoi(sss_cdr_inter_client_stat.getFlag_envoi());
         for (Adresse_interm a : sss_cdr_inter_client_stat.getAdresses()) {
             Adresse_Arch a_inter = new Adresse_Arch();
             //a_inter.setId(a.getId());

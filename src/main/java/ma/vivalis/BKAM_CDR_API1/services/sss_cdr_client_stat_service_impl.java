@@ -56,16 +56,18 @@ public class sss_cdr_client_stat_service_impl {
         ControlType ctr = new ControlType();
         ContentType contenu = new ContentType();
         ComEnt comEnt = new ComEnt();
-        ComEnt.DonneesEnt d_ent = new ComEnt.DonneesEnt();
-        ComEnt.DonneesEnt.Address adr = new ComEnt.DonneesEnt.Address();
-        ComEnt.DonneesEnt.LstActionnariat t = new ComEnt.DonneesEnt.LstActionnariat();
-        ComEnt.DonneesEnt.LstActionnariat.Actionnariat b = new ComEnt.DonneesEnt.LstActionnariat.Actionnariat();
-        ComEnt.DonneesEnt.LstBenEffect f = new ComEnt.DonneesEnt.LstBenEffect();
-        ComEnt.DonneesEnt.LstBenEffect.BenEffect n = new ComEnt.DonneesEnt.LstBenEffect.BenEffect();
+
 
         for (sss_cdr_client_stat sss_cdr_client_stat:sss_cdr_client_stats){
 
             for (sss_cdr_DonneesIntPP donneesIntPP : sss_cdr_client_stat.getDonneesInts_pp()) {
+                //ComEnt comEnt = new ComEnt();
+                ComEnt.DonneesEnt d_ent = new ComEnt.DonneesEnt();
+                ComEnt.DonneesEnt.Address adr = new ComEnt.DonneesEnt.Address();
+                ComEnt.DonneesEnt.LstActionnariat t = new ComEnt.DonneesEnt.LstActionnariat();
+                ComEnt.DonneesEnt.LstActionnariat.Actionnariat b = new ComEnt.DonneesEnt.LstActionnariat.Actionnariat();
+                ComEnt.DonneesEnt.LstBenEffect f = new ComEnt.DonneesEnt.LstBenEffect();
+                ComEnt.DonneesEnt.LstBenEffect.BenEffect n = new ComEnt.DonneesEnt.LstBenEffect.BenEffect();
 
                 GregorianCalendar cal = new GregorianCalendar();
                 cal.setTime(sss_cdr_client_stat.getDtRefEnt());
@@ -176,6 +178,12 @@ public class sss_cdr_client_stat_service_impl {
 
             for (sss_cdr_DonneesIntPM donneesIntPM : sss_cdr_client_stat.getDonneesInts_pm()) {
 
+                ComEnt.DonneesEnt d_ent = new ComEnt.DonneesEnt();
+                ComEnt.DonneesEnt.Address adr = new ComEnt.DonneesEnt.Address();
+                ComEnt.DonneesEnt.LstActionnariat t = new ComEnt.DonneesEnt.LstActionnariat();
+                ComEnt.DonneesEnt.LstActionnariat.Actionnariat b = new ComEnt.DonneesEnt.LstActionnariat.Actionnariat();
+                ComEnt.DonneesEnt.LstBenEffect f = new ComEnt.DonneesEnt.LstBenEffect();
+                ComEnt.DonneesEnt.LstBenEffect.BenEffect n = new ComEnt.DonneesEnt.LstBenEffect.BenEffect();
                 GregorianCalendar cal = new GregorianCalendar();
                 cal.setTime(sss_cdr_client_stat.getDtRefEnt());
 

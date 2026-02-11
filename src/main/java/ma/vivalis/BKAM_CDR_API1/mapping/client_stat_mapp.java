@@ -33,7 +33,8 @@ public class client_stat_mapp {
         String natClient=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("CDTYPT",inter_client_stat.getNatClient());
         sss_cdr_client_stat.setNatClient(natClient);
         //mapping de ENTLIEEETAB A CHERCHER
-        sss_cdr_client_stat.setEntLieeEtab(inter_client_stat.getEntLieeEtab());
+        String ENTLIEEETAB=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("ENTLIEEETAB",inter_client_stat.getEntLieeEtab());
+        sss_cdr_client_stat.setEntLieeEtab(ENTLIEEETAB);
         //mapping de codeag
         String codAgEcon=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("SACT",inter_client_stat.getCodAgEcon());
         sss_cdr_client_stat.setCodAgEcon(codAgEcon);
@@ -44,7 +45,8 @@ public class client_stat_mapp {
             adr.setAdresse(a.getAdresse());
             adr.setCodPostal(a.getCodPostal());
             //mapping du code local A CHERCHER
-            adr.setCodLocal(a.getCodLocal());
+            String codLocal=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("CodLocal",a.getCodLocal());
+            adr.setCodLocal(codLocal);
             //mapping des codes pays
             String codPays=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("PAYS",a.getCodPays());
             adr.setCodPays(codPays);
@@ -78,18 +80,22 @@ public class client_stat_mapp {
             String codActSec=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("SACT",a.getCodActSec());
             ai.setCodActSec(codActSec);
             //mapping de la taille A CHERCHER
-            ai.setTailleEntrep(a.getTailleEntrep());
+            String tailleEntrep=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("TailleEntrep",a.getTailleEntrep());
+            ai.setTailleEntrep(tailleEntrep);
             ai.setGenre(a.getGenre());
             ai.setDtCreation(a.getDtCreation());
             //mapping nature modification A CHERCHER
-            ai.setNatMod(a.getNatMod());
+            String natMod=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("NatMod",a.getNatMod());
+            ai.setNatMod(natMod);
             ai.setDtMod(a.getDtMod());
             ai.setFlagSuc(a.getFlagSuc());
-            ai.setTpIdPrincSiege(a.getTpIdPrincSiege());
+            String tpIdPrincSiege=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("TYPDOC",a.getTpIdPrincSiege());
+            ai.setTpIdPrincSiege(tpIdPrincSiege);
             ai.setIdPrincSiege(a.getIdPrincSiege());
             ai.setRaisonSocial(a.getRaisonSocial());
             //mapping du gr appt A CHERCHER
-            ai.setGroupAppart(a.getGroupAppart());
+            String groupAppart=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("GroupAppart",a.getGroupAppart());
+            ai.setGroupAppart(groupAppart);
             ai.setClient(sss_cdr_client_stat);
             sss_cdr_client_stat.getDonneesInts_pm().add(ai);
         }
@@ -102,7 +108,8 @@ public class client_stat_mapp {
             sss_cdr_DonneesIntPP ai = new sss_cdr_DonneesIntPP();
             ai.setIdPrincipal(a.getIdPrincipal());
             //mapping du type de document A CHERCHER
-            ai.setTpIdPrincipal(a.getTpIdPrincipal());
+            String tpIdPrincipal=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("TYPDOC",a.getTpIdPrincipal());
+            ai.setTpIdPrincipal(tpIdPrincipal);
             ai.setPrenom(a.getPrenom());
             ai.setNomFamille(a.getNomFamille());
             //mapping du pays de delivrance
@@ -116,7 +123,8 @@ public class client_stat_mapp {
             ai.setRNAE(a.getRNAE());
             ai.setDtNaissance(a.getDtNaissance());
             //mapping du code localite A CHERCHER
-            ai.setCodLocalNaissance(a.getCodLocalNaissance());
+            String CodLocalNaissance=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("CodLocal",a.getCodLocalNaissance());
+            ai.setCodLocalNaissance(CodLocalNaissance);
             //mapping du sexe
             String sexe=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("SEXE",a.getSexe());
             ai.setSexe(sexe);
@@ -131,7 +139,8 @@ public class client_stat_mapp {
             ai.setCodCatProf(codCatProf);
             ai.setMenage(a.getMenage());
             //mapping de nuveau academique A CHERCHER
-            ai.setQualAcadem(a.getQualAcadem());
+            String qualAcadem=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("QualAcadem",a.getQualAcadem());
+            ai.setQualAcadem(qualAcadem);
             //mapping de la categorie client
             String catClient=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("RSDT",a.getCatClient());
             ai.setCatClient(catClient);
@@ -153,7 +162,8 @@ public class client_stat_mapp {
             String FormJurAct=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("FJR",a.getFormJurAct());
             ai.setFormJurAct(FormJurAct);
             //mapping de type document A CHERCHER
-            ai.setTpIdPrincAct(a.getTpIdPrincAct());
+            String TpIdPrincAct=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("TYPDOC",a.getTpIdPrincAct());
+            ai.setTpIdPrincAct(TpIdPrincAct);
             ai.setIdPrincAct(a.getIdPrincAct());
             //mapping code tribunal
             String codTribAct=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("CDTR",a.getCodTribunAct());
@@ -178,7 +188,8 @@ public class client_stat_mapp {
 
             //ai.setId(a.getId());
             //mapping du type document A CHERCHER
-            ai.setTypIdBenEffect(a.getTypIdBenEffect());
+            String TypIdBenEffect=sss_cdr_mapping_Repository.findCodCiblByCtabAndCodSrc("TYPDOC",a.getTypIdBenEffect());
+            ai.setTypIdBenEffect(TypIdBenEffect);
             ai.setIdBenEffect(a.getIdBenEffect());
             ai.setNomBenEffect(a.getNomBenEffect());
             ai.setPreBenEffect(a.getPreBenEffect());

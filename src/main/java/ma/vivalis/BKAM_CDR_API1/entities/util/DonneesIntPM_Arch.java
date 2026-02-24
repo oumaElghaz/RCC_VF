@@ -2,7 +2,7 @@ package ma.vivalis.BKAM_CDR_API1.entities.util;
 
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_snapshot_arch_client_stat;
+import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_arch_client_stat;
 
 
 import java.util.Date;
@@ -48,7 +48,5 @@ public class DonneesIntPM_Arch {
     private String groupAppart;
 
 
-    @ManyToOne
-    @JoinColumn(name = "id_client")
-    private sss_cdr_snapshot_arch_client_stat client;
+
 }

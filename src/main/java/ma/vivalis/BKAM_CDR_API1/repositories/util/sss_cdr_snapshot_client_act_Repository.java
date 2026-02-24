@@ -1,6 +1,6 @@
-package ma.vivalis.BKAM_CDR_API1.repositories;
+package ma.vivalis.BKAM_CDR_API1.repositories.util;
 
-import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_snapshot_client_act;
+import ma.vivalis.BKAM_CDR_API1.entities.util.sss_cdr_snapshot_client_act;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -18,6 +18,8 @@ import java.util.Date;
 @Builder
 public class sss_cdr_DonneesIntPP {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String idPrincipal;
     private String tpIdPrincipal;
     private String prenom;
@@ -38,8 +40,6 @@ public class sss_cdr_DonneesIntPP {
     private String catClient;
 
 
-    @ManyToOne
-    @JoinColumn(name = "id_client")
-    private sss_cdr_client_stat client;
+
 
 }

@@ -1,4 +1,4 @@
-package ma.vivalis.BKAM_CDR_API1.entities;
+package ma.vivalis.BKAM_CDR_API1.entities.util;
 
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -7,16 +7,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_arch_client_stat;
 
 
 @Entity
-@Table(name = "sss_cdr_snapshot_client_act_Arch")
+@Table(name = "sss_cdr_arch_client_act")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class sss_cdr_snapshot_client_act_Arch {
+public class sss_cdr_arch_client_act {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,6 +35,10 @@ public class sss_cdr_snapshot_client_act_Arch {
 
 
     @ManyToOne
-    @JoinColumn(name = "id_client")
-    private sss_cdr_snapshot_arch_client_stat client;
+    @JoinColumns({
+            @JoinColumn(name = "id_client", referencedColumnName = "id_client", insertable = false, updatable = false),
+            @JoinColumn(name = "id_lot", referencedColumnName = "id_lot", insertable = false, updatable = false),
+            @JoinColumn(name = "dateExtraction", referencedColumnName = "dateExtraction", insertable = false, updatable = false)
+    })
+    private sss_cdr_arch_client_stat client;
 }

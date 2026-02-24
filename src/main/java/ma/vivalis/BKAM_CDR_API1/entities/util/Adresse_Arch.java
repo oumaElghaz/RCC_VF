@@ -2,7 +2,7 @@ package ma.vivalis.BKAM_CDR_API1.entities.util;
 
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_snapshot_arch_client_stat;
+import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_arch_client_stat;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -28,7 +28,5 @@ public class Adresse_Arch {
     private String codPays;
     private String numTeleph;
 
-    @ManyToOne
-    @JoinColumn(name = "id_client")
-    private sss_cdr_snapshot_arch_client_stat client;
+
 }

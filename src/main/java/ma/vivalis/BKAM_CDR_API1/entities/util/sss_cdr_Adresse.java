@@ -24,8 +24,6 @@ public class sss_cdr_Adresse {
     private String codPays;
     private String numTeleph;
 
-    @ManyToOne
-    @JoinColumn(name = "id_client")
-    private sss_cdr_client_stat client;
+
 
 }

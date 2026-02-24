@@ -22,6 +22,8 @@ import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_inter_client_stat;
 @Builder
 public class DonneesIntPP_interm {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String idPrincipal;
     private String tpIdPrincipal;
     private String prenom;
@@ -42,7 +44,5 @@ public class DonneesIntPP_interm {
     private String catClient;
 
 
-    @ManyToOne
-    @JoinColumn(name = "id_client")
-    private sss_cdr_inter_client_stat client;
+
 }

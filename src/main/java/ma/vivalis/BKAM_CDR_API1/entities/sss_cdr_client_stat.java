@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ma.vivalis.BKAM_CDR_API1.entities.Enums.ActionType;
-import ma.vivalis.BKAM_CDR_API1.entities.Enums.Flag_envoi;
 import ma.vivalis.BKAM_CDR_API1.entities.util.*;
 
 import java.util.ArrayList;
@@ -14,13 +13,18 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "sss_cdr_client_stat")
+@Table(name = "sss_cdr_client_stat", uniqueConstraints = {
+        @UniqueConstraint(name = "uk_client_arch_composite",
+                columnNames = {"id_client", "id_lot", "dateExtraction"})
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class sss_cdr_client_stat {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String id_client;
     private Integer id_lot;
     private Date dateExtraction;
@@ -34,17 +38,19 @@ public class sss_cdr_client_stat {
     private String natClient;
     private String entLieeEtab;
     private String codAgEcon;
-    @Enumerated(EnumType.STRING)
-    private Flag_envoi flag_envoi;
 
-    @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
-    private List<sss_cdr_Adresse> adresses= new ArrayList<>();
 
-    @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
-    private List<sss_cdr_DonneesIntPP> donneesInts_pp= new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "sss_cdr_adresse_id")
+    private sss_cdr_Adresse adresse;
 
-    @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
-    private List<sss_cdr_DonneesIntPM> donneesInts_pm= new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "donneesInt_pp_id")
+    private sss_cdr_DonneesIntPP donneesInt_pp;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "donneesInt_pm_id")
+    private sss_cdr_DonneesIntPM donneesInt_pm;
 
     @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
     private List<sss_cdr_client_act> actionnariats= new ArrayList<>();

@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class DonneesIntPM {
+public class DonneesIntPM_snap {
     @Id
     private Long id;
     @Column(name = "raisonSocial")
@@ -65,9 +65,7 @@ public class DonneesIntPM {
     private String groupAppart;
 
 
-    @ManyToOne
-    @JoinColumn(name = "id_client")
-    private sss_cdr_snapshot_client_stat client;
+
 
 
 }

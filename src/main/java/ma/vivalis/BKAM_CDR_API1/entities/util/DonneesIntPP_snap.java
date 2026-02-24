@@ -15,8 +15,10 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class DonneesIntPP {
+public class DonneesIntPP_snap {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(name = "idPrincipal")
     private String idPrincipal;
     @Column(name = "tpIdPrincipal")
@@ -50,8 +52,6 @@ public class DonneesIntPP {
     private String catClient;
 
 
-    @ManyToOne
-    @JoinColumn(name = "id_client")
-    private sss_cdr_snapshot_client_stat client;
+
 
 }

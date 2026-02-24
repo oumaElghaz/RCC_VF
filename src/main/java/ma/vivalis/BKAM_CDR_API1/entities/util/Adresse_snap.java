@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Adresse {
+public class Adresse_snap {
     @Id
     private Long id;
     private String adresse;
@@ -30,8 +30,6 @@ public class Adresse {
     @Column(name = "numTeleph")
     private String numTeleph;
 
-    @ManyToOne
-    @JoinColumn(name = "id_client")
-    private sss_cdr_snapshot_client_stat client;
+
 
 }

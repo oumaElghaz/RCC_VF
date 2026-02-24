@@ -1,10 +1,11 @@
-package ma.vivalis.BKAM_CDR_API1.entities;
+package ma.vivalis.BKAM_CDR_API1.entities.util;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_snapshot_client_stat;
 
 
 @Entity
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class sss_cdr_snapshot_client_benef {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "typIdBenEffect")
     private String typIdBenEffect;

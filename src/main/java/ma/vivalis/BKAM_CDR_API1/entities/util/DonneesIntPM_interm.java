@@ -47,7 +47,5 @@ public class DonneesIntPM_interm {
     private String groupAppart;
 
 
-    @ManyToOne
-    @JoinColumn(name = "id_client")
-    private sss_cdr_inter_client_stat client;
+
 }

@@ -45,9 +45,7 @@ public class sss_cdr_DonneesIntPM {
     private String groupAppart;
 
 
-    @ManyToOne
-    @JoinColumn(name = "id_client")
-    private sss_cdr_client_stat client;
+
 
 
 }

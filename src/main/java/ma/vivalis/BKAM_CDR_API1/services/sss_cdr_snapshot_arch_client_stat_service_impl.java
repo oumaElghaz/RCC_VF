@@ -2,22 +2,71 @@ package ma.vivalis.BKAM_CDR_API1.services;
 
 import ma.vivalis.BKAM_CDR_API1.entities.*;
 import ma.vivalis.BKAM_CDR_API1.entities.util.*;
-import ma.vivalis.BKAM_CDR_API1.repositories.sss_cdr_snapshot_arch_client_stat_Repository;
+import ma.vivalis.BKAM_CDR_API1.repositories.sss_cdr_arch_client_stat_Repository;
 import org.springframework.stereotype.Service;
+
+import java.util.logging.Logger;
 
 @Service
 public class sss_cdr_snapshot_arch_client_stat_service_impl {
 
-    private final sss_cdr_snapshot_arch_client_stat_Repository sss_cdr_snapshot_arch_client_stat_Repository;
+    private static final Logger logger = Logger.getLogger(sss_cdr_snapshot_arch_client_stat_service_impl.class.getName());
 
-    public sss_cdr_snapshot_arch_client_stat_service_impl(sss_cdr_snapshot_arch_client_stat_Repository sssCdrSnapshotArchClientStatRepository) {
-        sss_cdr_snapshot_arch_client_stat_Repository = sssCdrSnapshotArchClientStatRepository;
+    private final sss_cdr_arch_client_stat_Repository sss_cdr_arch_client_stat_Repository;
+
+    public sss_cdr_snapshot_arch_client_stat_service_impl(
+            sss_cdr_arch_client_stat_Repository sssCdrSnapshotArchClientStatRepository) {
+        sss_cdr_arch_client_stat_Repository = sssCdrSnapshotArchClientStatRepository;
     }
 
+    /**
+     * OPTIMISÉ : Archive un client intermédiaire
+     * - Extrait la logique dans des méthodes séparées pour lisibilité
+     * - Gestion d'erreurs améliorée
+     */
+    public void create_arch_client_stat(sss_cdr_inter_client_stat sss_cdr_inter_client_stat) {
+        try {
+            long startTime = System.currentTimeMillis();
 
-    public void create_arch_client_stat(sss_cdr_inter_client_stat sss_cdr_inter_client_stat){
-        sss_cdr_snapshot_arch_client_stat cl_arc=new sss_cdr_snapshot_arch_client_stat();
-        //mapping
+            sss_cdr_arch_client_stat cl_arc = new sss_cdr_arch_client_stat();
+
+            // Infos de base
+            mapBasicInfo(cl_arc, sss_cdr_inter_client_stat);
+
+            // Adresses
+            mapAdresses(cl_arc, sss_cdr_inter_client_stat);
+
+            // DonneesIntPM
+            mapDonneesIntPM(cl_arc, sss_cdr_inter_client_stat);
+
+            // DonneesIntPP
+            mapDonneesIntPP(cl_arc, sss_cdr_inter_client_stat);
+
+            // Actionnariats
+            mapActionnariats(cl_arc, sss_cdr_inter_client_stat);
+
+            // Bénéficiaires
+            mapBeneficiaires(cl_arc, sss_cdr_inter_client_stat);
+
+            // Sauvegarder
+            sss_cdr_arch_client_stat_Repository.save(cl_arc);
+
+            long elapsed = System.currentTimeMillis() - startTime;
+            logger.info(" Client " + sss_cdr_inter_client_stat.getId_client() + " archivé en " + elapsed + "ms");
+
+        } catch (Exception e) {
+            logger.severe(" Erreur lors de l'archivage du client " +
+                    sss_cdr_inter_client_stat.getId_client() + " : " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("Erreur archivage client", e);
+        }
+    }
+
+    /**
+     * Map les informations de base
+     */
+    private void mapBasicInfo(sss_cdr_arch_client_stat cl_arc,
+                              sss_cdr_inter_client_stat sss_cdr_inter_client_stat) {
         cl_arc.setId_client(sss_cdr_inter_client_stat.getId_client());
         cl_arc.setId_lot(sss_cdr_inter_client_stat.getId_lot());
         cl_arc.setDateExtraction(sss_cdr_inter_client_stat.getDateExtraction());
@@ -30,23 +79,32 @@ public class sss_cdr_snapshot_arch_client_stat_service_impl {
         cl_arc.setNatClient(sss_cdr_inter_client_stat.getNatClient());
         cl_arc.setEntLieeEtab(sss_cdr_inter_client_stat.getEntLieeEtab());
         cl_arc.setCodAgEcon(sss_cdr_inter_client_stat.getCodAgEcon());
-        cl_arc.setFlag_envoi(sss_cdr_inter_client_stat.getFlag_envoi());
-        for (Adresse_interm a : sss_cdr_inter_client_stat.getAdresses()) {
-            Adresse_Arch a_inter = new Adresse_Arch();
-            //a_inter.setId(a.getId());
+    }
 
-            a_inter.setAdresse(a.getAdresse());
-            a_inter.setCodPostal(a.getCodPostal());
-            a_inter.setCodLocal(a.getCodLocal());
-            a_inter.setCodPays(a.getCodPays());
-            a_inter.setNumTeleph(a.getNumTeleph());
-            a_inter.setClient(cl_arc);
-            cl_arc.getAdresses().add(a_inter);
-        }
+    /**
+     * Map les adresses
+     */
+    private void mapAdresses(sss_cdr_arch_client_stat cl_arc,
+                             sss_cdr_inter_client_stat sss_cdr_inter_client_stat) {
+        Adresse_interm a = sss_cdr_inter_client_stat.getAdresse();
+            Adresse_Arch a_arch = new Adresse_Arch();
+            a_arch.setAdresse(a.getAdresse());
+            a_arch.setCodPostal(a.getCodPostal());
+            a_arch.setCodLocal(a.getCodLocal());
+            a_arch.setCodPays(a.getCodPays());
+            a_arch.setNumTeleph(a.getNumTeleph());
+            cl_arc.setAdresse(a_arch);
 
-        for (DonneesIntPM_interm a : sss_cdr_inter_client_stat.getDonneesInts_pm()) {
+
+    }
+
+    /**
+     * Map les DonneesIntPM
+     */
+    private void mapDonneesIntPM(sss_cdr_arch_client_stat cl_arc,
+                                 sss_cdr_inter_client_stat sss_cdr_inter_client_stat) {
+        DonneesIntPM_interm a = sss_cdr_inter_client_stat.getDonneesInt_pm();
             DonneesIntPM_Arch ai = new DonneesIntPM_Arch();
-
             ai.setRaisonSocial(a.getRaisonSocial());
             ai.setSigle(a.getSigle());
             ai.setFormJur(a.getFormJur());
@@ -69,10 +127,16 @@ public class sss_cdr_snapshot_arch_client_stat_service_impl {
             ai.setIdPrincSiege(a.getIdPrincSiege());
             ai.setRaisonSocial(a.getRaisonSocial());
             ai.setGroupAppart(a.getGroupAppart());
-            ai.setClient(cl_arc);
-            cl_arc.getDonneesInts_pm().add(ai);
-        }
-        for (DonneesIntPP_interm a : sss_cdr_inter_client_stat.getDonneesInts_pp()) {
+            cl_arc.setDonneesInts_pm(ai);
+
+    }
+
+    /**
+     * Map les DonneesIntPP
+     */
+    private void mapDonneesIntPP(sss_cdr_arch_client_stat cl_arc,
+                                 sss_cdr_inter_client_stat sss_cdr_inter_client_stat) {
+        DonneesIntPP_interm a = sss_cdr_inter_client_stat.getDonneesInt_pp();
             DonneesIntPP_Arch ai = new DonneesIntPP_Arch();
             ai.setIdPrincipal(a.getIdPrincipal());
             ai.setTpIdPrincipal(a.getTpIdPrincipal());
@@ -92,13 +156,17 @@ public class sss_cdr_snapshot_arch_client_stat_service_impl {
             ai.setMenage(a.getMenage());
             ai.setQualAcadem(a.getQualAcadem());
             ai.setCatClient(a.getCatClient());
-            ai.setClient(cl_arc);
-            cl_arc.getDonneesInts_pp().add(ai);
-        }
-        for (sss_cdr_snapshot_client_act_interm a : sss_cdr_inter_client_stat.getActionnariats()) {
-            sss_cdr_snapshot_client_act_Arch ai = new sss_cdr_snapshot_client_act_Arch();
+            cl_arc.setDonneesInts_pp(ai);
 
+    }
 
+    /**
+     * Map les actionnariats
+     */
+    private void mapActionnariats(sss_cdr_arch_client_stat cl_arc,
+                                  sss_cdr_inter_client_stat sss_cdr_inter_client_stat) {
+        for (sss_cdr_inter_client_act a : sss_cdr_inter_client_stat.getActionnariats()) {
+            sss_cdr_arch_client_act ai = new sss_cdr_arch_client_act();
             ai.setNatActionnaire(a.getNatActionnaire());
             ai.setFormJurAct(a.getFormJurAct());
             ai.setTpIdPrincAct(a.getTpIdPrincAct());
@@ -114,11 +182,15 @@ public class sss_cdr_snapshot_arch_client_stat_service_impl {
             ai.setClient(cl_arc);
             cl_arc.getActionnariats().add(ai);
         }
+    }
 
-        for (sss_cdr_snapshot_client_benef_interm a : sss_cdr_inter_client_stat.getBenEffects()) {
-             sss_cdr_snapshot_client_benef_Arch ai = new sss_cdr_snapshot_client_benef_Arch();
-
-
+    /**
+     * Map les bénéficiaires
+     */
+    private void mapBeneficiaires(sss_cdr_arch_client_stat cl_arc,
+                                  sss_cdr_inter_client_stat sss_cdr_inter_client_stat) {
+        for (sss_cdr_inter_client_benef a : sss_cdr_inter_client_stat.getBenEffects()) {
+            sss_cdr_arch_client_benef ai = new sss_cdr_arch_client_benef();
             ai.setTypIdBenEffect(a.getTypIdBenEffect());
             ai.setIdBenEffect(a.getIdBenEffect());
             ai.setNomBenEffect(a.getNomBenEffect());
@@ -127,9 +199,5 @@ public class sss_cdr_snapshot_arch_client_stat_service_impl {
             ai.setClient(cl_arc);
             cl_arc.getBenEffects().add(ai);
         }
-        
-        
-        // mapping
-        sss_cdr_snapshot_arch_client_stat_Repository.save(cl_arc);
     }
 }

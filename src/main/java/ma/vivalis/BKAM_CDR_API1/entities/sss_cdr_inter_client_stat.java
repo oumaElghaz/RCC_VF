@@ -5,11 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ma.vivalis.BKAM_CDR_API1.entities.Enums.ActionType;
-import ma.vivalis.BKAM_CDR_API1.entities.Enums.Flag_envoi;
-import ma.vivalis.BKAM_CDR_API1.entities.Enums.NatClient;
-import ma.vivalis.BKAM_CDR_API1.entities.util.Adresse_interm;
-import ma.vivalis.BKAM_CDR_API1.entities.util.DonneesIntPM_interm;
-import ma.vivalis.BKAM_CDR_API1.entities.util.DonneesIntPP_interm;
+import ma.vivalis.BKAM_CDR_API1.entities.util.*;
 
 
 import java.util.ArrayList;
@@ -18,13 +14,18 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "sss_cdr_inter_client_stat")
+@Table(name = "sss_cdr_inter_client_stat", uniqueConstraints = {
+        @UniqueConstraint(name = "uk_client_inter_composite",
+                columnNames = {"id_client", "id_lot", "dateExtraction"})
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class sss_cdr_inter_client_stat {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String id_client;
     private Integer id_lot;
     private Date dateExtraction;
@@ -38,23 +39,25 @@ public class sss_cdr_inter_client_stat {
     private String natClient;
     private String entLieeEtab;
     private String codAgEcon;
-    @Enumerated(EnumType.STRING)
-    private Flag_envoi flag_envoi;
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "adresse_inter_id")
+    private Adresse_interm adresse;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "donneesInt_pp_id")
+    private DonneesIntPP_interm donneesInt_pp;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "donneesInt_pm_id")
+    private DonneesIntPM_interm donneesInt_pm;
 
     @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
-    private List<Adresse_interm> adresses= new ArrayList<>();
+    private List<sss_cdr_inter_client_act> actionnariats= new ArrayList<>();
 
     @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
-    private List<DonneesIntPP_interm> donneesInts_pp= new ArrayList<>();
-
-    @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
-    private List<DonneesIntPM_interm> donneesInts_pm= new ArrayList<>();
-
-    @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
-    private List<sss_cdr_snapshot_client_act_interm> actionnariats= new ArrayList<>();
-
-    @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
-    private List<sss_cdr_snapshot_client_benef_interm> benEffects= new ArrayList<>();
+    private List<sss_cdr_inter_client_benef> benEffects= new ArrayList<>();
 
 
 

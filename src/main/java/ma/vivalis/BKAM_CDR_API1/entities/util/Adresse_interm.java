@@ -27,7 +27,5 @@ public class Adresse_interm {
     private String codPays;
     private String numTeleph;
 
-    @ManyToOne
-    @JoinColumn(name = "id_client")
-    private sss_cdr_inter_client_stat client;
+
 }

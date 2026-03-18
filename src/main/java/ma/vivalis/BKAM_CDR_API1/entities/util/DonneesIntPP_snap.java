@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_snapshot_client_stat;
 
 import java.util.Date;
 

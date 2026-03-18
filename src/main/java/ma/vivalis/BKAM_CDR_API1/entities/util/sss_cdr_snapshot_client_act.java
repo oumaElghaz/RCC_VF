@@ -1,12 +1,7 @@
 package ma.vivalis.BKAM_CDR_API1.entities.util;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_snapshot_client_stat;
 
 
@@ -16,6 +11,7 @@ import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_snapshot_client_stat;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EqualsAndHashCode(exclude = "client")
 public class sss_cdr_snapshot_client_act {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,6 +44,7 @@ public class sss_cdr_snapshot_client_act {
 
     @ManyToOne
     @JoinColumn(name = "id_client")
+    @ToString.Exclude
     private sss_cdr_snapshot_client_stat client;
 
 }

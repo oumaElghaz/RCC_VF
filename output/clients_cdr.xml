@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RCC version="1.0">
+  <controle entObserv="415" entDeclar="415" idDest="001" dtCreation="2025-10-05"/>
+  <contenu>
+    <ComEnt>
+          <donneesEnt dtRefEnt="2024-05-09" actionType="EI" codClient="CF238975" natClient="3" entLieeEtab="0" codAgEcon="900" tpIdPrincipal="CIN" idPrincipal="9988" prenom="John" nomFamille="Doe" paysDelivrance="ZAF" dtDelivrance="2025-04-08" dtExpiration="2025-02-04" TypePPPro="31" RNAE="RNAE9988" dtNaissance="1995-12-31" codLocalNaissance="AZ" sexe="M" nationalite="AFG" sitFamille="C" codCatProf="5" menage="5" qualAcadem="N1" catClient="MAR" raisonSocial="FOR EDDGAS" formJur="90" codTrib="01" regCommerce="34351" ICE="000000000000012" idFiscal="9988" numTaxeProf="1" codActPrinc="900" codActSec="900" tailleEntrep="PME" genre="M" dtCreation="2024-05-27" flagSuc="true" tpIdPrincSiege="carte sejour">
+              <address adresse="BD SEBTA HAY MEOIEM N16" codPostal="28530" codPays="MAR"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="2" formJurAct="90" codTribunAct="03" payResAct="AZE" nomRaisonSocAct="EDDABZI" qtpartCapSocAct="0"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="carte sejour" idBenEffect="T009988" nomBenEffect="EL GIGASMI" preBenEffect="YOUNESS" natBenEffect="MAR"/>
+              </lstBenEffect>
+          </donneesEnt>
+    </ComEnt>
+  </contenu>
+</RCC>

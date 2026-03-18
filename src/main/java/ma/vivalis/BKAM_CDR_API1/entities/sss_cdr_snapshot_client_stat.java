@@ -6,9 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ma.vivalis.BKAM_CDR_API1.entities.Enums.ActionType;
 import ma.vivalis.BKAM_CDR_API1.entities.util.*;
+import org.hibernate.annotations.BatchSize;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -46,9 +48,13 @@ public class sss_cdr_snapshot_client_stat {
     private DonneesIntPM_snap donneesInt_pm;
 
     @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
-    private List<sss_cdr_snapshot_client_act> actionnariats;
+    @BatchSize(size = 50)
+    @Builder.Default
+    private Set<sss_cdr_snapshot_client_act> actionnariats=new HashSet<>();
 
     @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
-    private List<sss_cdr_snapshot_client_benef> benEffects;
+    @BatchSize(size = 50)
+    @Builder.Default
+    private Set<sss_cdr_snapshot_client_benef> benEffects=new HashSet<>();
 
 }

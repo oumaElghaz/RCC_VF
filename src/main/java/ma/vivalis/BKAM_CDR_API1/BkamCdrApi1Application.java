@@ -1,30 +1,36 @@
 package ma.vivalis.BKAM_CDR_API1;
 
-import ma.vivalis.BKAM_CDR_API1.services.mapping.client_stat_mapp;
-import ma.vivalis.BKAM_CDR_API1.services.sss_cdr_client_stat_service_impl;
-import ma.vivalis.BKAM_CDR_API1.services.zip_base64.XmlToZipBase64;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @SpringBootApplication
-public class BkamCdrApi1Application implements CommandLineRunner {
+public class BkamCdrApi1Application //implements CommandLineRunner
+{
 
+    public static void main(String[] args) {
+        SpringApplication.run(BkamCdrApi1Application.class, args);
+    }
+/*
     private final sss_cdr_client_stat_service_impl sss_cdr_client_stat_service_impl;
     private final client_stat_mapp client_stat_mapp;
     private static final Logger logger = LoggerFactory.getLogger(BkamCdrApi1Application.class);
+    private final ApplicationContext context;
 
     public BkamCdrApi1Application(
             sss_cdr_client_stat_service_impl sssCdrClientStatServiceImpl,
-            client_stat_mapp clientStatMapp) {
+            client_stat_mapp clientStatMapp, ApplicationContext context) {
         sss_cdr_client_stat_service_impl = sssCdrClientStatServiceImpl;
         client_stat_mapp = clientStatMapp;
+        this.context = context;
     }
 
     public static void main(String[] args) {
@@ -119,11 +125,17 @@ public class BkamCdrApi1Application implements CommandLineRunner {
             // Propager l'erreur pour que Spring Boot la gère correctement
             throw new RuntimeException("Erreur lors de la génération XML", e);
         }
+        logger.info("═══════════════════════════════════════════════════════════════");
+        logger.info("Fin traitement - arrêt application");
+        logger.info("═══════════════════════════════════════════════════════════════");
+
+        SpringApplication.exit(context, () -> 0);
+        System.exit(0);
     }
 
-    /**
+    *//**
      * Formate la taille du fichier en unités lisibles (B, KB, MB, GB)
-     */
+     *//*
     private String formatFileSize(long bytes) {
         if (bytes <= 0) return "0 B";
         final String[] units = new String[]{"B", "KB", "MB", "GB", "TB"};
@@ -131,9 +143,9 @@ public class BkamCdrApi1Application implements CommandLineRunner {
         return String.format("%.2f %s", bytes / Math.pow(1024, digitGroups), units[digitGroups]);
     }
 
-    /**
+    *//**
      * Formate le temps en secondes/minutes
-     */
+     *//*
     private String formatTime(long millis) {
         if (millis < 1000) {
             return millis + "ms";
@@ -146,9 +158,9 @@ public class BkamCdrApi1Application implements CommandLineRunner {
         }
     }
 
-    /**
+    *//**
      * Sauvegarde le Base64 dans un fichier
-     */
+     *//*
     private void saveBase64ToFile(String base64, String filePath) {
         try {
             File file = new File(filePath);
@@ -159,5 +171,5 @@ public class BkamCdrApi1Application implements CommandLineRunner {
         } catch (Exception e) {
             logger.warn("Impossible de sauvegarder le Base64 : " + e.getMessage());
         }
-    }
+    }*/
 }

@@ -25,7 +25,7 @@ public class BatchJobConfig {
                 .next(phase2XmlFlow)
                 .next(phase3MappingFlow)      // Mapper les 3 entités en //
                 .next(phase4ArchivageFlow)        // Archiver les clients dans l archive  //
-                //.next(phase5PurgeFlow)        // Purger les 3 snapshots en //
+                .next(phase5PurgeFlow)        // Purger les 3 snapshots en //
 
 
                 //.start(phase1CompareFlow)     // Comparer les 3 entités en // 1h51m26s221ms

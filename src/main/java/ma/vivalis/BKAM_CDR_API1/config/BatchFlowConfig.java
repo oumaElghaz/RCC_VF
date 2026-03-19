@@ -138,7 +138,7 @@ public class BatchFlowConfig {
     @Bean
     public Flow phase5PurgeFlow(
             Step purgeClientStep,
-            Step purgeInfoStep,
+            //Step purgeInfoStep,
             //Step purgeGarantieStep,
             TaskExecutor flowTaskExecutor) {
 
@@ -146,9 +146,9 @@ public class BatchFlowConfig {
                 .split(flowTaskExecutor)
                 .add(
                         new FlowBuilder<SimpleFlow>("purgeClientFlow")
-                                .start(purgeClientStep).build(),
-                        new FlowBuilder<SimpleFlow>("purgeInfoNegaFlow")
-                        .start(purgeInfoStep).build()//,
+                                .start(purgeClientStep).build()//,
+                        //new FlowBuilder<SimpleFlow>("purgeInfoNegaFlow")
+                        //.start(purgeInfoStep).build()//,
                         //new FlowBuilder<SimpleFlow>("purgeGarantieFlow")
                         //.start(purgeGarantieStep).build()
                 )

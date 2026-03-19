@@ -1,6 +1,5 @@
 package ma.vivalis.BKAM_CDR_API1.infoNeg.repository;
 
-import ma.vivalis.BKAM_CDR_API1.infoNeg.model.sss_cdr_arch_infoNegative;
 import ma.vivalis.BKAM_CDR_API1.infoNeg.model.sss_cdr_infoNegative;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

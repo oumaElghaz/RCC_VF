@@ -2,6 +2,7 @@ package ma.vivalis.BKAM_CDR_API1.config;
 
 import org.springframework.batch.core.job.builder.FlowBuilder;
 import org.springframework.batch.core.job.flow.Flow;
+import org.springframework.batch.core.job.flow.JobExecutionDecider;
 import org.springframework.batch.core.job.flow.support.SimpleFlow;
 import org.springframework.batch.core.step.Step;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +23,7 @@ public class BatchFlowConfig {
     public Flow phase1CompareFlow(
             Step compareClientStep,
             Step compareInfoNegaStep,
+            Step compareClientPerStep,
             //Step compareAndMapClientStep,
             //Step compareContratStep,
             //Step compareGarantieStep,
@@ -35,7 +37,9 @@ public class BatchFlowConfig {
                         new FlowBuilder<SimpleFlow>("compareClientFlow")
                                 .start(compareClientStep).build(),
                         new FlowBuilder<SimpleFlow>("compareInfoNegaFlow")
-                        .start(compareInfoNegaStep).build()//,
+                        .start(compareInfoNegaStep).build(),
+                        new FlowBuilder<SimpleFlow>("compareClientPerStep")
+                                .start(compareClientPerStep).build()//,
                         //new FlowBuilder<SimpleFlow>("compareGarantieFlow")
                         //.start(compareGarantieStep).build()
                 )
@@ -50,12 +54,15 @@ public class BatchFlowConfig {
             Step headerXmlClientStep,
             Step contentXmlClientStep,
             Step footerXmlClientStep,
+
             Step headerXmlInfoNegaStep,
             Step contentXmlInfoStep,
             Step footerXmlInfoStep,
-            //Step headerXmlGarantieStep,
-            //Step contentXmlGarantieStep,
-            //Step footerXmlGarantieStep,
+
+            Step headerXmlClientPerStep,
+            Step contentXmlClientPerStep,
+            Step footerXmlClientPerStep,
+
             TaskExecutor flowTaskExecutor) {
 
         Flow clientXmlFlow = new FlowBuilder<SimpleFlow>("clientXmlFlow")
@@ -70,17 +77,43 @@ public class BatchFlowConfig {
         .next(footerXmlInfoStep)
         .build();
 
-        //Flow garantieXmlFlow = new FlowBuilder<SimpleFlow>("garantieXmlFlow")
-        //.start(headerXmlGarantieStep)
-        //.next(contentXmlGarantieStep)
-        //.next(footerXmlGarantieStep)
-        //.build();
+        Flow clientPerXmlFlow = new FlowBuilder<SimpleFlow>("clientPerXmlFlow")
+        .start(headerXmlClientPerStep)
+        .next(contentXmlClientPerStep)
+        .next(footerXmlClientPerStep)
+        .build();
 
         return new FlowBuilder<SimpleFlow>("phase2")
                 .split(flowTaskExecutor)
-                .add(clientXmlFlow, infoNegaXmlFlow)
+                .add(clientXmlFlow, infoNegaXmlFlow,clientPerXmlFlow)
                 .build();
     }
+
+
+
+    // ═══════════════════════════════════════════════════════
+    // PHASE  : Envoi API
+    // ═══════════════════════════════════════════════════════
+    @Bean
+    public Flow phaseEnvoiAPIFlow(
+            Step envoiApiClientStep,
+            JobExecutionDecider myStepDecider,
+            TaskExecutor flowTaskExecutor) {
+
+        return new FlowBuilder<SimpleFlow>("phase")
+                .split(flowTaskExecutor)
+                .add(
+                        new FlowBuilder<SimpleFlow>("Flow")
+                                .start(myStepDecider) // Ajout du decider
+                                .on("EXECUTE").to(envoiApiClientStep)
+                                .from(myStepDecider).on("SKIP").end()
+                                .build()
+                )
+                .build();
+    }
+
+
+
 
     // ═══════════════════════════════════════════════════════
     // PHASE 3 : Mapping

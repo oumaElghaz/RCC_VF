@@ -3,13 +3,31 @@
   <controle entObserv="415" entDeclar="415" idDest="001" dtCreation="2025-10-05"/>
   <contenu>
     <ComEnt>
-          <donneesEnt dtRefEnt="2024-05-09" actionType="EI" codClient="CF238975" natClient="3" entLieeEtab="0" codAgEcon="900" tpIdPrincipal="CIN" idPrincipal="9988" prenom="John" nomFamille="Doe" paysDelivrance="ZAF" dtDelivrance="2025-04-08" dtExpiration="2025-02-04" TypePPPro="31" RNAE="RNAE9988" dtNaissance="1995-12-31" codLocalNaissance="AZ" sexe="M" nationalite="AFG" sitFamille="C" codCatProf="5" menage="5" qualAcadem="N1" catClient="MAR" raisonSocial="FOR EDDGAS" formJur="90" codTrib="01" regCommerce="34351" ICE="000000000000012" idFiscal="9988" numTaxeProf="1" codActPrinc="900" codActSec="900" tailleEntrep="PME" genre="M" dtCreation="2024-05-27" flagSuc="true" tpIdPrincSiege="carte sejour">
-              <address adresse="BD SEBTA HAY MEOIEM N16" codPostal="28530" codPays="MAR"/>
+          <donneesEnt dtRefEnt="2024-05-09" actionType="EU" codClient="CF000001651" natClient="1" entLieeEtab="0" codAgEcon="900" tpIdPrincipal="I" idPrincipal="X 297991" prenom="SAID" nomFamille="DAOUDI" paysDelivrance="MAR" dtDelivrance="2024-01-19" dtExpiration="2025-02-04" TypePPPro="771" RNAE="RNAE9988" dtNaissance="1988-08-25" codLocalNaissance="780" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="0" menage="5" catClient="1">
+              <address adresse="NR 13 LOTIS EL QODSS KHEMISSET" codPostal="15010" codLocal="780" codPays="MAR" numTeleph="610101212"/>
               <lstActionnariat>
-                  <actionnariat natActionnaire="2" formJurAct="90" codTribunAct="03" payResAct="AZE" nomRaisonSocAct="EDDABZI" qtpartCapSocAct="0"/>
+                  <actionnariat natActionnaire="1" payResAct="MAR" nomRaisonSocAct="DAOUDI" qtpartCapSocAct="0"/>
               </lstActionnariat>
               <lstBenEffect>
-                  <benEffect typIdBenEffect="carte sejour" idBenEffect="T009988" nomBenEffect="EL GIGASMI" preBenEffect="YOUNESS" natBenEffect="MAR"/>
+                  <benEffect typIdBenEffect="I" idBenEffect="X 297991" nomBenEffect="DAOUDI" preBenEffect="YOUNESS" natBenEffect="MAR"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2024-05-09" actionType="EU" codClient="CF000085897" natClient="1" entLieeEtab="0" codAgEcon="900" tpIdPrincipal="I" idPrincipal="JC602129" prenom="MOSTAFA" nomFamille="SLIMANI" paysDelivrance="MAR" dtDelivrance="2023-11-14" dtExpiration="2025-02-04" TypePPPro="412" RNAE="RNAE9988" dtNaissance="2000-11-15" codLocalNaissance="780" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="0" menage="5" catClient="1">
+              <address adresse="HAY CHOUATATE OULAD BERHIL TAROUDANT" codPostal="83003" codLocal="780" codPays="MAR" numTeleph="668214796"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" payResAct="MAR" nomRaisonSocAct="EZZOUGARI" qtpartCapSocAct="0"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="BJ354783" nomBenEffect="EZZOUGARI" preBenEffect="YOUNESS" natBenEffect="MAR"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2024-05-09" actionType="EU" codClient="CF000217233" natClient="1" entLieeEtab="0" codAgEcon="900" tpIdPrincipal="I" idPrincipal="BJ354783" prenom="KARIM" nomFamille="EZZOUGARI" paysDelivrance="MAR" dtDelivrance="2021-12-09" dtExpiration="2025-02-04" TypePPPro="960" RNAE="RNAE9988" dtNaissance="1985-01-01" codLocalNaissance="780" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="0" menage="5" catClient="1">
+              <address adresse="LOT OUTOUR IMM 42 RUE 4 NR 1 SID I MOUMEN" codPostal="20320" codLocal="780" codPays="MAR" numTeleph="661131007"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" payResAct="MAR" nomRaisonSocAct="SLIMANI" qtpartCapSocAct="0"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="JC602129" nomBenEffect="SLIMANI" preBenEffect="YOUNESS" natBenEffect="MAR"/>
               </lstBenEffect>
           </donneesEnt>
     </ComEnt>

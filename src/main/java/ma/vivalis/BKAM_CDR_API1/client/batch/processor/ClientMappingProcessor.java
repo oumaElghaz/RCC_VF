@@ -80,8 +80,22 @@ public class ClientMappingProcessor implements ItemProcessor<sss_cdr_inter_clien
                     .codCatProf(mappingLoader.map("PROF", pp.getCodCatProf()))
                     .menage(pp.getMenage())
                     .qualAcadem(mappingLoader.map("QualAcadem",pp.getQualAcadem()))
-                    .catClient(mappingLoader.map("RSDT",pp.getCatClient()))
+                    //.catClient(mappingLoader.map("RSDT",pp.getCatClient()))
                     .build());
+            if(pp.getCatClient().equalsIgnoreCase("RE") && pp.getNationalite().equalsIgnoreCase("MAR") && pp.getPaysDelivrance().equalsIgnoreCase("MA")){
+                String condition ="VRAIIIIIII";
+                log.info("la conditionnnnnn    ",condition);
+                finalClient.getDonneesInt_pp().setCatClient("1");
+
+            } else if (pp.getCatClient().equalsIgnoreCase("RE") && !pp.getNationalite().equalsIgnoreCase("MAR") && pp.getPaysDelivrance().equalsIgnoreCase("MA")) {
+                finalClient.getDonneesInt_pp().setCatClient("2");
+
+            }else if (pp.getCatClient().equalsIgnoreCase("NR") && !pp.getNationalite().equalsIgnoreCase("MAR") && !pp.getPaysDelivrance().equalsIgnoreCase("MA")) {
+                finalClient.getDonneesInt_pp().setCatClient("3");
+
+            }else{
+                finalClient.getDonneesInt_pp().setCatClient("4");
+            }
         }
 
         // ── 4. Mapper les données PM ──

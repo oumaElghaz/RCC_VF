@@ -15,6 +15,7 @@ public class BatchJobConfig {
             JobRepository jobRepository,
             Flow phase1CompareFlow,
             Flow phase2XmlFlow,
+            Flow phaseEnvoiAPIFlow,
             Flow phase3MappingFlow,
             Flow phase4ArchivageFlow,
             Flow phase5PurgeFlow) {
@@ -23,9 +24,10 @@ public class BatchJobConfig {
                 .incrementer(new RunIdIncrementer())
                 .start(phase1CompareFlow)     // Comparer les 3 entités en //
                 .next(phase2XmlFlow)
+                //.next(phaseEnvoiAPIFlow)  //phase d envoi d api
                 .next(phase3MappingFlow)      // Mapper les 3 entités en //
                 .next(phase4ArchivageFlow)        // Archiver les clients dans l archive  //
-                .next(phase5PurgeFlow)        // Purger les 3 snapshots en //
+                //.next(phase5PurgeFlow)        // Purger les 3 snapshots en //
 
 
                 //.start(phase1CompareFlow)     // Comparer les 3 entités en // 1h51m26s221ms

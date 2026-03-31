@@ -215,7 +215,8 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
                             .adresse(snapshot.getAdresse().getAdresse())
 
                 .codPostal(snapshot.getAdresse().getCodPostal())
-                .codLocal(snapshot.getAdresse().getCodLocal())
+                    .codLocal("780")
+                //.codLocal(snapshot.getAdresse().getCodLocal())  en attendanst que le client fournie la bonne valeur
                 .codPays(snapshot.getAdresse().getCodPays())
                 .numTeleph(snapshot.getAdresse().getNumTeleph()).build());}
                 // PP
@@ -232,7 +233,8 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
                         .TypePPPro(snapshot.getDonneesInt_pp().getTypePPPro())
                         .RNAE(snapshot.getDonneesInt_pp().getRNAE())
                         .dtNaissance(snapshot.getDonneesInt_pp().getDtNaissance())
-                        .codLocalNaissance(snapshot.getDonneesInt_pp().getCodLocalNaissance())
+                    //.codLocalNaissance(snapshot.getDonneesInt_pp().getCodLocalNaissance())
+                        .codLocalNaissance("780")
                         .sexe(snapshot.getDonneesInt_pp().getSexe())
                         .sitFamille(snapshot.getDonneesInt_pp().getSitFamille())
                         .codCatProf(snapshot.getDonneesInt_pp().getCodCatProf())

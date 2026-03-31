@@ -2,10 +2,14 @@ package ma.vivalis.BKAM_CDR_API1.common;
 
 import org.springframework.stereotype.Component;
 
+import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeConstants;
+import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.lang.reflect.Field;
 import java.util.Collection;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 @Component
 public class CleanDate {
@@ -54,5 +58,10 @@ public class CleanDate {
         }
     }
 
-
+    public XMLGregorianCalendar convertDateToXml(Date date) throws DatatypeConfigurationException {
+        if (date == null) return null;
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.setTime(date);
+        return DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);
+    }
 }

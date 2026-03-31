@@ -19,11 +19,9 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 import java.util.*;
-import java.lang.reflect.Field;
+
 
 @Configuration
 public class InfoNegaXmlAppendWriter implements ItemWriter<List<ComInfNeg>> {

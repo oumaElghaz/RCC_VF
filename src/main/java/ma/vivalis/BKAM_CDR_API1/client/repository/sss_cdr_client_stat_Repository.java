@@ -21,4 +21,6 @@ public interface sss_cdr_client_stat_Repository extends JpaRepository<sss_cdr_cl
             @Param("dateExtraction") Date dateExtraction,
             @Param("idClient") String idClient
     );
+
+
 }

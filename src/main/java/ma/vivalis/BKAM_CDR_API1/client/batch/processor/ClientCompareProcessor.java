@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.batch.infrastructure.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -193,21 +194,22 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
                 snapshot.getDonneesInt_pm() != null ? "OUI" : "NULL",
                 snapshot.getActionnariats() != null ? snapshot.getActionnariats().size() : "NULL",
                 snapshot.getBenEffects() != null ? snapshot.getBenEffects().size() : "NULL");
-
+                LocalDateTime dateDeclaration = LocalDateTime.now();
 
         sss_cdr_inter_client_stat inter= sss_cdr_inter_client_stat.builder()
                 .id_client(snapshot.getId_client())
                 .actionType(actionType)
-                .dateExtraction(snapshot.getDateDeclaration())
+                .dateExtraction(dateDeclaration)
                 .id_lot(lot_id)
-                .entObserv(snapshot.getEntObserv())
-                .entDeclar(snapshot.getEntDeclar())
+                //.entObserv(snapshot.getEntObserv())
+                //.entDeclar(snapshot.getEntDeclar())
                 .dtRefEnt(snapshot.getDtRefEnt())
-                .codClient(snapshot.getCodClient())
+                //.codClient(snapshot.getCodClient())
                 .altCodClient(snapshot.getAltCodClient())
                 .natClient(snapshot.getNatClient())
                 .entLieeEtab(snapshot.getEntLieeEtab())
-                .codAgEcon(snapshot.getCodAgEcon())
+                //.codAgEcon(snapshot.getCodAgEcon())
+                .codAgEcon("112")
                 .build();
         if (snapshot.getAdresse() != null) {
                 // Adresse
@@ -230,7 +232,8 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
                         .paysDelivrance(snapshot.getDonneesInt_pp().getPaysDelivrance())
                         .dtDelivrance(snapshot.getDonneesInt_pp().getDtDelivrance())
                         .dtExpiration(snapshot.getDonneesInt_pp().getDtExpiration())
-                        .TypePPPro(snapshot.getDonneesInt_pp().getTypePPPro())
+                        .TypePPPro("112")
+                    //.TypePPPro(snapshot.getDonneesInt_pp().getTypePPPro())
                         .RNAE(snapshot.getDonneesInt_pp().getRNAE())
                         .dtNaissance(snapshot.getDonneesInt_pp().getDtNaissance())
                     //.codLocalNaissance(snapshot.getDonneesInt_pp().getCodLocalNaissance())

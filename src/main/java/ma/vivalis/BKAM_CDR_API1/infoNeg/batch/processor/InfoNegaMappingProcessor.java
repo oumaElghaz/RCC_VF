@@ -34,9 +34,9 @@ public class InfoNegaMappingProcessor implements ItemProcessor<sss_cdr_inter_inf
                 .id(inter.getId())
                 .id_lot(inter.getId_lot())
                 .dateExtraction(inter.getDateExtraction())
-                .idDest(inter.getIdDest())
-                .entDeclar(inter.getEntDeclar())
-                .entObserv(inter.getEntObserv())
+                //.idDest(inter.getIdDest())
+                //.entDeclar(inter.getEntDeclar())
+                //.entObserv(inter.getEntObserv())
 
 
                 .build();

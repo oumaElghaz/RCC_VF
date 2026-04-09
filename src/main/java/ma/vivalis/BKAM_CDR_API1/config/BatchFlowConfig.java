@@ -24,9 +24,11 @@ public class BatchFlowConfig {
             Step compareClientStep,
             Step compareInfoNegaStep,
             Step compareClientPerStep,
-            //Step compareAndMapClientStep,
-            //Step compareContratStep,
-            //Step compareGarantieStep,
+            Step compareGarantieStep,
+            Step compareContratPerStep,
+            Step compareContratStep,
+
+
             TaskExecutor flowTaskExecutor) {
         //           ^^^^^^^^^^^^^^^^ ← Injecté depuis ThreadPoolConfig
 
@@ -38,10 +40,14 @@ public class BatchFlowConfig {
                                 .start(compareClientStep).build(),
                         new FlowBuilder<SimpleFlow>("compareInfoNegaFlow")
                         .start(compareInfoNegaStep).build(),
-                        new FlowBuilder<SimpleFlow>("compareClientPerStep")
-                                .start(compareClientPerStep).build()//,
-                        //new FlowBuilder<SimpleFlow>("compareGarantieFlow")
-                        //.start(compareGarantieStep).build()
+                        new FlowBuilder<SimpleFlow>("compareClientPerFlow")
+                                .start(compareClientPerStep).build(),
+                        new FlowBuilder<SimpleFlow>("compareGarantieFlow")
+                        .start(compareGarantieStep).build(),
+                        new FlowBuilder<SimpleFlow>("compareContratPerFlow")
+                                .start(compareContratPerStep).build(),
+                        new FlowBuilder<SimpleFlow>("compareContratFlow")
+                                .start(compareContratStep).build()
                 )
                 .build();
     }
@@ -63,6 +69,19 @@ public class BatchFlowConfig {
             Step contentXmlClientPerStep,
             Step footerXmlClientPerStep,
 
+            Step headerXmlGarantieStep,
+            Step contentXmlGarantieStep,
+            Step footerXmlGarantieStep,
+
+
+            Step headerXmlContratPerStep,
+            Step contentXmlContratPerStep,
+            Step footerXmlContratPerStep,
+
+            Step headerXmlContratStep,
+            Step contentXmlContratStep,
+            Step footerXmlContratStep,
+
             TaskExecutor flowTaskExecutor) {
 
         Flow clientXmlFlow = new FlowBuilder<SimpleFlow>("clientXmlFlow")
@@ -83,9 +102,27 @@ public class BatchFlowConfig {
         .next(footerXmlClientPerStep)
         .build();
 
+        Flow garantieXmlFlow = new FlowBuilder<SimpleFlow>("garantieXmlFlow")
+                .start(headerXmlGarantieStep)
+                .next(contentXmlGarantieStep)
+                .next(footerXmlGarantieStep)
+                .build();
+
+        Flow contratPerXmlFlow = new FlowBuilder<SimpleFlow>("contratPerXmlFlow")
+                .start(headerXmlContratPerStep)
+                .next(contentXmlContratPerStep)
+                .next(footerXmlContratPerStep)
+                .build();
+
+        Flow contratXmlFlow = new FlowBuilder<SimpleFlow>("clientXmlFlow")
+                .start(headerXmlContratStep)
+                .next(contentXmlContratStep)
+                .next(footerXmlContratStep)
+                .build();
+
         return new FlowBuilder<SimpleFlow>("phase2")
                 .split(flowTaskExecutor)
-                .add(clientXmlFlow, infoNegaXmlFlow,clientPerXmlFlow)
+                .add(clientXmlFlow, infoNegaXmlFlow,clientPerXmlFlow,garantieXmlFlow,contratPerXmlFlow,contratXmlFlow)
                 .build();
     }
 
@@ -122,8 +159,9 @@ public class BatchFlowConfig {
     public Flow phase3MappingFlow(
             Step mappingClientStep,
             Step mappingInfoNegaStep,
-            //Step mappingContratStep,
-            //Step mappingGarantieStep,
+            Step mappingClientPerStep,
+            Step mappingGarantieStep,
+            Step mappingContratPerStep,
             TaskExecutor flowTaskExecutor) {
 
         return new FlowBuilder<SimpleFlow>("phase3")
@@ -132,9 +170,13 @@ public class BatchFlowConfig {
                         new FlowBuilder<SimpleFlow>("mappingClientFlow")
                                 .start(mappingClientStep).build(),
                         new FlowBuilder<SimpleFlow>("mappingInfoNegaFlow")
-                        .start(mappingInfoNegaStep).build()//,
-                        //new FlowBuilder<SimpleFlow>("mappingGarantieFlow")
-                        //.start(mappingGarantieStep).build()
+                        .start(mappingInfoNegaStep).build(),
+                        new FlowBuilder<SimpleFlow>("mappingClientPerFlow")
+                        .start(mappingClientPerStep).build(),
+                        new FlowBuilder<SimpleFlow>("mappingGarantieFlow")
+                                .start(mappingGarantieStep).build(),
+                        new FlowBuilder<SimpleFlow>("mappingContratPerFlow")
+                                .start(mappingContratPerStep).build()
                 )
                 .build();
     }
@@ -145,8 +187,10 @@ public class BatchFlowConfig {
     public Flow phase4ArchivageFlow(
             Step archiverClientStep,
             Step archiverInfoStep,
-            //Step compareContratStep,
-            //Step compareGarantieStep,
+            Step archiverClientPerStep,
+            Step archiverGarantieStep,
+            Step archiverContratPerStep,
+
             TaskExecutor flowTaskExecutor) {
 
 
@@ -157,9 +201,13 @@ public class BatchFlowConfig {
                         new FlowBuilder<SimpleFlow>("archivClientFlow")
                                 .start(archiverClientStep).build(),
                         new FlowBuilder<SimpleFlow>("archivInfoNegaFlow")
-                        .start(archiverInfoStep).build()//,
-                        //new FlowBuilder<SimpleFlow>("compareGarantieFlow")
-                        //.start(compareGarantieStep).build()
+                        .start(archiverInfoStep).build(),
+                        new FlowBuilder<SimpleFlow>("archiverClientPerFlow")
+                        .start(archiverClientPerStep).build(),
+                        new FlowBuilder<SimpleFlow>("archiverGarantieFlow")
+                                .start(archiverClientPerStep).build(),
+                        new FlowBuilder<SimpleFlow>("archiverContratPerFlow")
+                                .start(archiverContratPerStep).build()
                 )
                 .build();
     }
@@ -172,7 +220,9 @@ public class BatchFlowConfig {
     public Flow phase5PurgeFlow(
             Step purgeClientStep,
             //Step purgeInfoStep,
-            //Step purgeGarantieStep,
+            Step purgeClientPerStep,
+            Step purgeGarantieStep,
+            Step purgeContratPerStep,
             TaskExecutor flowTaskExecutor) {
 
         return new FlowBuilder<SimpleFlow>("phase5")
@@ -182,8 +232,12 @@ public class BatchFlowConfig {
                                 .start(purgeClientStep).build()//,
                         //new FlowBuilder<SimpleFlow>("purgeInfoNegaFlow")
                         //.start(purgeInfoStep).build()//,
+                        //new FlowBuilder<SimpleFlow>("purgeClientPerFlow")
+                        //.start(purgeClientPerStep).build()//,
                         //new FlowBuilder<SimpleFlow>("purgeGarantieFlow")
-                        //.start(purgeGarantieStep).build()
+                        //.start(purgeGarantieStep).build()//,
+                        //new FlowBuilder<SimpleFlow>("purgeContratPerFlow")
+                        //.start(purgeContratPerStep).build()
                 )
                 .build();
     }

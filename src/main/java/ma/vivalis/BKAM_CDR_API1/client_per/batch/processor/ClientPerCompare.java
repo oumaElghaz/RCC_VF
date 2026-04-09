@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.batch.infrastructure.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,14 +64,15 @@ public class ClientPerCompare implements ItemProcessor<sss_cdr_snapshot_client_p
     }
 
 private sss_cdr_inter_client_per buildIntermediaire(sss_cdr_snapshot_client_per snap,ActionType actionType, int lot_id){
-    sss_cdr_inter_client_per inter=sss_cdr_inter_client_per.builder()
+    LocalDateTime dateDeclaration = LocalDateTime.now();
+        sss_cdr_inter_client_per inter=sss_cdr_inter_client_per.builder()
             .codClient(snap.getCodClient())
             .id_lot(lot_id)
-            .dateExtraction(snap.getDtCreation())
-            .entObserv (snap.getEntObserv())
-            .entDeclar (snap.getEntDeclar())
-            .dtCreation (snap.getDtCreation())
-            .idDest(snap.getIdDest())
+            .dateExtraction(dateDeclaration)
+            //.entObserv (snap.getEntObserv())
+            //.entDeclar (snap.getEntDeclar())
+            //.dtCreation (snap.getDtCreation())
+            //.idDest(snap.getIdDest())
             .dtRef(snap.getDtRef())
             .actionType(actionType)
             .watchList (snap.getWatchList())

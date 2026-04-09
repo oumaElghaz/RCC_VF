@@ -39,7 +39,7 @@ public class ClientJaxbProcessor implements ItemProcessor<sss_cdr_client_stat, C
             d_ent.setActionType("");
         }
 
-        d_ent.setCodClient(client.getCodClient());
+        d_ent.setCodClient(client.getId_client());
         d_ent.setNatClient(client.getNatClient());
         d_ent.setEntLieeEtab(client.getEntLieeEtab());
         d_ent.setCodAgEcon(client.getCodAgEcon());
@@ -83,6 +83,9 @@ public class ClientJaxbProcessor implements ItemProcessor<sss_cdr_client_stat, C
                     b.setLEIAct(act.getLEIAct());
                     b.setPayResAct(act.getPayResAct());
                     b.setNomRaisonSocAct(act.getNomRaisonSocAct());
+                    b.setIdPrincAct(act.getIdPrincAct());
+                    b.setIdSpecifiqueAct(act.getIdSpecifiqueAct());
+                    b.setTpIdPrincAct(act.getTpIdPrincAct());
                     if (act.getQtpartCapSocAct() != null) {
                         b.setQtpartCapSocAct(BigDecimal.valueOf(act.getQtpartCapSocAct()));
                     }

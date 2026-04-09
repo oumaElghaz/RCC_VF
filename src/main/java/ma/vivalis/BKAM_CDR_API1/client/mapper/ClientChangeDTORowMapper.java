@@ -14,7 +14,7 @@ public class ClientChangeDTORowMapper implements RowMapper<ClientChangeDTO> {
         return ClientChangeDTO.builder()
                 // Client
                 .idClient(rs.getString("id_client"))
-                .dateExtraction(rs.getDate("dateDeclaration"))
+                //.dateExtraction(rs.getDate("dateDeclaration"))
                 .entObserv(rs.getString("entObserv"))
                 .entDeclar(rs.getString("entDeclar"))
                 .dtRefEnt(rs.getDate("dtRefEnt"))

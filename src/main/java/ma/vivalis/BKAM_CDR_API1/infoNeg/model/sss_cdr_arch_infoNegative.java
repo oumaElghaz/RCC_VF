@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import ma.vivalis.BKAM_CDR_API1.infoNeg.model.util.ComInfNeg_arch;
 import org.hibernate.annotations.BatchSize;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Entity
@@ -24,10 +25,10 @@ public class sss_cdr_arch_infoNegative {
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer id_lot;
-    private Date dateExtraction;
-    private String entObserv;
-    private String entDeclar;
-    private String idDest;
+    private LocalDateTime dateExtraction;
+    //private String entObserv;
+    //private String entDeclar;
+    //private String idDest;
 
 
     @OneToMany(mappedBy = "infoNeg" , cascade = CascadeType.ALL)

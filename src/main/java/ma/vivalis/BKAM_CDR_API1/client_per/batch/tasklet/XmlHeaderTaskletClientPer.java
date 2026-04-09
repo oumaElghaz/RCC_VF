@@ -2,7 +2,6 @@ package ma.vivalis.BKAM_CDR_API1.client_per.batch.tasklet;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import ma.vivalis.BKAM_CDR_API1.client.batch.tasklet.XmlHeaderTasklet;
 import ma.vivalis.BKAM_CDR_API1.client_per.model.sss_cdr_inter_client_per;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
@@ -19,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 
 @Component
 public class XmlHeaderTaskletClientPer  implements Tasklet {
@@ -52,12 +52,14 @@ public class XmlHeaderTaskletClientPer  implements Tasklet {
         try (OutputStreamWriter writer = new OutputStreamWriter(
                 new FileOutputStream(filePath), StandardCharsets.UTF_8)) {
 
-            String entObserv = escapeXml(client != null ? client.getEntObserv() : "");
-            String entDeclar = escapeXml(client != null ? client.getEntDeclar() : "");
-            String idDest = escapeXml(client != null ? client.getIdDest() : "");
+            String entObserv = "415";
+            String entDeclar = "415";
+            String idDest = "001";
             String dtCreation = "";
             if (client != null && client.getDateExtraction() != null) {
-                dtCreation = new SimpleDateFormat("yyyy-MM-dd").format(client.getDateExtraction());
+               // dtCreation = new SimpleDateFormat("yyyy-MM-dd").format(client.getDateExtraction());
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+                dtCreation = client.getDateExtraction().format(formatter);
 
 
             }

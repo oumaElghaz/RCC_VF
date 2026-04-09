@@ -9,6 +9,7 @@ import ma.vivalis.BKAM_CDR_API1.entities.Enums.ActionType;
 import ma.vivalis.BKAM_CDR_API1.entities.util.*;
 import org.hibernate.annotations.BatchSize;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -27,13 +28,13 @@ public class sss_cdr_client_stat {
     private Long id;
     private String id_client;
     private Integer id_lot;
-    private Date dateExtraction;
-    private String entObserv;
-    private String entDeclar;
+    private LocalDateTime dateExtraction;
+    //private String entObserv;
+    //private String entDeclar;
     private Date dtRefEnt;
     @Enumerated(EnumType.STRING)
     private ActionType actionType;
-    private String codClient;
+    //private String codClient;
     private String altCodClient;
     private String natClient;
     private String entLieeEtab;

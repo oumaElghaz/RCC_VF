@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ma.vivalis.BKAM_CDR_API1.entities.Enums.ActionType;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 @Entity
 @Table(name = "sss_cdr_arch_client_per", uniqueConstraints = {
@@ -21,11 +22,7 @@ public class sss_cdr_arch_client_per {
     @Id
     private String codClient ;
     private Integer id_lot;
-    private Date dateExtraction;
-    private String entObserv ;
-    private String entDeclar ;
-    private Date dtCreation ;
-    private String idDest;
+    private LocalDateTime dateExtraction;
     private Date   dtRef;
     @Enumerated(EnumType.STRING)
     private ActionType actionType;

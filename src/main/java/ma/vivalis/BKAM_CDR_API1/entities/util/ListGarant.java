@@ -11,13 +11,14 @@ import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_snapshot_contrat_stat;
 @Builder
 public class ListGarant {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    //private Long id;
     private String idGar;
 
     @ManyToOne
     @JoinColumn(name = "idCont")
     @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     sss_cdr_snapshot_contrat_stat contrat;
 
 }

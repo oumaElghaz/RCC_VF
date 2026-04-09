@@ -23,6 +23,7 @@ import org.springframework.batch.infrastructure.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -126,13 +127,14 @@ public class InfoNegaCompareProcessor implements ItemProcessor<sss_cdr_snapshot_
 
     private sss_cdr_inter_infoNegative buildIntermediaire(sss_cdr_snapshot_infoNega_stat snap, ActionType actionType, int lot_id){
         log.info("🔢 snap = {}", snap.toString());
+        LocalDateTime dateDeclaration = LocalDateTime.now();
      sss_cdr_inter_infoNegative interi =sss_cdr_inter_infoNegative.builder()
              .id(snap.getId())
              .id_lot(lot_id)
-             .dateExtraction(snap.getDateDeclaration())
-             .idDest(snap.getIdDest())
-             .entDeclar(snap.getEntDeclar())
-             .entObserv(snap.getEntObserv())
+             .dateExtraction(dateDeclaration)
+             //.idDest(snap.getIdDest())
+             //.entDeclar(snap.getEntDeclar())
+             //.entObserv(snap.getEntObserv())
 
              .build();
 

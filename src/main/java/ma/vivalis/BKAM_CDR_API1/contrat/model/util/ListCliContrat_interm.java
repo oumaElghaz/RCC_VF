@@ -25,5 +25,6 @@ public class ListCliContrat_interm {
             @JoinColumn(name = "dateExtraction", referencedColumnName = "dateExtraction")
     })
     @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     sss_cdr_inter_contrat_stat contrat;
 }

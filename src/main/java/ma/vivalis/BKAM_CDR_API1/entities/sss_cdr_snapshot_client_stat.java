@@ -23,12 +23,10 @@ public class sss_cdr_snapshot_client_stat {
     @Id
     private String id_client;
     private Date dateDeclaration;
-    private String entObserv;
-    private String entDeclar;
+    //private String entObserv;
+    //private String entDeclar;
     private Date dtRefEnt;
-    @Enumerated(EnumType.STRING)
-    private ActionType actionType;
-    private String codClient;
+    //private String codClient;
     private String altCodClient;
     private String natClient;
     private String entLieeEtab;

@@ -18,13 +18,13 @@ import java.util.Date;
 public class sss_cdr_snapshot_client_per {
     @Id
     private String codClient ;
-    private String entObserv ;
-    private String entDeclar ;
+    //private String entObserv ;
+    //private String entDeclar ;
     private Date   dtCreation ;
-    private String idDest;
+    //private String idDest;
     private Date   dtRef;
-    @Enumerated(EnumType.STRING)
-    private ActionType actionType;
+    //@Enumerated(EnumType.STRING)
+    //private ActionType actionType;
     private String watchList ;
     private String etatAvProcJud ;
     private Date   dtEtatAvProcJud ;

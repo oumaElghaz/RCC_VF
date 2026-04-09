@@ -18,8 +18,8 @@ public class InfNeg {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(EnumType.STRING)
-    private ActionType actionType;
+    //@Enumerated(EnumType.STRING)
+    //private ActionType actionType;
     private String codClient;
     private String refInfoNeg;
     private String tpInfNegInc;

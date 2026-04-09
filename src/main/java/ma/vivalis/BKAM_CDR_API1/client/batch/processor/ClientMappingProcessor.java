@@ -37,15 +37,17 @@ public class ClientMappingProcessor implements ItemProcessor<sss_cdr_inter_clien
                 .actionType(inter.getActionType())
                 .dateExtraction(inter.getDateExtraction())
                 .id_lot(inter.getId_lot())
-                .entObserv(inter.getEntObserv())
-                .entDeclar(inter.getEntDeclar())
+                //.entObserv(inter.getEntObserv())
+                //.entDeclar(inter.getEntDeclar())
                 .dtRefEnt(inter.getDtRefEnt())
-                .codClient(inter.getCodClient())
+                //.codClient(inter.getCodClient())
                 .altCodClient(inter.getAltCodClient())
                 .natClient(mappingLoader.map("CDTYPT", inter.getNatClient()))
                 //.entLieeEtab(mappingLoader.map("ENTLIEEETAB", inter.getEntLieeEtab()))
                 .entLieeEtab("1")
-                .codAgEcon(mappingLoader.map("SACT", inter.getCodAgEcon()))
+                //.codAgEcon(mappingLoader.map("SACT", inter.getCodAgEcon()))
+                .codAgEcon(inter.getCodAgEcon())
+
                 .build();
 
         // ── 2. Mapper l'adresse ──
@@ -63,14 +65,15 @@ public class ClientMappingProcessor implements ItemProcessor<sss_cdr_inter_clien
         if (inter.getDonneesInt_pp() != null) {
             DonneesIntPP_interm pp = inter.getDonneesInt_pp();
             finalClient.setDonneesInt_pp(sss_cdr_DonneesIntPP.builder()
-                    .idPrincipal(pp.getIdPrincipal())
+                    .idPrincipal(pp.getIdPrincipal().replace(" ",""))
                     .tpIdPrincipal(mappingLoader.map("TYPDOC",pp.getTpIdPrincipal()))
                     .prenom(pp.getPrenom())
                     .nomFamille(pp.getNomFamille())
                     .paysDelivrance(mappingLoader.map("PAYS", pp.getPaysDelivrance()))
                     .dtDelivrance(pp.getDtDelivrance())
                     .dtExpiration(pp.getDtExpiration())
-                    .TypePPPro(mappingLoader.map("SACT",pp.getTypePPPro()))
+                    //.TypePPPro(mappingLoader.map("SACT",pp.getTypePPPro()))
+                    .TypePPPro(pp.getTypePPPro())
                     .RNAE(pp.getRNAE())
                     .dtNaissance(pp.getDtNaissance())
                     .codLocalNaissance(mappingLoader.map("CodLocal", pp.getCodLocalNaissance()))
@@ -136,7 +139,7 @@ public class ClientMappingProcessor implements ItemProcessor<sss_cdr_inter_clien
                                 .natActionnaire(mappingLoader.map("CDTYPT",act.getNatActionnaire()))
                                 .formJurAct(mappingLoader.map("FJR", act.getFormJurAct()))
                                 .tpIdPrincAct(mappingLoader.map("TYPDOC",act.getTpIdPrincAct()))
-                                .idPrincAct(act.getIdPrincAct())
+                                .idPrincAct(act.getIdPrincAct().replace(" ",""))
                                 .codTribunAct(mappingLoader.map("CDTR",act.getCodTribunAct()))
                                 .regCommerAct(act.getRegCommerAct())
                                 .idSpecifiqueAct(act.getIdSpecifiqueAct())
@@ -158,7 +161,7 @@ public class ClientMappingProcessor implements ItemProcessor<sss_cdr_inter_clien
                     .map(ben -> {
                         sss_cdr_client_benef b = sss_cdr_client_benef.builder()
                                 .typIdBenEffect(mappingLoader.map("TYPDOC",ben.getTypIdBenEffect()))
-                                .idBenEffect(ben.getIdBenEffect())
+                                .idBenEffect(ben.getIdBenEffect().replace(" ",""))
                                 .nomBenEffect(ben.getNomBenEffect())
                                 .preBenEffect(ben.getPreBenEffect())
                                 .natBenEffect(mappingLoader.map("NATI", ben.getNatBenEffect()))

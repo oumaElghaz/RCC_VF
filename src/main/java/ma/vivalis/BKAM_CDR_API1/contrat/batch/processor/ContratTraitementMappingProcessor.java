@@ -181,9 +181,9 @@ public class ContratTraitementMappingProcessor  implements ItemProcessor<sss_cdr
                 .idCont(item.getIdCont())
                 .id_lot(item.getId_lot())
                 .dateExtraction(item.getDateExtraction())
-                .entObserv(item.getEntObserv())
-                .entDeclar(item.getEntDeclar())
-                .idDest(item.getIdDest())
+                //.entObserv(item.getEntObserv())
+                //.entDeclar(item.getEntDeclar())
+                //.idDest(item.getIdDest())
 
                 . actionType(item.getActionType())
                 .dtRefCont(item.getDtRefCont())
@@ -245,7 +245,7 @@ public class ContratTraitementMappingProcessor  implements ItemProcessor<sss_cdr
                                 .build();
                         a.setContrat(inter);  // ✅ Lier au parent
                         return a;
-                    }).collect(Collectors.toList()));  // ✅ toSet() au lieu de toList()
+                    }).collect(Collectors.toSet()));  // ✅ toSet() au lieu de toList()
         }
 
 
@@ -259,7 +259,7 @@ public class ContratTraitementMappingProcessor  implements ItemProcessor<sss_cdr
                                 .build();
                         a.setContrat(inter);  // ✅ Lier au parent
                         return a;
-                    }).collect(Collectors.toList()));  // ✅ toSet() au lieu de toList()
+                    }).collect(Collectors.toSet()));  // ✅ toSet() au lieu de toList()
         }
 
 
@@ -273,7 +273,7 @@ public class ContratTraitementMappingProcessor  implements ItemProcessor<sss_cdr
                                 .build();
                         a.setContrat(inter);  // ✅ Lier au parent
                         return a;
-                    }).collect(Collectors.toList()));  // ✅ toSet() au lieu de toList()
+                    }).collect(Collectors.toSet()));  // ✅ toSet() au lieu de toList()
         }
 
 
@@ -286,7 +286,7 @@ public class ContratTraitementMappingProcessor  implements ItemProcessor<sss_cdr
                                 .build();
                         a.setContrat(inter);  // ✅ Lier au parent
                         return a;
-                    }).collect(Collectors.toList()));  // ✅ toSet() au lieu de toList()
+                    }).collect(Collectors.toSet())); // ✅ toSet() au lieu de toList()
         }
 return inter;
 

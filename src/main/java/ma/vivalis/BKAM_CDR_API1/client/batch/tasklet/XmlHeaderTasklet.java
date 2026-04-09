@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 
 @Component
 public class XmlHeaderTasklet implements Tasklet {
@@ -35,7 +36,7 @@ public class XmlHeaderTasklet implements Tasklet {
 
     @Override
     public @Nullable RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-// ✅ 3 lignes ajoutées avant l'écriture du fichier
+    // ✅ 3 lignes ajoutées avant l'écriture du fichier
         File dir = new File(outputDir);
         if (!dir.exists()) {
             dir.mkdirs();    // Crée output/ et tous les sous-dossiers nécessaires
@@ -51,11 +52,14 @@ public class XmlHeaderTasklet implements Tasklet {
         try (OutputStreamWriter writer = new OutputStreamWriter(
                 new FileOutputStream(filePath), StandardCharsets.UTF_8)) {
 
-            String entObserv = escapeXml(client != null ? client.getEntObserv() : "");
-            String entDeclar = escapeXml(client != null ? client.getEntDeclar() : "");
+            String entObserv = "415";
+            String entDeclar = "415";
             String dtCreation = "";
             if (client != null && client.getDateExtraction() != null) {
-                dtCreation = new SimpleDateFormat("yyyy-MM-dd").format(client.getDateExtraction());
+                //dtCreation = new SimpleDateFormat("yyyy-MM-dd").format(client.getDateExtraction());
+                //dtCreation = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(client.getDateExtraction());
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+                 dtCreation = client.getDateExtraction().format(formatter);
 
 
             }
@@ -67,7 +71,7 @@ public class XmlHeaderTasklet implements Tasklet {
                     + "idDest=\"001\" "
                     + "dtCreation=\"" + dtCreation + "\"/>\n");
             writer.write("  <contenu>\n");
-            writer.write("    <ComEnt>\n");
+            writer.write("    <comEnt>\n");
 
             writer.flush();
         }

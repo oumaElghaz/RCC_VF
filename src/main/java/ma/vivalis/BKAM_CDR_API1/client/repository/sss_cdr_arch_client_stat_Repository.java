@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +35,7 @@ public interface sss_cdr_arch_client_stat_Repository extends JpaRepository<sss_c
             "AND c.id_client = :idClient")
     Optional<sss_cdr_arch_client_stat> findById_lotAndDateExtractionAndId_client(
             @Param("idLot") Integer idLot,
-            @Param("dateExtraction") Date dateExtraction,
+            @Param("dateExtraction") LocalDateTime dateExtraction,
             @Param("idClient") String idClient
     );
 }

@@ -19,6 +19,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 
 @Component
 public class XmlHeaderTaskletInfNeg implements Tasklet {
@@ -59,11 +60,13 @@ public class XmlHeaderTaskletInfNeg implements Tasklet {
         try (OutputStreamWriter writer = new OutputStreamWriter(
                 new FileOutputStream(filePath), StandardCharsets.UTF_8)) {
 
-            String entObserv = escapeXml(info != null ? info.getEntObserv() : "");
-            String entDeclar = escapeXml(info != null ? info.getEntDeclar() : "");
+            String entObserv = "415";
+            String entDeclar = "415";
             String dtCreation = "";
             if (info != null && info.getDateExtraction() != null) {
-                dtCreation = new SimpleDateFormat("yyyy-MM-dd").format(info.getDateExtraction());
+                //dtCreation = new SimpleDateFormat("yyyy-MM-dd").format(info.getDateExtraction());
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+                dtCreation = info.getDateExtraction().format(formatter);
 
             }
 

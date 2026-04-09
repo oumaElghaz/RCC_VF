@@ -24,5 +24,6 @@ public class ListConsort_arch {
             @JoinColumn(name = "dateExtraction", referencedColumnName = "dateExtraction")
     })
     @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     sss_cdr_arch_contrat_stat contrat;
 }

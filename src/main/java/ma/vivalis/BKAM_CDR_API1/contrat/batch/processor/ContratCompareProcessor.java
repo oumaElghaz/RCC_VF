@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.batch.infrastructure.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -30,14 +31,14 @@ public class ContratCompareProcessor implements ItemProcessor<sss_cdr_snapshot_c
     private Map<String, sss_cdr_arch_contrat_stat> archivCache;
     private static final Logger log = LoggerFactory.getLogger(ContratCompareProcessor.class);
     private int lot_id;
-    private String natMod;
+
     private boolean initialized = false;
 
     public ContratCompareProcessor(sss_cdr_arch_contrat_stat_repository sssCdrArchContratStatRepository, LotSequenceRepository lotSequenceRepository) {
         sss_cdr_arch_contrat_stat_repository = sssCdrArchContratStatRepository;
         this.lotSequenceRepository = lotSequenceRepository;
     }
-   /* @PostConstruct
+    @PostConstruct
     public void loadCache() {
         archivCache = new HashMap<>();
         //lot_id = getNextLotId(); // Initialiser le lot_id pour ce batch
@@ -49,9 +50,9 @@ public class ContratCompareProcessor implements ItemProcessor<sss_cdr_snapshot_c
         log.info("✅ Cache archiv chargé (avec relations) : {} entrées",
                 archivCache.size());
         //sss_cdr_arch_client_stat_Repository.findAll().forEach(a -> archivCache.put(a.getId_client(), a));
-    }*/
+    }
 
-/*    public void resetForNewRun() {
+   public void resetForNewRun() {
         initialized = false;
         archivCache.clear();
 
@@ -60,12 +61,12 @@ public class ContratCompareProcessor implements ItemProcessor<sss_cdr_snapshot_c
                 archivCache.put(a.getIdCont(), a));
 
         log.info("🔄 Reset — cache rechargé : {} entrées", archivCache.size());
-    }*/
+    }
 
 
     @Override
     public @Nullable sss_cdr_inter_contrat_stat process(sss_cdr_snapshot_contrat_stat item) throws Exception {
-       /* // ✅ Initialiser le lot au premier appel
+        // ✅ Initialiser le lot au premier appel
         initLotIfNeeded();
         sss_cdr_arch_contrat_stat archiv = archivCache.get(item.getIdCont());
 
@@ -78,7 +79,7 @@ public class ContratCompareProcessor implements ItemProcessor<sss_cdr_snapshot_c
             //  CONTRAT MODIFIÉ → à mettre à jour
             return buildIntermediaire(item, ActionType.EU,lot_id);
         }
-*/
+
         //  INCHANGÉ → null = filtré, pas inséré dans intermédiaire
         return null;
     }
@@ -200,13 +201,14 @@ public class ContratCompareProcessor implements ItemProcessor<sss_cdr_snapshot_c
         return a.equals(b);
     }
     private sss_cdr_inter_contrat_stat buildIntermediaire(sss_cdr_snapshot_contrat_stat item, ActionType actionType,int lot_id){
+        LocalDateTime dateDeclaration = LocalDateTime.now();
         sss_cdr_inter_contrat_stat inter =sss_cdr_inter_contrat_stat.builder()
                 .idCont(item.getIdCont())
                 .id_lot(lot_id)
-                .dateExtraction(item.getDtDeclaration())
-                .entObserv(item.getEntObserv())
-                .entDeclar(item.getEntDeclar())
-                .idDest(item.getIdDest())
+                .dateExtraction(dateDeclaration)
+                //.entObserv(item.getEntObserv())
+                //.entDeclar(item.getEntDeclar())
+                //.idDest(item.getIdDest())
 
                 . actionType(actionType)
                 .dtRefCont(item.getDtRefCont())
@@ -268,7 +270,7 @@ public class ContratCompareProcessor implements ItemProcessor<sss_cdr_snapshot_c
                                 .build();
                         a.setContrat(inter);  // ✅ Lier au parent
                         return a;
-                    }).collect(Collectors.toList()));  // ✅ toSet() au lieu de toList()
+                    }).collect(Collectors.toSet()));  // ✅ toSet() au lieu de toList()
         }
 
 
@@ -282,7 +284,7 @@ public class ContratCompareProcessor implements ItemProcessor<sss_cdr_snapshot_c
                                 .build();
                         a.setContrat(inter);  // ✅ Lier au parent
                         return a;
-                    }).collect(Collectors.toList()));  // ✅ toSet() au lieu de toList()
+                    }).collect(Collectors.toSet())); // ✅ toSet() au lieu de toList()
         }
 
 
@@ -296,7 +298,7 @@ public class ContratCompareProcessor implements ItemProcessor<sss_cdr_snapshot_c
                                 .build();
                         a.setContrat(inter);  // ✅ Lier au parent
                         return a;
-                    }).collect(Collectors.toList()));  // ✅ toSet() au lieu de toList()
+                    }).collect(Collectors.toSet())); // ✅ toSet() au lieu de toList()
         }
 
 
@@ -309,7 +311,7 @@ public class ContratCompareProcessor implements ItemProcessor<sss_cdr_snapshot_c
                                 .build();
                         a.setContrat(inter);  // ✅ Lier au parent
                         return a;
-                    }).collect(Collectors.toList()));  // ✅ toSet() au lieu de toList()
+                    }).collect(Collectors.toSet()));  // ✅ toSet() au lieu de toList()
         }
 
 

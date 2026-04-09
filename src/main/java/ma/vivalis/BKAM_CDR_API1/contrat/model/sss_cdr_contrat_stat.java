@@ -1,16 +1,16 @@
 package ma.vivalis.BKAM_CDR_API1.contrat.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import ma.vivalis.BKAM_CDR_API1.contrat.model.util.*;
 import ma.vivalis.BKAM_CDR_API1.entities.Enums.ActionType;
 import org.hibernate.annotations.BatchSize;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "sss_cdr_contrat_stat", uniqueConstraints = {
         @UniqueConstraint(name = "uk_contrat_final_composite",
@@ -22,14 +22,11 @@ import java.util.List;
 @Builder
 public class sss_cdr_contrat_stat {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    //private Long id;
     private String idCont;
     private Integer id_lot;
-    private Date dateExtraction;
-    private String entObserv ;
-    private String entDeclar ;
-    private String idDest;
+    private LocalDateTime dateExtraction;
 
     @Enumerated(EnumType.STRING)
     private ActionType actionType;
@@ -80,21 +77,29 @@ public class sss_cdr_contrat_stat {
 
     @OneToMany(mappedBy = "contrat" , cascade = CascadeType.ALL)
     @BatchSize(size = 50)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     //@Builder.Default
-    private List<sss_cdr_ListCliContrat> listCliContrat;
+    private Set<sss_cdr_ListCliContrat> listCliContrat;
 
     @OneToMany(mappedBy = "contrat" , cascade = CascadeType.ALL)
     @BatchSize(size = 50)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     //@Builder.Default
-    private List<sss_cdr_ListLinkContrat> listLinkContrat;
+    private Set<sss_cdr_ListLinkContrat> listLinkContrat;
 
     @OneToMany(mappedBy = "contrat" , cascade = CascadeType.ALL)
     @BatchSize(size = 50)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     //@Builder.Default
-    private List<sss_cdr_ListConsort> listConsort;
+    private Set<sss_cdr_ListConsort> listConsort;
 
     @OneToMany(mappedBy = "contrat" , cascade = CascadeType.ALL)
     @BatchSize(size = 50)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     //@Builder.Default
-    private List<sss_cdr_ListGarant> listGarant;
+    private Set<sss_cdr_ListGarant> listGarant;
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RCC version="1.0">
-  <controle entObserv="415" entDeclar="415" idDest="001" dtCreation="2025-10-05"/>
+  <controle entObserv="415" entDeclar="415" idDest="001" dtCreation="2026-04-07T19:26:56"/>
   <contenu>
-      <comEntPer dtRef="2024-05-09">
+      <comEntPer dtRef="2025-10-05">
           <entPer actionType="EI" codClient="CF236988" watchList="false" etatAvProcJud="N" revenu="1000000.0" dtRevenu="2025-10-05">
               <dataCompta annExercCompt="2023" capSocial="500000.0" capPropres="300000.0" actImmobilises="200000.0" totBilan="1500000.0" chiffreAffaire="1200000.0" dtAffairesAnExp="12000.0" detteBancLMT="200000.0" detteBancCT="50000.0" passifCirculant="150000.0" dettesFourn="10000.0" tresoreriePassif="3000.0" actifCirculant="-2000.0" créancesClients="0.0" tresorerieActif="200000.0" caisse="200000.0" achatsRevendus="200000.0" achatsConsom="200000.0" chargesExternes="200000.0" chargesInterets="200000.0" resultatNet="200000.0" tpResultat="tpresultat"/>
               <dataRiskCli>

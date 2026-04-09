@@ -1,13 +1,20 @@
 package ma.vivalis.BKAM_CDR_API1.client_per.batch.stepConfig;
 
 import generated.ComEntPer;
+import ma.vivalis.BKAM_CDR_API1.client_per.batch.processor.ClientPerArchProcessor;
 import ma.vivalis.BKAM_CDR_API1.client_per.batch.processor.ClientPerCompare;
+import ma.vivalis.BKAM_CDR_API1.client_per.batch.processor.ClientPerMappingProcessor;
 import ma.vivalis.BKAM_CDR_API1.client_per.batch.processor.ClientPerTraitementMapping;
 import ma.vivalis.BKAM_CDR_API1.client_per.batch.tasklet.XmlFooterTaskletClientPer;
 import ma.vivalis.BKAM_CDR_API1.client_per.batch.tasklet.XmlHeaderTaskletClientPer;
 import ma.vivalis.BKAM_CDR_API1.client_per.batch.writer.ClientPerAppendWriter;
+import ma.vivalis.BKAM_CDR_API1.client_per.batch.writer.ClientPerArchWriter;
 import ma.vivalis.BKAM_CDR_API1.client_per.batch.writer.ClientPerCompareWriter;
+import ma.vivalis.BKAM_CDR_API1.client_per.batch.writer.ClientPerMappingWriter;
+import ma.vivalis.BKAM_CDR_API1.client_per.model.sss_cdr_arch_client_per;
+import ma.vivalis.BKAM_CDR_API1.client_per.model.sss_cdr_client_per;
 import ma.vivalis.BKAM_CDR_API1.client_per.model.sss_cdr_inter_client_per;
+import ma.vivalis.BKAM_CDR_API1.common.PurgeTasklet;
 import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_snapshot_client_per;
 
 
@@ -17,6 +24,7 @@ import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.infrastructure.item.database.JpaPagingItemReader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
 
 
@@ -102,6 +110,73 @@ public class ClientPerStepConfig {
     }
     //
 
+    // ═══════════════════════════════════════════════════════
+    // STEP 3 : Mapping client
+    // ═══════════════════════════════════════════════════════
+    @Bean
+    public Step mappingClientPerStep(
+            JobRepository jobRepository,
+            PlatformTransactionManager tx,
+            JpaPagingItemReader<sss_cdr_inter_client_per> ClientPerIntermediaireReader,
+            ClientPerMappingProcessor clientPerMappingProcessor,
+            ClientPerMappingWriter clientPerMappingWriter
+    ) {
 
+
+        return new StepBuilder("mappingClientPerStep", jobRepository)
+                .<sss_cdr_inter_client_per, sss_cdr_client_per>chunk(500)
+                .transactionManager(tx)
+                .reader(ClientPerIntermediaireReader)
+                .processor(clientPerMappingProcessor)
+                .writer(clientPerMappingWriter)
+                .build();
+    }
+
+
+
+    // ═══════════════════════════════════════════════════════
+    // STEP 4 : Archivage client
+    // ═══════════════════════════════════════════════════════
+    @Bean
+    public Step archiverClientPerStep(
+            JobRepository jobRepository,
+            PlatformTransactionManager tx,
+            JpaPagingItemReader<sss_cdr_inter_client_per> clientPerIntermediaireReader,
+            ClientPerArchProcessor clientPerArchProcessor,
+            ClientPerArchWriter clientPerArchWriter
+    ) {
+
+        return new StepBuilder("archiverClientPerStep", jobRepository)
+                .<sss_cdr_inter_client_per, sss_cdr_arch_client_per>chunk(200)
+                .transactionManager(tx)
+                .reader(clientPerIntermediaireReader)
+                .processor(clientPerArchProcessor)
+                .writer(clientPerArchWriter)
+                .faultTolerant()
+                .skipLimit(100)
+                .skip(Exception.class)
+                .build();
+    }
+
+
+
+    // ═══════════════════════════════════════════════════════
+// Mode DELETE_CASCADE — Si vous avez des FK
+// AVANT de supprimer le client snapshot
+// ═══════════════════════════════════════════════════════
+    @Bean
+    public Step purgeClientPerStep(
+            JobRepository jobRepository,
+            PlatformTransactionManager tx,
+            JdbcTemplate jdbcTemplate) {
+
+        return new StepBuilder("purgeClientPerStep", jobRepository)
+                .tasklet(new PurgeTasklet(
+                        jdbcTemplate,
+                        "sss_cdr_snapshot_client_per",
+                        PurgeTasklet.PurgeMode.DELETE_CASCADE  // ← Supprime les enfants d'abord
+                ), tx)
+                .build();
+    }
 
 }

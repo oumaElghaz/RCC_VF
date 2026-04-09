@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
 
@@ -18,7 +19,7 @@ public interface sss_cdr_infoNegaRepository  extends JpaRepository<sss_cdr_infoN
             "AND c.id = :id")
     Optional<sss_cdr_infoNegative> findById_lotAndDateExtractionAndId(
             @Param("idLot") Integer idLot,
-            @Param("dateExtraction") Date dateExtraction,
+            @Param("dateExtraction") LocalDateTime dateExtraction,
             @Param("id") Long id
     );
 }

@@ -20,9 +20,9 @@ public class sss_cdr_snapshot_infoNega_stat {
     private Long id;
 
     private Date dateDeclaration;
-    private String entObserv;
-    private String entDeclar;
-    private String idDest;
+    //private String entObserv;
+    //private String entDeclar;
+    //private String idDest;
 
 
     @OneToMany(mappedBy = "infoNeg" , cascade = CascadeType.ALL)

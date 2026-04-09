@@ -31,7 +31,7 @@ public class XmlFooterTasklet implements Tasklet {
         try (OutputStreamWriter writer = new OutputStreamWriter(
                 new FileOutputStream(filePath, true), StandardCharsets.UTF_8)) {
 
-            writer.write("    </ComEnt>\n");
+            writer.write("    </comEnt>\n");
             writer.write("  </contenu>\n");
             writer.write("</RCC>\n");
 

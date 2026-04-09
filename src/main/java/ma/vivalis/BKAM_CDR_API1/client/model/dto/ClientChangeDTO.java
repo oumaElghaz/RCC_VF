@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 @Data
 @NoArgsConstructor
@@ -13,7 +14,7 @@ import java.util.Date;
 public class ClientChangeDTO {
     // ── Client ──
     private String idClient;
-    private Date dateExtraction;
+    private LocalDateTime dateExtraction;
     private String entObserv;
     private String entDeclar;
     private Date dtRefEnt;

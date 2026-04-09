@@ -3,11 +3,7 @@ package ma.vivalis.BKAM_CDR_API1.entities;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import ma.vivalis.BKAM_CDR_API1.entities.Enums.ActionType;
+import lombok.*;
 import ma.vivalis.BKAM_CDR_API1.entities.util.ListCliContrat;
 import ma.vivalis.BKAM_CDR_API1.entities.util.ListConsort;
 import ma.vivalis.BKAM_CDR_API1.entities.util.ListGarant;
@@ -16,6 +12,8 @@ import org.hibernate.annotations.BatchSize;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "sss_cdr_snapshot_contrat_stat")
 @Data
@@ -25,13 +23,7 @@ import java.util.List;
 public class sss_cdr_snapshot_contrat_stat {
     @Id
     private String idCont;
-    private String entObserv ;
-    private String entDeclar ;
     private Date dtDeclaration ;
-    private String idDest;
-
-    @Enumerated(EnumType.STRING)
-    private ActionType actionType;
     private Date dtRefCont;
     private String guichetAgence;
     private String codLocAgence;
@@ -79,22 +71,30 @@ public class sss_cdr_snapshot_contrat_stat {
 
     @OneToMany(mappedBy = "contrat" , cascade = CascadeType.ALL)
     @BatchSize(size = 50)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     //@Builder.Default
-    private List<ListCliContrat> listCliContrat;
+    private Set<ListCliContrat> listCliContrat;
 
     @OneToMany(mappedBy = "contrat" , cascade = CascadeType.ALL)
     @BatchSize(size = 50)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     //@Builder.Default
-    private List<ListLinkContrat> listLinkContrat;
+    private Set<ListLinkContrat> listLinkContrat;
 
     @OneToMany(mappedBy = "contrat" , cascade = CascadeType.ALL)
     @BatchSize(size = 50)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     //@Builder.Default
-    private List<ListConsort> listConsort;
+    private Set<ListConsort> listConsort;
 
     @OneToMany(mappedBy = "contrat" , cascade = CascadeType.ALL)
     @BatchSize(size = 50)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     //@Builder.Default
-    private List<ListGarant> listGarant;
+    private Set<ListGarant> listGarant;
     
 }

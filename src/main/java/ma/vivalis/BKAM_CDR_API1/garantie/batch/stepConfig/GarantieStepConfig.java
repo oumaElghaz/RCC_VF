@@ -1,6 +1,10 @@
 package ma.vivalis.BKAM_CDR_API1.garantie.batch.stepConfig;
 
 import generated.ComGar;
+import ma.vivalis.BKAM_CDR_API1.API.model.MyRequestBody;
+import ma.vivalis.BKAM_CDR_API1.API.model.sss_cdr_api1;
+import ma.vivalis.BKAM_CDR_API1.API.processor.MyRequestProcessor;
+import ma.vivalis.BKAM_CDR_API1.API.writer.MyRequestWriter;
 import ma.vivalis.BKAM_CDR_API1.client_per.batch.processor.ClientPerArchProcessor;
 import ma.vivalis.BKAM_CDR_API1.client_per.batch.processor.ClientPerMappingProcessor;
 import ma.vivalis.BKAM_CDR_API1.client_per.batch.writer.ClientPerArchWriter;
@@ -26,7 +30,9 @@ import ma.vivalis.BKAM_CDR_API1.garantie.model.sss_cdr_inter_garantie;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.Step;
 import org.springframework.batch.core.step.builder.StepBuilder;
+import org.springframework.batch.infrastructure.item.ItemReader;
 import org.springframework.batch.infrastructure.item.database.JpaPagingItemReader;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -112,6 +118,32 @@ public class GarantieStepConfig {
                 .tasklet(xmlFooterTaskletGar, tx)
                 .build();
     }
+
+    // ═══════════════════════════════════════════════════════
+    // STEP  : Envoi Api
+    // ═══════════════════════════════════════════════════════
+    @Bean
+    public Step envoiApiGarantieStep(
+            JobRepository jobRepository,
+            PlatformTransactionManager tx,
+            @Qualifier("readerGarantie") ItemReader<MyRequestBody> readerGarantie,
+            MyRequestProcessor myRequestProcessor,
+            MyRequestWriter myRequestWriter
+
+
+    ) {
+
+
+        return new StepBuilder("envoiApiGarantieStep", jobRepository)
+                .<MyRequestBody, sss_cdr_api1>chunk(500)
+                .transactionManager(tx)
+                .reader(readerGarantie)
+                .processor(myRequestProcessor)
+                .writer(myRequestWriter)
+                .build();
+    }
+
+
     //
     // ═══════════════════════════════════════════════════════
     // STEP 3 : Mapping garantie

@@ -38,20 +38,20 @@ public class ContratPerMappingProcessor implements ItemProcessor<sss_cdr_inter_c
                 .tpReembAntc(item.getTpReembAntc())
                 .montReembAntc(item.getMontReembAntc())
                 .dtProcRevTxInt(item.getDtProcRevTxInt())
-                .colRefin(item.getColRefin())
+                .colRefin(Boolean.valueOf("N"))
                 .nbEcheRest(item.getNbEcheRest())
                 .dtProcEche(item.getDtProcEche())
                 .dtDernEchePay(item.getDtDernEchePay())
                 .nbEcheImp(item.getNbEcheImp())
                 .montEcheImp(item.getMontEcheImp())
-                .stPaiement(item.getStPaiement())
-                .dtStPaiement(item.getDtStPaiement())
-                .classCreanceSouff(item.getClassCreanceSouff())
+                //.stPaiement(item.getStPaiement())
+                .dtStPaiement(item.getDateRef())
+                .classCreanceSouff(mappingLoader.map("T_DST",item.getClassCreanceSouff()))
                 .dtClassCreanceSouff(item.getDtClassCreanceSouff())
                 .contentieux(item.getContentieux())
-                .creanceProv(item.getCreanceProv())
+                //.creanceProv(item.getCreanceProv())
                 .montProv(item.getMontProv())
-                .txProvCont(item.getTxProvCont())
+                //.txProvCont(item.getTxProvCont())
                 .codClient(item.getCodClient())
                 .montEncCli(item.getMontEncCli())
                 .LGDCont(item.getLGDCont())
@@ -60,11 +60,73 @@ public class ContratPerMappingProcessor implements ItemProcessor<sss_cdr_inter_c
                 .dtEAD(item.getDtEAD())
                 .ECLCont(item.getECLCont())
                 .dtECL(item.getDtECL())
-
-
-
-
                 .build();
+
+     switch (item.getStPaiement()){
+         case "0":
+             ctr_final.setStPaiement("1");
+             break;
+
+         case "1":
+             ctr_final.setStPaiement("2");
+             break;
+
+         case "2":
+             ctr_final.setStPaiement("3");
+             break;
+
+         case "3":
+             ctr_final.setStPaiement("4");
+             break;
+
+         case "4":
+             ctr_final.setStPaiement("5");
+             break;
+
+         case "5":
+             ctr_final.setStPaiement("6");
+             break;
+
+         default:
+             ctr_final.setStPaiement("7");
+
+
+     }
+
+     if(!"0".equalsIgnoreCase(String.valueOf(item.getMontProv())) || !(item.getMontProv() ==null)){
+         ctr_final.setCreanceProv(Boolean.valueOf("O"));
+     }else {
+         ctr_final.setCreanceProv(Boolean.valueOf("N"));
+     }
+
+        switch (item.getClassCreanceSouff()){
+            case "NOR":
+                ctr_final.setTxProvCont((double) 0);
+                break;
+
+            case "IMP":
+                ctr_final.setTxProvCont((double) 0);
+                break;
+
+            case "DOU":
+                ctr_final.setTxProvCont((double) 20);
+                break;
+
+            case "CXP":
+                ctr_final.setTxProvCont((double) 50);
+                break;
+
+            case "COM":
+                ctr_final.setTxProvCont((double) 100);
+                break;
+
+            case "CTX":
+                ctr_final.setTxProvCont((double) 100);
+                break;
+
+
+        }
+
         return ctr_final;
     }
 }

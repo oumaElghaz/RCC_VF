@@ -2,6 +2,7 @@ package ma.vivalis.BKAM_CDR_API1.client_per.batch.writer;
 
 import generated.ComEntPer;
 import jakarta.annotation.PostConstruct;
+import ma.vivalis.BKAM_CDR_API1.common.FileNameService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.infrastructure.item.Chunk;
@@ -27,14 +28,18 @@ import java.util.Date;
 public class ClientPerAppendWriter implements ItemWriter<ComEntPer> {
 
     private static final Logger log = LoggerFactory.getLogger(ClientPerAppendWriter.class);
-
+    private final FileNameService fileNameService;
     @Value("${batch.output.dir:output/}")
     private String outputDir;
 
-    @Value("${batch.output.clientPer.file:clients_per_cdr.xml}")
+    //@Value("${batch.output.clientPer.file:clients_per_cdr.xml}")
     private String fileName;
 
     private Marshaller marshaller;
+
+    public ClientPerAppendWriter(FileNameService fileNameService) {
+        this.fileNameService = fileNameService;
+    }
 
     @PostConstruct
     public void init() throws Exception {
@@ -48,6 +53,7 @@ public class ClientPerAppendWriter implements ItemWriter<ComEntPer> {
 
     @Override
     public void write(Chunk<? extends ComEntPer> chunk) throws Exception {
+        fileName=fileNameService.retournerFileNames("CEMA");
         String filePath = outputDir + fileName;
         File file = new File(filePath);
         log.info("📁 Écriture dans : {} (existe: {}, taille avant: {} bytes)",
@@ -58,6 +64,7 @@ public class ClientPerAppendWriter implements ItemWriter<ComEntPer> {
             if (com != null) {
                 cleanEmptyStrings(com);
                 cleanDates(com);
+                cleanXmlStrings(com);
                 StringWriter sw = new StringWriter();
                 marshaller.marshal(com, sw);
                 String xml = sw.toString();
@@ -180,6 +187,67 @@ public class ClientPerAppendWriter implements ItemWriter<ComEntPer> {
                     cleanDates(value);
                 }
             }
+    }
+
+    public static String removeInvalidXmlChars(String input) {
+        if (input == null) return null;
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (c == 0x9 || c == 0xA || c == 0xD ||
+                    (c >= 0x20 && c <= 0xD7FF) ||
+                    (c >= 0xE000 && c <= 0xFFFD)) {
+                out.append(c);
+            }
+        }
+        return out.toString();
+    }
+
+    public static void cleanXmlStrings(Object obj) throws IllegalAccessException {
+        if (obj == null) return;
+
+        Class<?> clazz = obj.getClass();
+
+        // Ignorer les classes Java internes (traitement récursif arrêté ici)
+        Package pkg = clazz.getPackage();
+        String pkgName = (pkg != null) ? pkg.getName() : "";
+        if (pkgName.startsWith("java.")
+                || pkgName.startsWith("javax.")
+                || pkgName.startsWith("jdk.")
+                || pkgName.startsWith("com.sun.")) return;
+
+        for (Field field : clazz.getDeclaredFields()) {
+            field.setAccessible(true);
+            Object value = field.get(obj);
+
+            if (value == null) continue;
+
+            if (value instanceof String) {
+                // ✅ Traiter les String EN PRIORITÉ (java.lang.String),
+                //    avant tout filtre de package — c'était le bug !
+                String cleaned = removeInvalidXmlChars((String) value);
+                field.set(obj, cleaned);
+
+            } else if (value instanceof Collection<?>) {
+                // ✅ Parcourir les listes (List<DonneesEnt>, List<Address>...)
+                for (Object item : (Collection<?>) value) {
+                    cleanXmlStrings(item);
+                }
+
+            } else {
+                // ✅ Récursion sur les objets imbriqués générés par XSD,
+                //    en ignorant les types Java internes (BigDecimal, XMLGregorianCalendar...)
+                Package fieldPkg = value.getClass().getPackage();
+                String fieldPkgName = (fieldPkg != null) ? fieldPkg.getName() : "";
+                boolean isJavaInternal = fieldPkgName.startsWith("java.")
+                        || fieldPkgName.startsWith("javax.")
+                        || fieldPkgName.startsWith("jdk.")
+                        || fieldPkgName.startsWith("com.sun.");
+                if (!isJavaInternal && !value.getClass().isPrimitive()) {
+                    cleanXmlStrings(value);
+                }
+            }
+        }
     }
 
 

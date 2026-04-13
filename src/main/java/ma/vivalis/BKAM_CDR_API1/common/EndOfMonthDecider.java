@@ -8,17 +8,22 @@ import org.springframework.batch.core.job.flow.JobExecutionDecider;
 import org.springframework.batch.core.step.StepExecution;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 @Component
-public class MyStepDecider implements JobExecutionDecider {
+public class EndOfMonthDecider implements JobExecutionDecider {
     private final DecisionRepository decisionRepository;
 
-    public MyStepDecider(DecisionRepository decisionRepository) {
+    public EndOfMonthDecider(DecisionRepository decisionRepository) {
         this.decisionRepository = decisionRepository;
     }
 
     @Override
     public FlowExecutionStatus decide(JobExecution jobExecution, @Nullable StepExecution stepExecution) {
-        Boolean shouldExecute = decisionRepository.shouldRunStep(); // Renvoie vrai ou faux selon la configuration
-        return Boolean.TRUE.equals(shouldExecute) ? new FlowExecutionStatus("EXECUTE") : new FlowExecutionStatus("SKIP");
+        boolean isLastDayOfMonth = LocalDate.now().equals(LocalDate.now().withDayOfMonth(LocalDate.now().lengthOfMonth()));
+        boolean shouldExecute = Boolean.TRUE.equals(decisionRepository.shouldRunStep());
+
+        return (shouldExecute && isLastDayOfMonth) ? new FlowExecutionStatus("EXECUTE") : new FlowExecutionStatus("SKIP");
+
     }
 }

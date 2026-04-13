@@ -3,6 +3,10 @@ package ma.vivalis.BKAM_CDR_API1.infoNeg.batch.StepConfig;
 
 
 import generated.ComInfNeg;
+import ma.vivalis.BKAM_CDR_API1.API.model.MyRequestBody;
+import ma.vivalis.BKAM_CDR_API1.API.model.sss_cdr_api1;
+import ma.vivalis.BKAM_CDR_API1.API.processor.MyRequestProcessor;
+import ma.vivalis.BKAM_CDR_API1.API.writer.MyRequestWriter;
 import ma.vivalis.BKAM_CDR_API1.client.batch.processor.ClientArchProcessor;
 import ma.vivalis.BKAM_CDR_API1.client.batch.processor.ClientMappingProcessor;
 import ma.vivalis.BKAM_CDR_API1.client.batch.writer.ClientArchWriter;
@@ -28,7 +32,9 @@ import ma.vivalis.BKAM_CDR_API1.infoNeg.model.sss_cdr_inter_infoNegative;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.Step;
 import org.springframework.batch.core.step.builder.StepBuilder;
+import org.springframework.batch.infrastructure.item.ItemReader;
 import org.springframework.batch.infrastructure.item.database.JpaPagingItemReader;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -116,6 +122,29 @@ public class InfoNegStepConfig {
                 .build();
     }
     //
+    // ═══════════════════════════════════════════════════════
+    // STEP  : Envoi Api
+    // ═══════════════════════════════════════════════════════
+    @Bean
+    public Step envoiApiInfoNegaStep(
+            JobRepository jobRepository,
+            PlatformTransactionManager tx,
+            @Qualifier("readerInfoNega") ItemReader<MyRequestBody> readerInfoNega,
+            MyRequestProcessor myRequestProcessor,
+            MyRequestWriter myRequestWriter
+
+
+    ) {
+
+
+        return new StepBuilder("envoiApiInfoNegaStep", jobRepository)
+                .<MyRequestBody, sss_cdr_api1>chunk(500)
+                .transactionManager(tx)
+                .reader(readerInfoNega)
+                .processor(myRequestProcessor)
+                .writer(myRequestWriter)
+                .build();
+    }
 
     //
     // ═══════════════════════════════════════════════════════

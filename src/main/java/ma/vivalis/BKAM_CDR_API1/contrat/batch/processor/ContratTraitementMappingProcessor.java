@@ -188,29 +188,29 @@ public class ContratTraitementMappingProcessor  implements ItemProcessor<sss_cdr
                 . actionType(item.getActionType())
                 .dtRefCont(item.getDtRefCont())
                 .guichetAgence(item.getGuichetAgence())
-                .codLocAgence(item.getCodLocAgence())
-                .tpCont(item.getTpCont())
+                .codLocAgence(mappingLoader.map("T_CNC",item.getCodLocAgence()))
+                .tpCont("1")
                 .tpCred(item.getTpCred())
                 .dtlTpCred(item.getDtlTpCred())
-                .creCoFin(item.getCreCoFin())
-                .creConsor(item.getCreConsor())
+                .creCoFin("N")
+                .creConsor("N")
                 .objCred(item.getObjCred())
                 .objCredDetail(item.getObjCredDetail())
-                .monnaie(item.getMonnaie())
+                .monnaie("MAD")
                 .montIniAccord(item.getMontIniAccord())
-                .montCreCoFin(item.getMontCreCoFin())
+                .montCreCoFin(item.getMontIniAccord())
                 .txChange(item.getTxChange())
                 .dtContCredt(item.getDtContCredt())
                 .dtDebloCred(item.getDtDebloCred())
                 .dtClotIni(item.getDtClotIni())
                 .dtClotCred(item.getDtClotCred())
-                .motClotCont(item.getMotClotCont())
-                .flagDiff(item.getFlagDiff())
+                .motClotCont(mappingLoader.map("T_MCC",item.getMotClotCont()))
+                //.flagDiff(item.getFlagDiff())
                 .dtModCondCred(item.getDtModCondCred())
                 .motModCondCred(item.getMotModCondCred())
                 .dtDebPerGraCap(item.getDtDebPerGraCap())
                 .dtFinPerGraCap(item.getDtFinPerGraCap())
-                .modPaiement(item.getModPaiement())
+                .modPaiement(mappingLoader.map("T_MPA",item.getModPaiement()))
                 .tpEche(item.getTpEche())
                 .fxEche(item.getFxEche())
                 .nombreTotEche(item.getNombreTotEche())
@@ -231,6 +231,12 @@ public class ContratTraitementMappingProcessor  implements ItemProcessor<sss_cdr
                 .exisGarant(item.getExisGarant())
                 .mntGarant(item.getMntGarant())
                 .build();
+        if("0".equalsIgnoreCase(item.getFlagDiff())){
+            inter.setFlagDiff("N");
+        }
+        else  {
+            inter.setFlagDiff("O");
+        }
 
 
 

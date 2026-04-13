@@ -1,5 +1,6 @@
 package ma.vivalis.BKAM_CDR_API1.client.batch.tasklet;
 
+import ma.vivalis.BKAM_CDR_API1.common.FileNameService;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,14 +18,21 @@ import java.nio.charset.StandardCharsets;
 @Component
 public class XmlFooterTasklet implements Tasklet {
     private static final Logger log = LoggerFactory.getLogger(XmlFooterTasklet.class);
+    private final FileNameService fileNameService;
 
     @Value("${batch.output.dir:output/}")
     private String outputDir;
 
-    @Value("${batch.output.client.file:clients_cdr.xml}")
+    //@Value("${batch.output.client.file:clients_cdr.xml}")
     private String fileName;
+
+    public XmlFooterTasklet(FileNameService fileNameService) {
+        this.fileNameService = fileNameService;
+    }
+
     @Override
     public @Nullable RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+        fileName=fileNameService.retournerFileNames("CENT");
         String filePath = outputDir + fileName;
 
         // APPEND mode

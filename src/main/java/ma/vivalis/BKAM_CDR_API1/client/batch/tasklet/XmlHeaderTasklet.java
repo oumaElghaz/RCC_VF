@@ -3,6 +3,7 @@ package ma.vivalis.BKAM_CDR_API1.client.batch.tasklet;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import ma.vivalis.BKAM_CDR_API1.client.model.sss_cdr_inter_client_stat;
+import ma.vivalis.BKAM_CDR_API1.common.FileNameService;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,15 +25,19 @@ import java.time.format.DateTimeFormatter;
 public class XmlHeaderTasklet implements Tasklet {
 
     private static final Logger log = LoggerFactory.getLogger(XmlHeaderTasklet.class);
-
+    private final FileNameService fileNameService;
     @PersistenceContext
     private EntityManager em;
 
     @Value("${batch.output.dir:output/}")
     private String outputDir;
 
-    @Value("${batch.output.client.file:clients_cdr.xml}")
+    //@Value("${batch.output.client.file:clients_cdr.xml}")
     private String fileName;
+
+    public XmlHeaderTasklet(FileNameService fileNameService) {
+        this.fileNameService = fileNameService;
+    }
 
     @Override
     public @Nullable RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
@@ -46,7 +51,7 @@ public class XmlHeaderTasklet implements Tasklet {
                 "SELECT c FROM sss_cdr_inter_client_stat c WHERE c.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_inter_client_stat c2) ORDER BY c.id_client",
                 sss_cdr_inter_client_stat.class
         ).setMaxResults(1).getResultStream().findFirst().orElse(null);
-
+        fileName=fileNameService.retournerFileNames("CENT");
         String filePath = outputDir + fileName;
 
         try (OutputStreamWriter writer = new OutputStreamWriter(

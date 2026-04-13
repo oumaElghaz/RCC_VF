@@ -73,7 +73,7 @@ public class InfoNegaTraitementMappingProcessor implements ItemProcessor<sss_cdr
                                     .montInc(r.getMontInc())
                                     .refInfoNeg(r.getRefInfoNeg())
                                     .statInfoNeg(r.getStatInfoNeg())
-                                    .tpInfNegInc(mappingLoader.map("TpInf", r.getTpInfNegInc()))
+                                    .tpInfNegInc(mappingLoader.map("T_INI", r.getTpInfNegInc()))
                                     .build();
                                 e.setComInf(a);;  // ← Lier au parent comInf
                                 return e;

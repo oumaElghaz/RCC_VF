@@ -2,6 +2,7 @@ package ma.vivalis.BKAM_CDR_API1.garantie.batch.tasklet;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import ma.vivalis.BKAM_CDR_API1.common.FileNameService;
 import ma.vivalis.BKAM_CDR_API1.garantie.model.sss_cdr_inter_garantie;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
@@ -17,13 +18,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 
 @Component
 public class XmlHeaderTaskletGar implements Tasklet {
 
     private static final Logger log = LoggerFactory.getLogger(XmlHeaderTaskletGar.class);
+    private final FileNameService fileNameService;
 
     @PersistenceContext
     private EntityManager em;
@@ -31,8 +32,12 @@ public class XmlHeaderTaskletGar implements Tasklet {
     @Value("${batch.output.dir:output/}")
     private String outputDir;
 
-    @Value("${batch.output.garantie.file:garantie_cdr.xml}")
+    //@Value("${batch.output.garantie.file:garantie_cdr.xml}")
     private String fileName;
+
+    public XmlHeaderTaskletGar(FileNameService fileNameService) {
+        this.fileNameService = fileNameService;
+    }
 
     @Override
     public @Nullable RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
@@ -45,7 +50,7 @@ public class XmlHeaderTaskletGar implements Tasklet {
                 "SELECT c FROM sss_cdr_inter_garantie c WHERE c.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_inter_garantie c2) ORDER BY c.idGar",
                 sss_cdr_inter_garantie.class
         ).setMaxResults(1).getResultStream().findFirst().orElse(null);
-
+        fileName=fileNameService.retournerFileNames("CGAR");
         String filePath = outputDir + fileName;
 
         try (OutputStreamWriter writer = new OutputStreamWriter(

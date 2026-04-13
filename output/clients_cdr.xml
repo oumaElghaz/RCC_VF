@@ -1,18 +1,746 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RCC version="1.0">
-  <controle entObserv="415" entDeclar="415" idDest="001" dtCreation="2026-04-09T18:00:08"/>
+  <controle entObserv="415" entDeclar="415" idDest="001" dtCreation="2026-04-09T23:30:33"/>
   <contenu>
     <comEnt>
-          <donneesEnt dtRefEnt="2026-04-09" actionType="EU" codClient="CF000233248" natClient="3" codAgEcon="112" formJur="26" codTrib="85" regCommerce="192075" idFiscal="1" numTaxeProf="1" codActPrinc="771" dtCreation="2025-10-14" dtMod="2026-01-21">
-              <address adresse="10 RUE OUARZAZAT HASSAN RABAT" codPostal="10120" codLocal="780" codPays="MAR"/>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000078" natClient="3" codAgEcon="112">
               <lstActionnariat>
-                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="S616280" payResAct="MAR" nomRaisonSocAct="CHIBA"/>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="C607279" payResAct="MAR" nomRaisonSocAct="CHHIH"/>
               </lstActionnariat>
               <lstBenEffect>
-                  <benEffect typIdBenEffect="I" idBenEffect="NS816647" nomBenEffect="KASRIOUI" preBenEffect="KASRIOUI" natBenEffect="MA"/>
-                  <benEffect typIdBenEffect="I" idBenEffect="S616280" nomBenEffect="CHIBA" preBenEffect="CHIBA" natBenEffect="MA"/>
+                  <benEffect typIdBenEffect="I" idBenEffect="C607279" nomBenEffect="CHHIH" preBenEffect="CHHIH" natBenEffect="MA"/>
               </lstBenEffect>
           </donneesEnt>
-    </comEnt>
-  </contenu>
-</RCC>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000215" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000245" natClient="1" codAgEcon="112">
+              <address adresse="SIDI ABBAD 1 N314 MARRAKECH" codPostal="40050" codLocal="40050" codPays="MAR" numTeleph="661193127"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000274" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000275" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000301" natClient="1" codAgEcon="112">
+              <address adresse="HAY AL ANDALOUS OUJDA" codPostal="60020" codLocal="60020" codPays="MAR" numTeleph="662841974"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000438" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000460" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000461" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000530" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000556" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="C733620" prenom="MOHAMMED" nomFamille="EL GHRAIB" dtDelivrance="2013-09-17" TypePPPro="112" dtNaissance="1977-08-15" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="3" menage="2" catClient="4">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000580" natClient="1" codAgEcon="112">
+              <address adresse="OUM RABII GR 7 ENTREE 13 APT 14 8 ETG 4 HAY HASSAN" codPostal="20320" codLocal="20320" codPays="MAR" numTeleph="655944236"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000678" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000772" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000818" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="BH166909" payResAct="MAR" nomRaisonSocAct="EL BOUKHARI"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="BH166909" nomBenEffect="EL BOUKHARI" preBenEffect="EL BOUKHARI" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000831" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="JM25953" payResAct="MAR" nomRaisonSocAct="BOUCHOUKOU"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="JM25953" nomBenEffect="BOUCHOUKOU" preBenEffect="BOUCHOUKOU" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000846" natClient="3" codAgEcon="112" formJur="27" codTrib="53" regCommerce="9197" idFiscal="1" numTaxeProf="222222222" codActPrinc="771" dtCreation="2016-06-14" dtMod="2025-12-04" flagSuc="false">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="J378693" payResAct="MAR" nomRaisonSocAct="BOURAS"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="J378693" nomBenEffect="BOURAS" preBenEffect="BOURAS" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000869" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="BE421573" prenom="JAWAD" nomFamille="BELLAHMAR" dtDelivrance="2021-05-22" TypePPPro="112" dtNaissance="1967-11-17" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="4" menage="1" catClient="4">
+              <address adresse="08 RUE POINT DU JOUR ET 5 BOURGO GNE" codPostal="20320" codLocal="20320" codPays="MAR" numTeleph="670864446"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000943" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000953" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="JB425663" payResAct="MAR" nomRaisonSocAct="BACHAA"/>
+              </lstActionnariat>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000000991" natClient="1" codAgEcon="112">
+              <address adresse="NO 12 DB EL KAID SAID HAY ZERKA MEKNES" codPostal="50020" codLocal="50020" codPays="MAR" numTeleph="639198466"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001032" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001057" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="GK44470" payResAct="MAR" nomRaisonSocAct="DRIOUYCH"/>
+              </lstActionnariat>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001059" natClient="1" codAgEcon="112">
+              <address adresse="DR OLD BOUABID EL HAJ AHMED SIDI MAAROF" codPostal="20320" codLocal="20320" codPays="MAR" numTeleph="638257345"/>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001113" natClient="3" codAgEcon="112" formJur="26" codTrib="593" regCommerce="11261" ICE="." idFiscal="24822997" numTaxeProf="55860013" codActPrinc="771" dtCreation="7600-05-13" dtMod="2025-05-16" flagSuc="false">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="BE605571" payResAct="MAR" nomRaisonSocAct="EL HAMDAOUI"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="BE605571" nomBenEffect="EL HAMDAOUI" preBenEffect="EL HAMDAOUI" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001121" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001153" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="VA27534" prenom="SI MOHAMED" nomFamille="BOUKRIMI" dtDelivrance="2025-05-07" TypePPPro="112" dtNaissance="4944-06-20" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="3" menage="3" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001175" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001182" natClient="3" codAgEcon="112">
+              <address adresse="BLOC F N01 HAY EL HASSANI" codPostal="80040" codLocal="80040" codPays="MAR" numTeleph="661752594"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="J280367" payResAct="MAR" nomRaisonSocAct="CHIHRANE"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="J280367" nomBenEffect="CHIHRANE" preBenEffect="CHIHRANE" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001240" natClient="3" codAgEcon="112" formJur="26" codTrib="45" regCommerce="84739" ICE="1992085000011" idFiscal="24918852" numTaxeProf="92100144" codActPrinc="771" dtCreation="2017-11-13" dtMod="2025-08-19" flagSuc="false">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="Y221828" payResAct="MAR" nomRaisonSocAct="CHAOUTE"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="Y221828" nomBenEffect="CHAOUTE" preBenEffect="CHAOUTE" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001259" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001266" natClient="1" codAgEcon="112">
+              <address adresse="DR TOUGANA TASSELTANTE" codPostal="40050" codLocal="40050" codPays="MAR" numTeleph="615284205"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001347" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="F295514" prenom="FATIHA" nomFamille="CHERKI" dtDelivrance="2017-02-08" TypePPPro="112" dtNaissance="1963-11-13" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="1" menage="0" catClient="4">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001363" natClient="3" codAgEcon="112">
+              <address adresse="IMM MANAR EL BAHJA MAG N15 RUE MOHAMED BEKKAL N58 ET RUE IBEN AICHA N21 GUELIZ" codPostal="40160" codLocal="40160" codPays="MAR" numTeleph="661418719"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="EE330952" payResAct="MAR" nomRaisonSocAct="LAACHIRI"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="EE330952" nomBenEffect="LAACHIRI" preBenEffect="LAACHIRI" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001389" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="F9127" prenom="EL HASSANE" nomFamille="BOUTABA" dtDelivrance="2018-04-23" TypePPPro="112" dtNaissance="7600-03-13" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="10" menage="1" catClient="4">
+              <address adresse="RTE A B MATHAR LOT BELHOUSSINE N252" codPostal="60020" codLocal="60020" codPays="MAR" numTeleph="615777704"/>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001437" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="F84019" payResAct="MAR" nomRaisonSocAct="BAKADI"/>
+              </lstActionnariat>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001578" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001650" natClient="3" codAgEcon="112">
+              <address adresse="549 LOT EL MOUNA KHEMISSET" codPostal="15010" codLocal="15010" codPays="MAR" numTeleph="610101010"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="X297991" payResAct="MAR" nomRaisonSocAct="DAOUDI"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="X297991" nomBenEffect="DAOUDI" preBenEffect="DAOUDI" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001651" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001724" natClient="1" codAgEcon="112">
+              <address adresse="HAY MLY RACHID GR 2 BD MOHAMED B OUZIANE NR 52" codPostal="20320" codLocal="20320" codPays="MAR" numTeleph="619598134"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001852" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000001856" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002203" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002221" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002268" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002284" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002292" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="H459109" prenom="MOURAD" nomFamille="CHELLOUL" dtDelivrance="2020-01-08" TypePPPro="112" dtNaissance="1985-11-18" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="0" menage="0" catClient="4">
+              <address adresse="LOT JNANE SBL 01 NR 12" codPostal="46020" codLocal="46020" codPays="MAR" numTeleph="708776009"/>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002373" natClient="3" codAgEcon="112" formJur="27" codTrib="35" regCommerce="46019" ICE="1795775000010" idFiscal="20684350" numTaxeProf="20155066" codActPrinc="494" dtCreation="2016-10-10" dtMod="2024-12-18" flagSuc="false">
+              <address adresse="LOT N 36 2EME ETAGE TAYBIA KENITRA" codPostal="14110" codLocal="14110" codPays="MAR" numTeleph="600079696"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="D305018" payResAct="MAR" nomRaisonSocAct="LAKOUAYHI"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="D305018" nomBenEffect="LAKOUAYHI" preBenEffect="LAKOUAYHI" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002426" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002595" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002617" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002632" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="I238604" payResAct="MAR" nomRaisonSocAct="DOUIRI"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="I238604" nomBenEffect="DOUIRI" preBenEffect="DOUIRI" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002674" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="BH537536" payResAct="MAR" nomRaisonSocAct="BENSALEH"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="N79518" nomBenEffect="ESSAYHE" preBenEffect="ESSAYHE" natBenEffect="MA"/>
+                  <benEffect typIdBenEffect="I" idBenEffect="MC41519" nomBenEffect="HARRAT" preBenEffect="HARRAT" natBenEffect="MA"/>
+                  <benEffect typIdBenEffect="I" idBenEffect="BH537536" nomBenEffect="BENSALEH" preBenEffect="BENSALEH" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002677" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="HA83887" payResAct="MAR" nomRaisonSocAct="EL FAROUQY"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="HA83887" nomBenEffect="EL FAROUQY" preBenEffect="EL FAROUQY" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002687" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="Q106930" prenom="MOHAMMED" nomFamille="DOUNIYA" dtDelivrance="2019-09-12" TypePPPro="112" dtNaissance="4698-01-17" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="0" menage="0" catClient="4">
+              <address adresse="72 RUE 25 HAY EL MOUKAUAMA RDC KHOURIBGA" codPostal="25010" codLocal="25010" codPays="MAR" numTeleph="661938671"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002819" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="J59895" prenom="LAHOUCINE" nomFamille="BELQAID" dtDelivrance="2019-05-21" TypePPPro="112" dtNaissance="4670-08-17" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="6" menage="0" catClient="4">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002842" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="M262249" payResAct="MAR" nomRaisonSocAct="HAJJAJ"/>
+              </lstActionnariat>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002858" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002873" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002943" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="BB4940" prenom="HASSAN" nomFamille="EL FERDOUCH" dtDelivrance="2020-07-07" TypePPPro="112" dtNaissance="1980-11-12" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="0" menage="1" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002958" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000002974" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003052" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003128" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003200" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="D623169" prenom="KARIMA" nomFamille="ASSAH" dtDelivrance="2020-07-14" TypePPPro="112" dtNaissance="1980-06-14" sexe="F" nationalite="MAR" sitFamille="M" codCatProf="4" menage="0" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003230" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="C639787" prenom="ABDELLAH" nomFamille="LAKHOUIL" dtDelivrance="2016-02-12" TypePPPro="112" dtNaissance="1973-01-13" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="1" menage="1" catClient="4">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003351" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="C175463" prenom="DRISS" nomFamille="DAQDAQUI" dtDelivrance="2016-11-13" TypePPPro="112" dtNaissance="1958-04-18" sexe="M" nationalite="MAR" sitFamille="M" menage="0" catClient="4">
+              <address adresse="35 SIDI MGHITE KEDDANE" codPostal="30110" codLocal="30110" codPays="MAR" numTeleph="778530207"/>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003367" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="BE793634" payResAct="MAR" nomRaisonSocAct="LASSIL"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="BE793634" nomBenEffect="LASSIL" preBenEffect="LASSIL" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003381" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="BE710901" payResAct="MAR" nomRaisonSocAct="DAHLY"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="BE710901" nomBenEffect="DAHLY" preBenEffect="DAHLY" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003483" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="AE35656" prenom="HICHAM" nomFamille="BARI" dtDelivrance="2019-09-26" TypePPPro="112" dtNaissance="1991-12-14" sexe="M" nationalite="MAR" sitFamille="C" codCatProf="0" menage="0" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003510" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003559" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="N20546" prenom="LATIFA" nomFamille="BAKENZIZ" dtDelivrance="2021-07-26" TypePPPro="112" dtNaissance="1961-05-11" sexe="F" nationalite="MAR" sitFamille="M" menage="2" catClient="4">
+              <address adresse="C M AMERCHICH LOT ELKOUTOUBIA RUE EL AZHAR NO 96 MARRAKECH" codPostal="40160" codLocal="40160" codPays="MAR" numTeleph="665699271"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003636" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003658" natClient="3" codAgEcon="112" formJur="26" codTrib="81" regCommerce="177663" ICE="1,11111111111111E+22" idFiscal="40158795" numTaxeProf="37974100" codActPrinc="771" dtCreation="2008-02-18" dtMod="2025-07-01" flagSuc="false">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="BB7601" payResAct="MAR" nomRaisonSocAct="FAR"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="BB7601" nomBenEffect="FAR" preBenEffect="FAR" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003661" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="BB7601" payResAct="MAR" nomRaisonSocAct="FAR"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="BB7601" nomBenEffect="FAR" preBenEffect="FAR" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003664" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="LC210454" prenom="KHALID" nomFamille="ASSEBAN" dtDelivrance="2011-01-02" TypePPPro="112" dtNaissance="7627-09-01" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="3" menage="0" catClient="4">
+              <address adresse="AV SIDI ABDELHAMID N 10" codPostal="90090" codLocal="90090" codPays="MAR" numTeleph="665335616"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003735" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="C275823" prenom="ABDELILAH" nomFamille="MOUATTAR" dtDelivrance="2021-11-22" TypePPPro="112" dtNaissance="4670-09-01" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="8" menage="0" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003799" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003808" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003833" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003898" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="BH405409" prenom="NORA" nomFamille="JAMALI" dtDelivrance="2020-04-13" TypePPPro="112" dtNaissance="1974-05-14" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="3" menage="0" catClient="4">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003905" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="CB30588" prenom="MAHJOUBA" nomFamille="MISAB" dtDelivrance="2014-04-15" TypePPPro="112" dtNaissance="4971-11-04" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="3" menage="2" catClient="4">
+              <address adresse="HAY LAKHBAIZ EL MENZEL" codPostal="31000" codLocal="31000" codPays="MAR" numTeleph="709512999"/>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000003911" natClient="1" codAgEcon="112">
+              <address adresse="DEM LOT ESSALAM RUE A 64 NR 57 O UJDA" codPostal="60020" codLocal="60020" codPays="MAR" numTeleph="642253391"/>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004021" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="HA126214" prenom="MOHAMED" nomFamille="BOUZZINE" dtDelivrance="2016-05-22" TypePPPro="112" dtNaissance="1985-03-14" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="3" menage="1" catClient="4">
+              <address adresse="APPT 160 LOT KINANI 28" codPostal="28820" codLocal="28820" codPays="MAR" numTeleph="644630729"/>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004032" natClient="1" codAgEcon="112">
+              <address adresse="16,RUE 12 CTE EL FARAH RABAT" codPostal="10120" codLocal="10120" codPays="MAR" numTeleph="667222900"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004105" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004130" natClient="1" codAgEcon="112">
+              <address adresse="79 RUE SIDI YAAKOUB SALE" codPostal="11040" codLocal="11040" codPays="MAR" numTeleph="681655221"/>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004160" natClient="3" codAgEcon="112" formJur="26" codTrib="85" regCommerce="124857" ICE="." idFiscal="2077974" numTaxeProf="25712783" codActPrinc="771" dtCreation="2017-05-11" dtMod="2024-02-15" flagSuc="false">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="SJ16440" payResAct="MAR" nomRaisonSocAct="CHAABIE"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="SJ16440" nomBenEffect="CHAABIE" preBenEffect="CHAABIE" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004186" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004247" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="AA4043" prenom="AHMED EL AMINE" nomFamille="ADDAM" dtDelivrance="2016-10-21" TypePPPro="112" dtNaissance="1988-01-11" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="3" menage="0" catClient="4">
+              <address adresse="4 RUE DE L INDE APPT 5" codPostal="10120" codLocal="10120" codPays="MAR" numTeleph="660152462"/>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004343" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="SH105342" prenom="ASMAA" nomFamille="AIT BENCHERIF" dtDelivrance="2019-06-11" TypePPPro="112" dtNaissance="1980-11-15" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="1" menage="0" catClient="4">
+              <address adresse="HAY AL QODS LOT RAHA NR 648" codPostal="70010" codLocal="70010" codPays="MAR" numTeleph="702357257"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004353" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004384" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004403" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="SL6587" prenom="MOHAMED" nomFamille="ABLIL" dtDelivrance="2020-07-20" TypePPPro="112" dtNaissance="7463-05-24" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="4" menage="1" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004441" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="F278233" prenom="ABDELHAMID" nomFamille="BENAZZI" dtDelivrance="2022-07-13" TypePPPro="112" dtNaissance="1964-01-14" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="1" menage="3" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004450" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="E368284" prenom="MARIAM" nomFamille="FARISSI" dtDelivrance="2020-01-31" TypePPPro="112" dtNaissance="4807-07-27" sexe="F" nationalite="MAR" sitFamille="M" codCatProf="3" menage="2" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004454" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004461" natClient="1" codAgEcon="112">
+              <address adresse="SECRETARIAT GENERAL PROVINCE MISSOUR" codPostal="33250" codLocal="33250" codPays="MAR" numTeleph="661497403"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004493" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004505" natClient="3" codAgEcon="112" formJur="26" codTrib="37" regCommerce="25411" ICE="." idFiscal="40274620" numTaxeProf="29756530" codActPrinc="771" dtCreation="4971-12-13" dtMod="2024-12-28" flagSuc="false">
+              <address adresse="LOTISSEMENT AL WOUROUD 3 N 17 MAGASIN N 02 KHEMISSET" codPostal="15010" codLocal="15010" codPays="MAR" numTeleph="661349038"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="X132737" payResAct="MAR" nomRaisonSocAct="ESBAIY"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="X132737" nomBenEffect="ESBAIY" preBenEffect="ESBAIY" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004609" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="JC346221" payResAct="MAR" nomRaisonSocAct="AZEROUAL"/>
+              </lstActionnariat>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004623" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004624" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004629" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="PB15981" prenom="ALI" nomFamille="TAZARNI" dtDelivrance="2023-01-29" TypePPPro="112" dtNaissance="4670-09-04" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="6" menage="2" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004637" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004705" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="A009252P" payResAct="MAR" nomRaisonSocAct="ABDULJABBAR"/>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="A032141J" payResAct="MAR" nomRaisonSocAct="AL MAAMARI"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="A009188M" nomBenEffect="AL MAAMARI" preBenEffect="AL MAAMARI" natBenEffect="MA"/>
+                  <benEffect typIdBenEffect="I" idBenEffect="A032141J" nomBenEffect="AL MAAMARI" preBenEffect="AL MAAMARI" natBenEffect="MA"/>
+                  <benEffect typIdBenEffect="I" idBenEffect="A009252P" nomBenEffect="ABDULJABBAR" preBenEffect="ABDULJABBAR" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004719" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004769" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="LC91979" prenom="SAID" nomFamille="MERCHDI" dtDelivrance="2022-09-22" TypePPPro="112" dtNaissance="4807-08-06" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="4" menage="2" catClient="4">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004806" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="G541260" payResAct="MAR" nomRaisonSocAct="CHOUKRI"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="G541260" nomBenEffect="CHOUKRI" preBenEffect="CHOUKRI" natBenEffect="MA"/>
+                  <benEffect typIdBenEffect="I" idBenEffect="Y17946" nomBenEffect="BADREDDINE" preBenEffect="BADREDDINE" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004823" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004833" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="CB162403" prenom="MOHAMED" nomFamille="BEN ABDELHADI" dtDelivrance="2020-01-27" TypePPPro="112" dtNaissance="4834-12-24" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="0" menage="0" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004835" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004846" natClient="3" codAgEcon="112">
+              <address adresse="15 AV AL ABTAL N 4 RABAT" codPostal="10120" codLocal="10120" codPays="MAR" numTeleph="661055850"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="TA76241" payResAct="MAR" nomRaisonSocAct="AGNAOU"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="TA76241" nomBenEffect="AGNAOU" preBenEffect="AGNAOU" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004958" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="BK309398" payResAct="MAR" nomRaisonSocAct="DOUBALI"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="BK309398" nomBenEffect="DOUBALI" preBenEffect="DOUBALI" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000004984" natClient="3" codAgEcon="112">
+              <address adresse="202 BD ABDELMOUMEN RDC N 5" codPostal="20320" codLocal="20320" codPays="MAR" numTeleph="661495440"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="H249787" payResAct="MAR" nomRaisonSocAct="LABIAD"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="H249787" nomBenEffect="LABIAD" preBenEffect="LABIAD" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005016" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005101" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="A451745" prenom="DRISS" nomFamille="MAFAMANE" dtDelivrance="2020-10-14" TypePPPro="112" dtNaissance="1967-09-10" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="1" menage="4" catClient="4">
+              <address adresse="HAY MASSIRA 1 IMM 108 APPT 6 TEM ARAT" codPostal="10120" codLocal="10120" codPays="MAR" numTeleph="663672746"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005115" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005217" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="A631471" prenom="AHMED" nomFamille="ERRAJAI" dtDelivrance="2015-06-05" TypePPPro="112" dtNaissance="4889-09-22" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="3" menage="2" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005231" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="H272505" prenom="EL MUSTAPHA" nomFamille="EL BENNAOUI" dtDelivrance="2015-02-19" TypePPPro="112" dtNaissance="4670-09-09" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="6" menage="2" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005384" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="GA10796" prenom="DRISS" nomFamille="EL GARAA" dtDelivrance="2018-12-19" TypePPPro="112" dtNaissance="4670-08-31" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="4" menage="2" catClient="4">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005409" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="JH1787" payResAct="MAR" nomRaisonSocAct="OUSAADI"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="JH1787" nomBenEffect="OUSAADI" preBenEffect="OUSAADI" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005460" natClient="3" codAgEcon="112" formJur="27" codTrib="61" regCommerce="67141" ICE="." idFiscal="15194809" numTaxeProf="57180735" codActPrinc="960" dtCreation="7655-02-11" dtMod="2021-07-05" flagSuc="false">
+              <address adresse="AV AL ANDALOUS RES SAADA 1 ER ET AGE TANGER, 90090, TANGER" codPostal="90090" codLocal="90090" codPays="MAR" numTeleph="665001099"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="D720460" payResAct="MAR" nomRaisonSocAct="OULAMALLEM"/>
+              </lstActionnariat>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005464" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="BL119450" prenom="WAFAA" nomFamille="MOUSTAFID" dtDelivrance="2020-12-24" TypePPPro="112" dtNaissance="1993-01-17" sexe="F" nationalite="MAR" sitFamille="M" codCatProf="3" menage="0" catClient="4">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005495" natClient="3" codAgEcon="112">
+              <address adresse="91 HAY ERREDA EL ALIA" codPays="MAR" numTeleph="668535159"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="T191703" payResAct="MAR" nomRaisonSocAct="MEZAOURI"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="T191703" nomBenEffect="MEZAOURI" preBenEffect="MEZAOURI" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005535" natClient="1" codAgEcon="112">
+              <address adresse="2577 LOT ENNASSIM 02 TAOURIRT" codPostal="60800" codLocal="60800" codPays="MAR" numTeleph="668641946"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005539" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005540" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005574" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="EE235295" payResAct="MAR" nomRaisonSocAct="ABOUHAZIM"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="EE235295" nomBenEffect="ABOUHAZIM" preBenEffect="ABOUHAZIM" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005599" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005601" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005615" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005658" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="A599340" prenom="RACHID" nomFamille="EL MOKRI" dtDelivrance="2021-11-30" TypePPPro="112" dtNaissance="1972-07-17" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="3" menage="2" catClient="4">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005731" natClient="1" codAgEcon="112">
+              <address adresse="16 AV DE NICE RES NICE ETG 7 APT 14 BOURGOGNE" codPostal="20320" codLocal="20320" codPays="MAR" numTeleph="694701740"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005739" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005770" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="PB106798" payResAct="MAR" nomRaisonSocAct="EL QADERY"/>
+              </lstActionnariat>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005847" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005878" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005907" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005914" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005917" natClient="1" codAgEcon="112">
+              <address adresse="LOT NASERALLAH 2 N 44 MEDIOUNA" codPostal="20320" codLocal="20320" codPays="MAR" numTeleph="662190176"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000005960" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006020" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="M460731" payResAct="MAR" nomRaisonSocAct="ERROUICH"/>
+              </lstActionnariat>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006076" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006079" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="MA87249" payResAct="MAR" nomRaisonSocAct="HAJALI"/>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="BE57338J" payResAct="MAR" nomRaisonSocAct="ADRIANO"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="MA87249" nomBenEffect="HAJALI" preBenEffect="HAJALI" natBenEffect="MA"/>
+                  <benEffect typIdBenEffect="I" idBenEffect="BE57338J" nomBenEffect="ADRIANO" preBenEffect="ADRIANO" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006126" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006179" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006199" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006224" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="A165551" prenom="JAMAL" nomFamille="EL GHAILASSI" dtDelivrance="2021-10-02" TypePPPro="112" dtNaissance="1960-08-16" sexe="M" nationalite="MAR" sitFamille="M" menage="0" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006273" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006321" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="BK79512" prenom="RACHID" nomFamille="QAMARI" dtDelivrance="2024-03-21" TypePPPro="112" dtNaissance="1972-05-14" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="0" menage="1" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006361" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="B694364" prenom="ABDERRAHIM" nomFamille="HABIBALLAH" dtDelivrance="2022-08-12" TypePPPro="112" dtNaissance="1961-12-18" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="10" menage="1" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006430" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="I333100" prenom="FATIMA" nomFamille="OUKBICH" dtDelivrance="2016-10-01" TypePPPro="112" dtNaissance="4698-01-24" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="3" menage="0" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006503" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="JC143204" prenom="ABDELKRIM" nomFamille="LACHRAME" dtDelivrance="2016-03-23" TypePPPro="112" dtNaissance="4670-09-07" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="0" menage="0" catClient="4">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006544" natClient="3" codAgEcon="112" formJur="26" codTrib="21" regCommerce="11701" ICE="1866868000032" idFiscal="20770939" numTaxeProf="19232416" codActPrinc="771" dtCreation="2017-03-13" dtMod="2024-12-13" flagSuc="false">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="U165121" payResAct="MAR" nomRaisonSocAct="SIDI AMMI"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="U165121" nomBenEffect="SIDI AMMI" preBenEffect="SIDI AMMI" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006652" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006675" natClient="3" codAgEcon="112">
+              <address adresse="NAHJ LAKRIK N324" codPostal="70010" codLocal="70010" codPays="MAR" numTeleph="661460417"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="SH135382" payResAct="MAR" nomRaisonSocAct="MAAINIA"/>
+              </lstActionnariat>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006716" natClient="3" codAgEcon="112" formJur="26" codTrib="81" regCommerce="272861" idFiscal="1" numTaxeProf="1" codActPrinc="494" dtCreation="2013-01-10" dtMod="2025-06-26" flagSuc="false">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="B562962" payResAct="MAR" nomRaisonSocAct="MENDOUN"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="BE271681" nomBenEffect="MORENO BEN TEIS" preBenEffect="MORENO BEN TEIS" natBenEffect="MA"/>
+                  <benEffect typIdBenEffect="I" idBenEffect="B562962" nomBenEffect="MENDOUN" preBenEffect="MENDOUN" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006732" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="B718287" prenom="ABDEL ILAH" nomFamille="DRISSI" dtDelivrance="2013-08-31" TypePPPro="112" dtNaissance="7490-09-10" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="1" menage="0" catClient="4">
+              <address adresse="1 BL E ETG 2 ESSALAMA 3 GPE 4" codPostal="20320" codLocal="20320" codPays="MAR" numTeleph="661906768"/>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006754" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="B389777" payResAct="MAR" nomRaisonSocAct="AADOUD"/>
+              </lstActionnariat>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006756" natClient="1" codAgEcon="112">
+              <address adresse="QUT EL MASSIRA 02 BLOC N 83 BENI MELLAL" codPostal="23040" codLocal="23040" codPays="MAR" numTeleph="651735900"/>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006836" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="F752818" prenom="BENZIANE" nomFamille="MSAAF" dtDelivrance="2020-07-15" TypePPPro="112" dtNaissance="4670-09-17" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="3" menage="1" catClient="4">
+              <address adresse="LOT NAJD 4 RUE EL MOUNAN 5 NR SIDI YAHYA OUJDA" codPostal="60020" codLocal="60020" codPays="MAR" numTeleph="670113114"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006960" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000006974" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000007012" natClient="1" codAgEcon="112">
+              <address adresse="HAY AOUAMA GHARBIA" codPostal="90090" codLocal="90090" codPays="MAR" numTeleph="661406180"/>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000007245" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="BK242819" payResAct="MAR" nomRaisonSocAct="MJIBOU"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="BK242819" nomBenEffect="MJIBOU" preBenEffect="MJIBOU" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000007256" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="F240476" prenom="TAOUFIK" nomFamille="BEN SAID" dtDelivrance="2024-01-04" TypePPPro="112" dtNaissance="1958-01-14" sexe="M" nationalite="MAR" sitFamille="M" menage="0" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000007300" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000007301" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000007363" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000007475" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="P132959" prenom="HICHAM" nomFamille="MAROUDI" dtDelivrance="2016-11-24" TypePPPro="112" dtNaissance="1974-02-11" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="3" menage="0" catClient="4">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000007483" natClient="1" codAgEcon="112">
+              <address adresse="EL MOHAMMADI RUE 227 OUJDA" codPostal="60020" codLocal="60020" codPays="MAR" numTeleph="626803604"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000007573" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000007580" natClient="3" codAgEcon="112">
+              <address adresse="BD IBN AL KHATIB N 8 3 EME ETAGE OUJDA" codPostal="60020" codLocal="60020" codPays="MAR" numTeleph="662545152"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="F457594" payResAct="MAR" nomRaisonSocAct="HAMDAOUI"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="F457594" nomBenEffect="HAMDAOUI" preBenEffect="HAMDAOUI" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000007781" natClient="3" codAgEcon="112" formJur="27" codTrib="81" regCommerce="395613" ICE="2031848000006" idFiscal="25045437" numTaxeProf="32090184" codActPrinc="771" dtCreation="2018-02-15" dtMod="2025-06-10" flagSuc="false">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="WA155803" payResAct="MAR" nomRaisonSocAct="FATTAH"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="WA155803" nomBenEffect="FATTAH" preBenEffect="FATTAH" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000007850" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="SH104612" payResAct="MAR" nomRaisonSocAct="ELMOUTAOUAKIL"/>
+              </lstActionnariat>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000007852" natClient="3" codAgEcon="112">
+              <address adresse="N 85 BLOC D HAY ZAITOUNE TIKIOUINE AGADIR" codPostal="80040" codLocal="80040" codPays="MAR" numTeleph="666520192"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="JB36523" payResAct="MAR" nomRaisonSocAct="ECHARKI"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="JB36523" nomBenEffect="ECHARKI" preBenEffect="ECHARKI" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000007913" natClient="3" codAgEcon="112">
+              <address adresse="10 RUE LIBERTE ETG 3 APPT 5 DOMICILE C O C A AL HIBA CASABLANCA" codPostal="20320" codLocal="20320" codPays="MAR" numTeleph="661289083"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="BE802500" payResAct="MAR" nomRaisonSocAct="ASLANE"/>
+              </lstActionnariat>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008048" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008134" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="I477592" prenom="AAZIZ" nomFamille="BAYHOUCHI" dtDelivrance="2016-03-01" TypePPPro="112" dtNaissance="1980-03-17" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="3" menage="0" catClient="4">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008140" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008266" natClient="3" codAgEcon="112" formJur="27" codTrib="81" regCommerce="401105" idFiscal="25230889" numTaxeProf="35779408" codActPrinc="960" dtCreation="2018-04-16" dtMod="2019-03-08" flagSuc="false">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="BK116419" payResAct="MAR" nomRaisonSocAct="AZE EL ARABE"/>
+              </lstActionnariat>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008270" natClient="1" codAgEcon="112">
+              <address adresse="APPT 39 IMM 6 CITE EL H" codPostal="20320" codLocal="20320" codPays="MAR" numTeleph="661170299"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008399" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008408" natClient="3" codAgEcon="112" formJur="26" codTrib="47" regCommerce="37791" ICE="1829667000024" idFiscal="40214374" numTaxeProf="62040274" codActPrinc="108" dtCreation="4862-06-13" dtMod="2024-10-31" flagSuc="false">
+              <address adresse="LOT ENNASIME II N 147 MEKNES" codPostal="50020" codLocal="50020" codPays="MAR" numTeleph="661216171"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="UC13926" payResAct="MAR" nomRaisonSocAct="BENYAHIA"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="UC13926" nomBenEffect="BENYAHIA" preBenEffect="BENYAHIA" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008473" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="BJ244779" payResAct="MAR" nomRaisonSocAct="RHEZZALI"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="BJ244779" nomBenEffect="RHEZZALI" preBenEffect="RHEZZALI" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008564" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008566" natClient="3" codAgEcon="112" formJur="27" codTrib="81" regCommerce="267635" ICE="1" idFiscal="1" numTaxeProf="1" codActPrinc="960" dtCreation="7655-02-09" dtMod="2024-03-05" flagSuc="false">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="MC148047" payResAct="MAR" nomRaisonSocAct="MOUTIAI"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="MC148047" nomBenEffect="MOUTIAI" preBenEffect="MOUTIAI" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008622" natClient="1" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="BE482475" payResAct="MAR" nomRaisonSocAct="TOURAK"/>
+              </lstActionnariat>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008644" natClient="1" codAgEcon="112">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008664" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="SH152693" payResAct="MAR" nomRaisonSocAct="BIJJA"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="SH152693" nomBenEffect="BIJJA" preBenEffect="BIJJA" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008677" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="IB167313" prenom="GHIZLANE" nomFamille="CHADILI" dtDelivrance="2011-07-19" TypePPPro="112" dtNaissance="1987-04-18" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="1" menage="0" catClient="4">
+              <address adresse="N 06 LOT CHIFAA 1 ER ETAGE" codPostal="23040" codLocal="23040" codPays="MAR" numTeleph="666369039"/>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008741" natClient="3" codAgEcon="112">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="BK167054" payResAct="MAR" nomRaisonSocAct="ZIDANI"/>
+              </lstActionnariat>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008754" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="B621921" prenom="TAWFIK" nomFamille="EL OURCH" dtDelivrance="2016-12-06" TypePPPro="112" dtNaissance="1960-11-18" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="10" menage="0" catClient="4">
+              <address adresse="SAADA 307 RUE 35 NO 24 H.M. HAY MOHAMMADI" codPostal="20320" codLocal="20320" codPays="MAR" numTeleph="640219320"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008757" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="BE575394" prenom="ABDELMAJID" nomFamille="CHELLAOUI" dtDelivrance="2021-10-25" TypePPPro="112" dtNaissance="1972-07-12" sexe="M" nationalite="MAR" sitFamille="M" codCatProf="1" menage="2" catClient="4">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008768" natClient="3" codAgEcon="112">
+              <address adresse="276 RESIDENCE ANNOUR 2 GH 25 APP N 15 MERS EL KHEIR SKHIRAT TEMARA" codPays="MAR" numTeleph="661626298"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="V196739" payResAct="MAR" nomRaisonSocAct="ZHER"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="V196739" nomBenEffect="ZHER" preBenEffect="ZHER" natBenEffect="MA"/>
+              </lstBenEffect>
+          </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008777" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="P242544" prenom="MOHAMED" nomFamille="NOURANI" dtDelivrance="2021-01-12" TypePPPro="112" dtNaissance="1985-06-12" sexe="M" nationalite="MAR" sitFamille="C" codCatProf="4" menage="0" catClient="4">
+              <address adresse="54 RUE D AGADIR ETG 3 BENJDIA CASABLANCA" codPostal="20320" codLocal="20320" codPays="MAR" numTeleph="669122811"/>
+          </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008819" natClient="1" codAgEcon="112">
+      </donneesEnt>
+      <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008885" natClient="1" codAgEcon="112" tpIdPrincipal="I" idPrincipal="U143866" prenom="SIHAM" nomFamille="BANANI" dtDelivrance="2019-05-28" TypePPPro="112" dtNaissance="1982-05-17" sexe="F" nationalite="MAR" sitFamille="M" codCatProf="0" menage="3" catClient="4">
+      </donneesEnt>
+          <donneesEnt dtRefEnt="2026-04-09" actionType="EI" codClient="CF000008904" natClient="3" codAgEcon="112" formJur="27" codTrib="013" regCommerce="15393" ICE="1111111" idFiscal="85444744" numTaxeProf="49700116" codActPrinc="494" dtCreation="2018-11-15" dtMod="2025-10-03" flagSuc="false">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="1" tpIdPrincAct="I" idPrincAct="JB283215" payResAct="MAR" nomRaisonSocAct="ADAMROU"/>
+              </lstActionnariat>
+          </donneesEnt>

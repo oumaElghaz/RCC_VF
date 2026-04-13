@@ -29,27 +29,48 @@ public class GarantieMappingProcessor  implements ItemProcessor<sss_cdr_inter_ga
                 .dtRefGar(item.getDtRefGar())
                 .dtCreatGar(item.getDtCreatGar())
                 .dtFinGar(item.getDtFinGar())
-                .renGar(item.getRenGar())
+                //.renGar(item.getRenGar())
+                .renGar(Boolean.valueOf("N"))
                 .dtRenGar(item.getDtRenGar())
                 .dtFinRenGar(item.getDtFinRenGar())
-                .tpGar(item.getTpGar())
+                .tpGar(mappingLoader.map("T_TPG",item.getTpGar()))
                 .codClient(item.getCodClient())
                 .codGarExt(item.getCodGarExt())
-                .tpRefExtGar(item.getTpRefExtGar())
+                .tpRefExtGar(mappingLoader.map("T_TRE",item.getTpRefExtGar()))
                 .refExtGar(item.getRefExtGar())
                 .prixAcqProp(item.getPrixAcqProp())
-                .codLocalGar (item.getCodLocalGar())
+                .codLocalGar (mappingLoader.map("T_CNC",item.getCodLocalGar()))
                 .montGar(item.getMontGar())
                 .valOriGar(item.getValOriGar())
-                .tpValInGar(item.getTpValInGar())
+                //.tpValInGar(item.getTpValInGar())
+                .tpValInGar("2")
                 .valActGar(item.getValActGar())
                 .dtEvalGar(item.getDtEvalGar())
                 .tpValActGar(item.getTpValActGar())
-                .garEtat(item.getGarEtat())
+                //.garEtat(item.getGarEtat())
+                .garEtat(Boolean.valueOf("N"))
                 .nvGarAdossCred(item.getNvGarAdossCred())
                 .etatExecGar(item.getEtatExecGar())
                 .dtExecGar(item.getDtExecGar())
                 .build();
+
+        if(item.getEtatExecGar() ==null){
+            gar.setEtatExecGar(Boolean.valueOf("N"));
+        }
+
+        if((item.getRefExtGar() ==null || item.getRefExtGar().isEmpty()) && (item.getTpRefExtGar() ==null || item.getTpRefExtGar().isEmpty() )){
+            gar.setTpRefExtGar("0");
+        }
+        else if("CGB".equalsIgnoreCase(item.getTpGar()) && (item.getTpRefExtGar() ==null || item.getTpRefExtGar().isEmpty() )){
+            gar.setTpRefExtGar("2");
+        }
+        else if("AVA".equalsIgnoreCase(item.getTpGar()) && (item.getTpRefExtGar() ==null || item.getTpRefExtGar().isEmpty() )){
+            gar.setTpRefExtGar("9");
+        }
+        else if( (item.getTpRefExtGar() ==null || item.getTpRefExtGar().isEmpty() )) {
+            gar.setTpRefExtGar("1");
+        }
+
 
         return gar;
     }

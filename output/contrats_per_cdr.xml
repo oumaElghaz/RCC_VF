@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RCC version="1.0">
-  <controle entObserv="415" entDeclar="415" idDest="001" dtCreation="2026-04-09T18:00:08"/>
+  <controle entObserv="415" entDeclar="415" idDest="001" dtCreation="2026-04-09T23:23:28"/>
   <contenu>
       <comConPer dtRef="2024-05-09">
           <conPer actionType="EI" idCont="CONT001" montDu="100000.0" montUtilCred="50000.0" montUtilCredDev="5000.0" montRest="50000.0" montRestDev="5000.0" montComAg="2000.0" commSpecif="500.0" interCourMrg="300.0" caFactor="2.0" tpReembAntc="tpReembAntc" montReembAntc="10000.0" dtProcRevTxInt="2024-05-09" colRefin="true" nbEcheRest="10.0" dtProcEche="2024-05-09" dtDernEchePay="2024-05-09" nbEcheImp="2.0" montEcheImp="2000.0" stPaiement="stPaiement" dtStPaiement="2024-05-09" classCreanceSouff="classCreanceSouff" dtClassCreanceSouff="2024-05-09" contentieux="false" creanceProv="false" montProv="0.0" txProvCont="0.0">

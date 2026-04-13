@@ -12,9 +12,6 @@ import org.springframework.core.task.TaskExecutor;
 @Configuration
 public class BatchFlowConfig {
 
-    //  SUPPRIMÉ — défini dans ThreadPoolConfig uniquement
-    // @Bean
-    // public TaskExecutor flowTaskExecutor() { ... }
 
     // ═══════════════════════════════════════════════════════
     // PHASE 1 : Comparaison
@@ -30,11 +27,11 @@ public class BatchFlowConfig {
 
 
             TaskExecutor flowTaskExecutor) {
-        //           ^^^^^^^^^^^^^^^^ ← Injecté depuis ThreadPoolConfig
+
 
         return new FlowBuilder<SimpleFlow>("phase1")
                 .split(flowTaskExecutor)
-                //      ^^^^^^^^^^^^^^^^ ← Paramètre, pas un appel de méthode
+
                 .add(
                         new FlowBuilder<SimpleFlow>("compareClientFlow")
                                 .start(compareClientStep).build(),
@@ -134,15 +131,51 @@ public class BatchFlowConfig {
     @Bean
     public Flow phaseEnvoiAPIFlow(
             Step envoiApiClientStep,
+            Step envoiApiClientPerStep,
+            Step envoiApiContratStep,
+            Step envoiApiContratPerStep,
+            Step envoiApiGarantieStep,
+            Step envoiApiInfoNegaStep,
             JobExecutionDecider myStepDecider,
+            JobExecutionDecider endOfMonthDecider,
             TaskExecutor flowTaskExecutor) {
 
         return new FlowBuilder<SimpleFlow>("phase")
                 .split(flowTaskExecutor)
                 .add(
-                        new FlowBuilder<SimpleFlow>("Flow")
+                        new FlowBuilder<SimpleFlow>("FlowClient")
                                 .start(myStepDecider) // Ajout du decider
                                 .on("EXECUTE").to(envoiApiClientStep)
+                                .from(myStepDecider).on("SKIP").end()
+                                .build(),
+
+                        new FlowBuilder<SimpleFlow>("FlowClientPer")
+                                .start(endOfMonthDecider) // Ajout du decider
+                                .on("EXECUTE").to(envoiApiClientPerStep)
+                                .from(endOfMonthDecider).on("SKIP").end()
+                                .build(),
+
+                        new FlowBuilder<SimpleFlow>("FlowContrat")
+                                .start(myStepDecider) // Ajout du decider
+                                .on("EXECUTE").to(envoiApiContratStep)
+                                .from(myStepDecider).on("SKIP").end()
+                                .build(),
+
+                        new FlowBuilder<SimpleFlow>("FlowContratPer")
+                                .start(endOfMonthDecider) // Ajout du decider
+                                .on("EXECUTE").to(envoiApiContratPerStep)
+                                .from(endOfMonthDecider).on("SKIP").end()
+                                .build(),
+
+                        new FlowBuilder<SimpleFlow>("FlowGarantie")
+                                .start(myStepDecider) // Ajout du decider
+                                .on("EXECUTE").to(envoiApiGarantieStep)
+                                .from(myStepDecider).on("SKIP").end()
+                                .build(),
+
+                        new FlowBuilder<SimpleFlow>("FlowInfosNega")
+                                .start(myStepDecider) // Ajout du decider
+                                .on("EXECUTE").to(envoiApiInfoNegaStep)
                                 .from(myStepDecider).on("SKIP").end()
                                 .build()
                 )
@@ -162,6 +195,7 @@ public class BatchFlowConfig {
             Step mappingClientPerStep,
             Step mappingGarantieStep,
             Step mappingContratPerStep,
+            Step mappingContratStep,
             TaskExecutor flowTaskExecutor) {
 
         return new FlowBuilder<SimpleFlow>("phase3")
@@ -176,7 +210,9 @@ public class BatchFlowConfig {
                         new FlowBuilder<SimpleFlow>("mappingGarantieFlow")
                                 .start(mappingGarantieStep).build(),
                         new FlowBuilder<SimpleFlow>("mappingContratPerFlow")
-                                .start(mappingContratPerStep).build()
+                                .start(mappingContratPerStep).build(),
+                        new FlowBuilder<SimpleFlow>("mappingContratFlow")
+                                .start(mappingContratStep).build()
                 )
                 .build();
     }
@@ -190,6 +226,7 @@ public class BatchFlowConfig {
             Step archiverClientPerStep,
             Step archiverGarantieStep,
             Step archiverContratPerStep,
+            Step archiverContratStep,
 
             TaskExecutor flowTaskExecutor) {
 
@@ -205,9 +242,11 @@ public class BatchFlowConfig {
                         new FlowBuilder<SimpleFlow>("archiverClientPerFlow")
                         .start(archiverClientPerStep).build(),
                         new FlowBuilder<SimpleFlow>("archiverGarantieFlow")
-                                .start(archiverClientPerStep).build(),
+                                .start(archiverGarantieStep).build(),
                         new FlowBuilder<SimpleFlow>("archiverContratPerFlow")
-                                .start(archiverContratPerStep).build()
+                                .start(archiverContratPerStep).build(),
+                        new FlowBuilder<SimpleFlow>("archiverContratFlow")
+                                .start(archiverContratStep).build()
                 )
                 .build();
     }
@@ -219,25 +258,28 @@ public class BatchFlowConfig {
     @Bean
     public Flow phase5PurgeFlow(
             Step purgeClientStep,
-            //Step purgeInfoStep,
+            Step purgeInfoStep,
             Step purgeClientPerStep,
             Step purgeGarantieStep,
             Step purgeContratPerStep,
+            Step purgeContratStep,
             TaskExecutor flowTaskExecutor) {
 
         return new FlowBuilder<SimpleFlow>("phase5")
                 .split(flowTaskExecutor)
                 .add(
                         new FlowBuilder<SimpleFlow>("purgeClientFlow")
-                                .start(purgeClientStep).build()//,
-                        //new FlowBuilder<SimpleFlow>("purgeInfoNegaFlow")
-                        //.start(purgeInfoStep).build()//,
-                        //new FlowBuilder<SimpleFlow>("purgeClientPerFlow")
-                        //.start(purgeClientPerStep).build()//,
-                        //new FlowBuilder<SimpleFlow>("purgeGarantieFlow")
-                        //.start(purgeGarantieStep).build()//,
-                        //new FlowBuilder<SimpleFlow>("purgeContratPerFlow")
-                        //.start(purgeContratPerStep).build()
+                                .start(purgeClientStep).build(),
+                        new FlowBuilder<SimpleFlow>("purgeInfoNegaFlow")
+                        .start(purgeInfoStep).build(),
+                        new FlowBuilder<SimpleFlow>("purgeClientPerFlow")
+                        .start(purgeClientPerStep).build(),
+                        new FlowBuilder<SimpleFlow>("purgeGarantieFlow")
+                        .start(purgeGarantieStep).build(),
+                        new FlowBuilder<SimpleFlow>("purgeContratPerFlow")
+                        .start(purgeContratPerStep).build(),
+                        new FlowBuilder<SimpleFlow>("purgeContratFlow")
+                        .start(purgeContratStep).build()
                 )
                 .build();
     }

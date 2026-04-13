@@ -42,12 +42,12 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
         archivCache = new HashMap<>();
         //lot_id = getNextLotId(); // Initialiser le lot_id pour ce batch
 
-        // ✅ findAllWithRelations() au lieu de findAll()
+        // findAllWithRelations() au lieu de findAll()
         sss_cdr_arch_client_stat_Repository.findAllWithRelations().forEach(a ->
                 archivCache.put(a.getId_client(), a));
 
-        log.info("✅ Cache archiv chargé (avec relations) : {} entrées",
-                archivCache.size());
+        //log.info(" Cache archiv chargé (avec relations) : {} entrées",
+                //archivCache.size());
         //sss_cdr_arch_client_stat_Repository.findAll().forEach(a -> archivCache.put(a.getId_client(), a));
     }
 
@@ -55,16 +55,16 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
         initialized = false;
         archivCache.clear();
 
-        // ✅ Utiliser findAllWithRelations() ici aussi
+        //  Utiliser findAllWithRelations() ici aussi
         sss_cdr_arch_client_stat_Repository.findAllWithRelations().forEach(a ->
                 archivCache.put(a.getId_client(), a));
 
-        log.info("🔄 Reset — cache rechargé : {} entrées", archivCache.size());
+        //log.info( Reset — cache rechargé : {} entrées", archivCache.size());
     }
 
     @Override
     public @Nullable sss_cdr_inter_client_stat process(sss_cdr_snapshot_client_stat item) throws Exception {
-        // ✅ Initialiser le lot au premier appel
+        //  Initialiser le lot au premier appel
         initLotIfNeeded();
         sss_cdr_arch_client_stat archiv = archivCache.get(item.getId_client());
 
@@ -93,7 +93,10 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
 
         // Comparer l'adresse
         if (snapshot.getAdresse() != null && archiv.getAdresse() != null) {
-            if (!equalsNullSafe(snapshot.getAdresse().getAdresse(), archiv.getAdresse().getAdresse())) return true;
+            if (!equalsNullSafe(snapshot.getAdresse().getAdresse(), archiv.getAdresse().getAdresse())) {
+                natMod="Adresse";
+                return true;
+            }
             if (!equalsNullSafe(snapshot.getAdresse().getCodPays(), archiv.getAdresse().getCodPays())) return true;
             if (!equalsNullSafe(snapshot.getAdresse().getCodLocal(), archiv.getAdresse().getCodLocal())) return true;
             if (!equalsNullSafe(snapshot.getAdresse().getCodPostal(), archiv.getAdresse().getCodPostal())) return true;
@@ -116,19 +119,19 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
                 log.info("snapshot.getDonneesInt_pm().getRegCommerce()  {}",snapshot.getDonneesInt_pm().getRegCommerce());
                 log.info("archiv.getDonneesInts_pm().getRegCommerce()  {}",archiv.getDonneesInts_pm().getRegCommerce());
 
-                natMod="RegCommerce";
+                //natMod="RegCommerce";
                 return true;}
             if (!equalsNullSafe(snapshot.getDonneesInt_pm().getCodTrib(), archiv.getDonneesInts_pm().getCodTrib()))
             {
-                natMod="CodTrib";
+                //natMod="CodTrib";
                 return true;}
             if (!equalsNullSafe(snapshot.getDonneesInt_pm().getFormJur(), archiv.getDonneesInts_pm().getFormJur()))
             {
-                natMod="FormJur";
+                //natMod="FormJur";
                 return true;}
             if (!equalsNullSafe(snapshot.getDonneesInt_pm().getICE(), archiv.getDonneesInts_pm().getICE()))
             {
-                natMod="ICE";
+                //natMod="ICE";
                 return true;}
         }else{
             natMod="";
@@ -183,17 +186,11 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
 
     private sss_cdr_inter_client_stat buildIntermediaire(
             sss_cdr_snapshot_client_stat snapshot, ActionType actionType, int lot_id, String natMod) {
-// ✅ Diagnostic — vérifier ce que le snapshot contient
+//  Diagnostic — vérifier ce que le snapshot contient
 
 
 
-        log.info("🔍 Snapshot {} | adresse: {} | pp: {} | pm: {} | act: {} | benef: {}",
-                snapshot.getId_client(),
-                snapshot.getAdresse() != null ? "OUI" : "NULL",
-                snapshot.getDonneesInt_pp() != null ? "OUI" : "NULL",
-                snapshot.getDonneesInt_pm() != null ? "OUI" : "NULL",
-                snapshot.getActionnariats() != null ? snapshot.getActionnariats().size() : "NULL",
-                snapshot.getBenEffects() != null ? snapshot.getBenEffects().size() : "NULL");
+
                 LocalDateTime dateDeclaration = LocalDateTime.now();
 
         sss_cdr_inter_client_stat inter= sss_cdr_inter_client_stat.builder()
@@ -210,6 +207,7 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
                 .entLieeEtab(snapshot.getEntLieeEtab())
                 //.codAgEcon(snapshot.getCodAgEcon())
                 .codAgEcon("112")
+
                 .build();
         if (snapshot.getAdresse() != null) {
                 // Adresse
@@ -218,7 +216,7 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
 
                 .codPostal(snapshot.getAdresse().getCodPostal())
                     .codLocal("780")
-                //.codLocal(snapshot.getAdresse().getCodLocal())  en attendanst que le client fournie la bonne valeur
+                //.codLocal(snapshot.getAdresse().getCodLocal())  en attendant que le client fournie la bonne valeur
                 .codPays(snapshot.getAdresse().getCodPays())
                 .numTeleph(snapshot.getAdresse().getNumTeleph()).build());}
                 // PP
@@ -229,14 +227,15 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
                         .prenom( snapshot.getDonneesInt_pp().getPrenom() )
                         .nomFamille( snapshot.getDonneesInt_pp().getNomFamille())
                         .nationalite( snapshot.getDonneesInt_pp().getNationalite() )
-                        .paysDelivrance(snapshot.getDonneesInt_pp().getPaysDelivrance())
+                        .paysDelivrance("MA")
+                        //.paysDelivrance(snapshot.getDonneesInt_pp().getPaysDelivrance())
                         .dtDelivrance(snapshot.getDonneesInt_pp().getDtDelivrance())
                         .dtExpiration(snapshot.getDonneesInt_pp().getDtExpiration())
-                        .TypePPPro("112")
-                    //.TypePPPro(snapshot.getDonneesInt_pp().getTypePPPro())
+                        //.TypePPPro("112")
+                        //.TypePPPro(snapshot.getDonneesInt_pp().getTypePPPro())
                         .RNAE(snapshot.getDonneesInt_pp().getRNAE())
                         .dtNaissance(snapshot.getDonneesInt_pp().getDtNaissance())
-                    //.codLocalNaissance(snapshot.getDonneesInt_pp().getCodLocalNaissance())
+                        //.codLocalNaissance(snapshot.getDonneesInt_pp().getCodLocalNaissance())
                         .codLocalNaissance("780")
                         .sexe(snapshot.getDonneesInt_pp().getSexe())
                         .sitFamille(snapshot.getDonneesInt_pp().getSitFamille())
@@ -244,7 +243,14 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
                         .menage(snapshot.getDonneesInt_pp().getMenage())
                         .qualAcadem(snapshot.getDonneesInt_pp().getQualAcadem())
                         .catClient(snapshot.getDonneesInt_pp().getCatClient())
-                        .build());}
+                        .build());
+            if("E".equalsIgnoreCase(snapshot.getNatClient())){
+                inter.getDonneesInt_pp().setTypePPPro(snapshot.getDonneesInt_pp().getTypePPPro());
+            }else{
+                inter.getDonneesInt_pp().setTypePPPro(null);
+            }
+
+        }
         if (snapshot.getDonneesInt_pm() != null) {
             inter.setDonneesInt_pm(DonneesIntPM_interm.builder()
                             .raisonSocial( snapshot.getDonneesInt_pm().getRaisonSocial() )
@@ -263,13 +269,17 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
                             .tailleEntrep(snapshot.getDonneesInt_pm().getTailleEntrep())
                             .genre(snapshot.getDonneesInt_pm().getGenre())
                             .dtCreation(snapshot.getDonneesInt_pm().getDtCreation())
-                            .dtMod(snapshot.getDonneesInt_pm().getDtMod())
+                            //.dtMod(snapshot.getDonneesInt_pm().getDtMod())
                             .flagSuc(snapshot.getDonneesInt_pm().getFlagSuc())
-                            . tpIdPrincSiege(snapshot.getDonneesInt_pm().getTpIdPrincSiege())
+                            .tpIdPrincSiege(snapshot.getDonneesInt_pm().getTpIdPrincSiege())
                             .idPrincSiege(snapshot.getDonneesInt_pm().getIdPrincSiege())
                             .raisonSocSiege(snapshot.getDonneesInt_pm().getRaisonSocSiege())
                             .groupAppart(snapshot.getDonneesInt_pm().getGroupAppart())
-                            .build());}
+                            .build());
+            if(natMod != null){
+                inter.getDonneesInt_pm().setDtMod(snapshot.getDtRefEnt());
+            }
+        }
         // ── Actionnariats ──
         if (snapshot.getActionnariats() != null && !snapshot.getActionnariats().isEmpty()) {
             inter.setActionnariats(
@@ -288,9 +298,9 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
                                 .payResAct(act.getPayResAct())
                                 .qtpartCapSocAct(act.getQtpartCapSocAct())
                                 .build();
-                        a.setClient(inter);  // ✅ Lier au parent
+                        a.setClient(inter);  //  Lier au parent
                         return a;
-                    }).collect(Collectors.toSet()));  // ✅ toSet() au lieu de toList()
+                    }).collect(Collectors.toSet()));  //  toSet() au lieu de toList()
         }
 
 // ── Bénéficiaires ──
@@ -304,9 +314,9 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
                                 .natBenEffect(benef.getNatBenEffect())
                                 .typIdBenEffect(benef.getTypIdBenEffect())
                                 .build();
-                        b.setClient(inter);  // ✅ Lier au parent
+                        b.setClient(inter);  //  Lier au parent
                         return b;
-                    }).collect(Collectors.toSet()));  // ✅ toSet() au lieu de toList()
+                    }).collect(Collectors.toSet()));  //  toSet() au lieu de toList()
         }
 
         return inter;
@@ -340,7 +350,7 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
             if (!initialized) {
                 lot_id = getNextLotId();
                 initialized = true;
-                log.info("🔢 Lot ID initialisé = {}", lot_id);
+                log.info(" Lot ID initialisé = {}", lot_id);
             }
         }
 

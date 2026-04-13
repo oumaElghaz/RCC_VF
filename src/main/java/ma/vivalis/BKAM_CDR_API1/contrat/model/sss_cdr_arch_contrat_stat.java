@@ -44,9 +44,9 @@ public class sss_cdr_arch_contrat_stat {
     private String objCred;
     private String objCredDetail;
     private String monnaie;
-    private String montIniAccord;
-    private String montCreCoFin;
-    private String txChange;
+    private Double montIniAccord;
+    private Double montCreCoFin;
+    private Double txChange;
     private Date dtContCredt;
     private Date dtDebloCred;
     private Date dtClotIni;
@@ -60,23 +60,23 @@ public class sss_cdr_arch_contrat_stat {
     private String modPaiement;
     private String tpEche;
     private String fxEche;
-    private String nombreTotEche;
+    private Double nombreTotEche;
     private String periodEche;
-    private String mtEche;
+    private Double mtEche;
     private Date dt1Eche;
-    private String mont1Eche;
-    private String mont1EcheDiv;
+    private Double mont1Eche;
+    private Double mont1EcheDiv;
     private String flagTxInt;
     private String txRef;
-    private String txAnnuelPourc;
-    private String txTAEG;
-    private String hmRibh;
-    private String cmFxWkl;
+    private Double txAnnuelPourc;
+    private Double txTAEG;
+    private Double hmRibh;
+    private Double cmFxWkl;
     private String freqMiseJourTxInt;
-    private String LTVIni;
+    private Double LTVIni;
     private String tpSecuritization;
     private String exisGarant;
-    private String mntGarant;
+    private Double mntGarant;
 
     @OneToMany(mappedBy = "contrat" , cascade = CascadeType.ALL)
     @BatchSize(size = 50)

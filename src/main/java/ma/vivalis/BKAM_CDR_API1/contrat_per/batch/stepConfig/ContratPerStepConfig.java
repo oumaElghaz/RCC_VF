@@ -2,6 +2,10 @@ package ma.vivalis.BKAM_CDR_API1.contrat_per.batch.stepConfig;
 
 import generated.ComConPer;
 
+import ma.vivalis.BKAM_CDR_API1.API.model.MyRequestBody;
+import ma.vivalis.BKAM_CDR_API1.API.model.sss_cdr_api1;
+import ma.vivalis.BKAM_CDR_API1.API.processor.MyRequestProcessor;
+import ma.vivalis.BKAM_CDR_API1.API.writer.MyRequestWriter;
 import ma.vivalis.BKAM_CDR_API1.common.PurgeTasklet;
 import ma.vivalis.BKAM_CDR_API1.contrat_per.batch.processor.ContratPerArchProcessor;
 import ma.vivalis.BKAM_CDR_API1.contrat_per.batch.processor.ContratPerCompare;
@@ -20,7 +24,9 @@ import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_snapshot_contrat_per;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.Step;
 import org.springframework.batch.core.step.builder.StepBuilder;
+import org.springframework.batch.infrastructure.item.ItemReader;
 import org.springframework.batch.infrastructure.item.database.JpaPagingItemReader;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -104,7 +110,29 @@ public class ContratPerStepConfig {
     }
     //
 
+    // ═══════════════════════════════════════════════════════
+    // STEP  : Envoi Api
+    // ═══════════════════════════════════════════════════════
+    @Bean
+    public Step envoiApiContratPerStep(
+            JobRepository jobRepository,
+            PlatformTransactionManager tx,
+            @Qualifier("readerContratPer") ItemReader<MyRequestBody> readerContratPer,
+            MyRequestProcessor myRequestProcessor,
+            MyRequestWriter myRequestWriter
 
+
+    ) {
+
+
+        return new StepBuilder("envoiApiContratPerStep", jobRepository)
+                .<MyRequestBody, sss_cdr_api1>chunk(500)
+                .transactionManager(tx)
+                .reader(readerContratPer)
+                .processor(myRequestProcessor)
+                .writer(myRequestWriter)
+                .build();
+    }
     // ═══════════════════════════════════════════════════════
     // STEP 3 : Mapping contrat
     // ═══════════════════════════════════════════════════════

@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 
 @Component
 public class ClientMappingProcessor implements ItemProcessor<sss_cdr_inter_client_stat, sss_cdr_client_stat> {
-    private static final Logger log = LoggerFactory.getLogger(ClientMappingProcessor.class);
-    private final MappingLoader mappingLoader;
+            private static final Logger log = LoggerFactory.getLogger(ClientMappingProcessor.class);
+            private final MappingLoader mappingLoader;
 
     public ClientMappingProcessor(sss_cdr_mapping_Repository sssCdrMappingRepository, MappingLoader mappingLoader) {
         this.mappingLoader = mappingLoader;
@@ -28,9 +28,6 @@ public class ClientMappingProcessor implements ItemProcessor<sss_cdr_inter_clien
 
     @Override
     public @Nullable sss_cdr_client_stat process(sss_cdr_inter_client_stat inter) throws Exception {
-        log.info("inter.getDateExtraction()   "+inter.getDateExtraction());
-        log.info("inter.getId_lot()   "+inter.getId_lot());
-        log.info("inter.getId_client()   "+inter.getId_client());
         // ── 1. Mapper les données principales du client ──
         sss_cdr_client_stat finalClient = sss_cdr_client_stat.builder()
                 .id_client(inter.getId_client())
@@ -43,11 +40,9 @@ public class ClientMappingProcessor implements ItemProcessor<sss_cdr_inter_clien
                 //.codClient(inter.getCodClient())
                 .altCodClient(inter.getAltCodClient())
                 .natClient(mappingLoader.map("CDTYPT", inter.getNatClient()))
-                //.entLieeEtab(mappingLoader.map("ENTLIEEETAB", inter.getEntLieeEtab()))
-                .entLieeEtab("1")
+                .entLieeEtab(mappingLoader.map("ENTLIEEETAB", inter.getEntLieeEtab()))
                 //.codAgEcon(mappingLoader.map("SACT", inter.getCodAgEcon()))
                 .codAgEcon(inter.getCodAgEcon())
-
                 .build();
 
         // ── 2. Mapper l'adresse ──
@@ -55,48 +50,66 @@ public class ClientMappingProcessor implements ItemProcessor<sss_cdr_inter_clien
             finalClient.setAdresse(sss_cdr_Adresse.builder()
                     .adresse(inter.getAdresse().getAdresse())
                     .codPostal(inter.getAdresse().getCodPostal())
-                    .codLocal(mappingLoader.map("CodLocal", inter.getAdresse().getCodLocal()))
+                    .codLocal(mappingLoader.map("CodLocal", inter.getAdresse().getCodPostal()))
+                    //.codLocal("780")
                     .codPays(mappingLoader.map("PAYS", inter.getAdresse().getCodPays()))
                     .numTeleph(inter.getAdresse().getNumTeleph())
                     .build());
+
+
         }
 
         // ── 3. Mapper les données PP ──
         if (inter.getDonneesInt_pp() != null) {
             DonneesIntPP_interm pp = inter.getDonneesInt_pp();
             finalClient.setDonneesInt_pp(sss_cdr_DonneesIntPP.builder()
-                    .idPrincipal(pp.getIdPrincipal().replace(" ",""))
+                    .idPrincipal(
+                            pp.getIdPrincipal() != null ? pp.getIdPrincipal().replace(" ", "") : ""
+                    )
                     .tpIdPrincipal(mappingLoader.map("TYPDOC",pp.getTpIdPrincipal()))
                     .prenom(pp.getPrenom())
                     .nomFamille(pp.getNomFamille())
                     .paysDelivrance(mappingLoader.map("PAYS", pp.getPaysDelivrance()))
                     .dtDelivrance(pp.getDtDelivrance())
                     .dtExpiration(pp.getDtExpiration())
-                    //.TypePPPro(mappingLoader.map("SACT",pp.getTypePPPro()))
-                    .TypePPPro(pp.getTypePPPro())
+                    .TypePPPro(mappingLoader.map("T_TPP",pp.getTypePPPro()))
+                    //.TypePPPro(pp.getTypePPPro())
                     .RNAE(pp.getRNAE())
                     .dtNaissance(pp.getDtNaissance())
-                    .codLocalNaissance(mappingLoader.map("CodLocal", pp.getCodLocalNaissance()))
+                    //.codLocalNaissance(mappingLoader.map("CodLocal", pp.getCodLocalNaissance()))
+                    //.codLocalNaissance("780")
                     .sexe(mappingLoader.map("SEXE", pp.getSexe()))
                     .nationalite(mappingLoader.map("NATI", pp.getNationalite()))
                     .sitFamille(mappingLoader.map("SIT_F", pp.getSitFamille()))
                     .codCatProf(mappingLoader.map("PROF", pp.getCodCatProf()))
                     .menage(pp.getMenage())
                     .qualAcadem(mappingLoader.map("QualAcadem",pp.getQualAcadem()))
-                    //.catClient(mappingLoader.map("RSDT",pp.getCatClient()))
+                    // .catClient(mappingLoader.map("RSDT",pp.getCatClient()))
                     .build());
-            if(pp.getCatClient().equalsIgnoreCase("RE") && pp.getNationalite().equalsIgnoreCase("MAR") && pp.getPaysDelivrance().equalsIgnoreCase("MA")){
-                String condition ="VRAIIIIIII";
-                log.info("la conditionnnnnn    ",condition);
+            if((pp.getTpIdPrincipal()==null || pp.getTpIdPrincipal().isEmpty()) && "MAR".equalsIgnoreCase(pp.getNationalite())){
+                finalClient.getDonneesInt_pp().setTpIdPrincipal("I");
+            }else if((pp.getTpIdPrincipal()==null || pp.getTpIdPrincipal().isEmpty()) && !"MAR".equalsIgnoreCase(pp.getNationalite())){
+                finalClient.getDonneesInt_pp().setTpIdPrincipal("C");
+            }
+
+
+
+            if ("RE".equalsIgnoreCase(pp.getCatClient())
+                    && "MAR".equalsIgnoreCase(pp.getNationalite())
+                    && "MA".equalsIgnoreCase(pp.getPaysDelivrance())) {
                 finalClient.getDonneesInt_pp().setCatClient("1");
 
-            } else if (pp.getCatClient().equalsIgnoreCase("RE") && !pp.getNationalite().equalsIgnoreCase("MAR") && pp.getPaysDelivrance().equalsIgnoreCase("MA")) {
+            } else if ("RE".equalsIgnoreCase(pp.getCatClient())
+                    && !"MAR".equalsIgnoreCase(pp.getNationalite())
+                    && "MA".equalsIgnoreCase(pp.getPaysDelivrance())) {
                 finalClient.getDonneesInt_pp().setCatClient("2");
 
-            }else if (pp.getCatClient().equalsIgnoreCase("NR") && !pp.getNationalite().equalsIgnoreCase("MAR") && !pp.getPaysDelivrance().equalsIgnoreCase("MA")) {
+            } else if ("NR".equalsIgnoreCase(pp.getCatClient())
+                    && !"MAR".equalsIgnoreCase(pp.getNationalite())
+                    && !"MA".equalsIgnoreCase(pp.getPaysDelivrance())) {
                 finalClient.getDonneesInt_pp().setCatClient("3");
 
-            }else{
+            } else {
                 finalClient.getDonneesInt_pp().setCatClient("4");
             }
         }
@@ -123,7 +136,8 @@ public class ClientMappingProcessor implements ItemProcessor<sss_cdr_inter_clien
                     //.natMod(mappingLoader.map("NatMod",pm.getNatMod()))
                     .natMod(pm.getNatMod())
                     .dtMod(pm.getDtMod())
-                    .flagSuc(pm.getFlagSuc())
+                    //.flagSuc(pm.getFlagSuc())
+                    .flagSuc(Boolean.valueOf("N"))
                     .tpIdPrincSiege(mappingLoader.map("TYPDOC",pm.getTpIdPrincSiege()))
                     .idPrincSiege(pm.getIdPrincSiege())
                     .raisonSocSiege(pm.getRaisonSocSiege())
@@ -139,7 +153,9 @@ public class ClientMappingProcessor implements ItemProcessor<sss_cdr_inter_clien
                                 .natActionnaire(mappingLoader.map("CDTYPT",act.getNatActionnaire()))
                                 .formJurAct(mappingLoader.map("FJR", act.getFormJurAct()))
                                 .tpIdPrincAct(mappingLoader.map("TYPDOC",act.getTpIdPrincAct()))
-                                .idPrincAct(act.getIdPrincAct().replace(" ",""))
+                                .idPrincAct(
+                                        act.getIdPrincAct() != null ? act.getIdPrincAct().replace(" ", "") : ""
+                                )
                                 .codTribunAct(mappingLoader.map("CDTR",act.getCodTribunAct()))
                                 .regCommerAct(act.getRegCommerAct())
                                 .idSpecifiqueAct(act.getIdSpecifiqueAct())
@@ -149,6 +165,12 @@ public class ClientMappingProcessor implements ItemProcessor<sss_cdr_inter_clien
                                 .nomRaisonSocAct(act.getNomRaisonSocAct())
                                 .qtpartCapSocAct(act.getQtpartCapSocAct())
                                 .build();
+                       /* if((act.getTpIdPrincAct()==null || act.getTpIdPrincAct().isEmpty()) && "MAR".equalsIgnoreCase(act.getNationalite())){
+                            finalClient.getDonneesInt_pp().setTpIdPrincipal("I");
+                        }else if((act.getTpIdPrincAct()==null || act.getTpIdPrincAct().isEmpty()) && !"MAR".equalsIgnoreCase(act.getNationalite())){
+                            finalClient.getDonneesInt_pp().setTpIdPrincipal("C");
+                        }*/
+
                         a.setClient(finalClient);  // ← Lier au parent
                         return a;
                     }).collect(Collectors.toSet());
@@ -161,11 +183,18 @@ public class ClientMappingProcessor implements ItemProcessor<sss_cdr_inter_clien
                     .map(ben -> {
                         sss_cdr_client_benef b = sss_cdr_client_benef.builder()
                                 .typIdBenEffect(mappingLoader.map("TYPDOC",ben.getTypIdBenEffect()))
-                                .idBenEffect(ben.getIdBenEffect().replace(" ",""))
+                                .idBenEffect(
+                                        ben.getIdBenEffect() != null ? ben.getIdBenEffect().replace(" ", "") : ""
+                                )
                                 .nomBenEffect(ben.getNomBenEffect())
                                 .preBenEffect(ben.getPreBenEffect())
                                 .natBenEffect(mappingLoader.map("NATI", ben.getNatBenEffect()))
                                 .build();
+                        if((ben.getTypIdBenEffect()==null || ben.getTypIdBenEffect().isEmpty()) && "MAR".equalsIgnoreCase(ben.getNatBenEffect())){
+                            finalClient.getDonneesInt_pp().setTpIdPrincipal("I");
+                        }else if((ben.getTypIdBenEffect()==null || ben.getTypIdBenEffect().isEmpty()) && !"MAR".equalsIgnoreCase(ben.getNatBenEffect())){
+                            finalClient.getDonneesInt_pp().setTpIdPrincipal("C");
+                        }
                         b.setClient(finalClient);  // ← Lier au parent
                         return b;
                     }).collect(Collectors.toSet());

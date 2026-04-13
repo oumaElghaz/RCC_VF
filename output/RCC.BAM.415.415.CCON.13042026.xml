@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RCC version="1.0">
+  <controle entObserv="415" entDeclar="415" idDest="001" dtCreation="2026-04-13T16:53:05"/>
+  <contenu>
+      <comCon>
+          <con dtRefCont="2024-05-09" actionType="EI" idCont="CONT001" guichetAgence="Agence Principale" codLocAgence="AG001" tpCont="1" tpCred="tpCred" dtlTpCred="2024-05-09 00:00:00.0" creCoFin="false" creConsor="false" objCred="objCred" objCredDetail="objCredDetail" monnaie="MAD" montIniAccord="100000.0" montCreCoFin="100000.0" txChange="2.0" dtContCredt="2024-05-09" dtDebloCred="2024-05-09" dtClotIni="2024-05-09" dtClotCred="2024-05-09" motClotCont="motClotCont" flagDiff="false" dtModCondCred="2024-05-09" motModCondCred="motModCondCred" dtDebPerGraCap="2024-05-09" dtFinPerGraCap="2024-05-09" modPaiement="modPaiement" tpEche="tpEche" fxEche="false" nombreTotEche="12.0" periodEche="periodEche" mtEche="5000.0" dt1Eche="2024-05-09" mont1Eche="5000.0" mont1EcheDiv="5000.0" flagTxInt="false" txRef="txRef" txAnnuelPourc="0.0" txTAEG="0.0" hmRibh="1000.0" cmFxWkl="500.0" freqMiseJourTxInt="freqMiseJourTxInt" LTVIni="0.0" tpSecuritization="false" exisGarant="true" mntGarant="20000.0">
+              <listCliContrat>
+                  <cliContrat codClient="CF236988" capAutoriseEnt="1000000.0" valProcVersEnt="500000.0"/>
+                  <cliContrat codClient="CF556988" capAutoriseEnt="15000000" valProcVersEnt="700000.0"/>
+              </listCliContrat>
+              <listLinkContrat>
+                  <linkContrat idContAss="CONT002" tpConnex="tpConnex"/>
+                  <linkContrat idContAss="CONT003" tpConnex="tppConnex"/>
+              </listLinkContrat>
+              <listConsort>
+                  <consort idEnt="ENT002" relEntPart="2.0"/>
+                  <consort idEnt="ENT001" relEntPart="1.0"/>
+              </listConsort>
+              <listGarant>
+                  <garant idGar="GAR001"/>
+                  <garant idGar="GAR002"/>
+              </listGarant>
+          </con>
+      </comCon>
+  </contenu>
+</RCC>

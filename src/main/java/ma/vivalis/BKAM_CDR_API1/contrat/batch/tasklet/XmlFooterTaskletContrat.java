@@ -1,5 +1,6 @@
 package ma.vivalis.BKAM_CDR_API1.contrat.batch.tasklet;
 
+import ma.vivalis.BKAM_CDR_API1.common.FileNameService;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,15 +18,20 @@ import java.nio.charset.StandardCharsets;
 @Component
 public class XmlFooterTaskletContrat implements Tasklet {
     private static final Logger log = LoggerFactory.getLogger(XmlFooterTaskletContrat.class);
-
+    private final FileNameService fileNameService;
     @Value("${batch.output.dir:output/}")
     private String outputDir;
 
-    @Value("${batch.output.contrat.file:contrats_cdr.xml}")
+    //@Value("${batch.output.contrat.file:contrats_cdr.xml}")
     private String fileName;
+
+    public XmlFooterTaskletContrat(FileNameService fileNameService) {
+        this.fileNameService = fileNameService;
+    }
 
     @Override
     public @Nullable RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+        fileName=fileNameService.retournerFileNames("CCON");
         String filePath = outputDir + fileName;
 
         // APPEND mode

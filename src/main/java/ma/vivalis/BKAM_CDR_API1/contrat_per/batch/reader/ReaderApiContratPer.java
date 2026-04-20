@@ -23,7 +23,7 @@ public class ReaderApiContratPer {
 
     @Bean
     public ItemReader<MyRequestBody> readerContratPer() {
-        fileName=fileNameService.retournerFileNames("CCMA");
+        fileName=fileNameService.retournerFileNames("CCMP");
         String filePath = outputDir + fileName;
         return new MyRequestBodyReader(filePath);
     }

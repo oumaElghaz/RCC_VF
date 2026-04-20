@@ -50,7 +50,7 @@ public class XmlHeaderTaskletClientPer  implements Tasklet {
                 "SELECT c FROM sss_cdr_inter_client_per c WHERE c.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_inter_client_per c2) ORDER BY c.codClient",
                 sss_cdr_inter_client_per.class
         ).setMaxResults(1).getResultStream().findFirst().orElse(null);
-        fileName=fileNameService.retournerFileNames("CEMA");
+        fileName=fileNameService.retournerFileNames("CEMP");
         String filePath = outputDir + fileName;
 
         try (OutputStreamWriter writer = new OutputStreamWriter(

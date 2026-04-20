@@ -3,6 +3,7 @@ package ma.vivalis.BKAM_CDR_API1.contrat_per.batch.processor;
 import jakarta.annotation.PostConstruct;
 import ma.vivalis.BKAM_CDR_API1.common.models.lotSequence.LotSequence;
 import ma.vivalis.BKAM_CDR_API1.common.repository.lotSequence.LotSequenceRepository;
+import ma.vivalis.BKAM_CDR_API1.common.service.lotSequenceService;
 import ma.vivalis.BKAM_CDR_API1.contrat_per.model.sss_cdr_arch_contrat_per;
 import ma.vivalis.BKAM_CDR_API1.contrat_per.model.sss_cdr_inter_contrat_per;
 import ma.vivalis.BKAM_CDR_API1.contrat_per.repository.sss_cdr_arch_contrat_per_repository;
@@ -15,37 +16,52 @@ import org.springframework.batch.infrastructure.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class ContratPerCompare implements ItemProcessor<sss_cdr_snapshot_contrat_per, sss_cdr_inter_contrat_per> {
     private final sss_cdr_arch_contrat_per_repository sss_cdr_arch_contrat_per_repository;
-    private final LotSequenceRepository lotSequenceRepository;
+    //private final LotSequenceRepository lotSequenceRepository;
+    private final lotSequenceService lotSequenceService;
     // Cache : charger TOUS les archivés en mémoire une seule fois
-    private Map<String, sss_cdr_arch_contrat_per> archivCache;
+    private Map<String, List<sss_cdr_arch_contrat_per>> archivCache;
     private static final Logger log = LoggerFactory.getLogger(ContratPerCompare.class);
     private int lot_id;
 
     private boolean initialized = false;
 
-    public ContratPerCompare(sss_cdr_arch_contrat_per_repository sssCdrArchContratPerRepository, LotSequenceRepository lotSequenceRepository) {
+    public ContratPerCompare(sss_cdr_arch_contrat_per_repository sssCdrArchContratPerRepository,  lotSequenceService lotSequenceService) {
         sss_cdr_arch_contrat_per_repository = sssCdrArchContratPerRepository;
-        this.lotSequenceRepository = lotSequenceRepository;
+       // this.lotSequenceRepository = lotSequenceRepository;
+        this.lotSequenceService = lotSequenceService;
     }
 
 
     @PostConstruct
     public void loadCache() {
         archivCache = new HashMap<>();
+        //sss_cdr_arch_contrat_per_repository.findAllWithRelations().forEach(a ->
+                //archivCache.put(a.getIdCont(), a));
+
         sss_cdr_arch_contrat_per_repository.findAllWithRelations().forEach(a ->
-                archivCache.put(a.getIdCont(), a));
+                archivCache.computeIfAbsent(a.getIdCont(), k -> new ArrayList<>()).add(a));
     }
     @Override
     public @Nullable sss_cdr_inter_contrat_per process(sss_cdr_snapshot_contrat_per item) throws Exception {
         // ✅ Initialiser le lot au premier appel
-        initLotIfNeeded();
-        sss_cdr_arch_contrat_per archiv = archivCache.get(item.getIdCont());
+        //initLotIfNeeded();
+        lot_id = lotSequenceService.retournerCurrentLotId();
+        log.info("Lot ID utilisé contrat per pour ce run : {}", lot_id);
+        List<sss_cdr_arch_contrat_per> archivList=new ArrayList<>();
+                archivList = archivCache.get(item.getIdCont());
+        if (archivList == null) {
+            archivList = Collections.emptyList();
+        }
+        // Trouver directement l'objet avec le max id_lot
+        sss_cdr_arch_contrat_per archiv = new sss_cdr_arch_contrat_per();
+                archiv =archivList.stream()
+                .max(Comparator.comparingInt(sss_cdr_arch_contrat_per::getId_lot))
+                .orElse(null);
 
         if (archiv == null) {
             // NOUVEAU CLIENT → à insérer
@@ -161,7 +177,7 @@ public class ContratPerCompare implements ItemProcessor<sss_cdr_snapshot_contrat
         if (a == null || b == null) return false;
         return a.equals(b);
     }
-    public synchronized int getNextLotId() {
+    /*public synchronized int getNextLotId() {
 
         LotSequence seq = lotSequenceRepository.findById(1)
                 .orElseGet(() -> {
@@ -190,5 +206,5 @@ public class ContratPerCompare implements ItemProcessor<sss_cdr_snapshot_contrat
             initialized = true;
             log.info("🔢 Lot ID initialisé = {}", lot_id);
         }
-    }
+    }*/
 }

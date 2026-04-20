@@ -23,7 +23,7 @@ public class ContratIntermediaireReader {
                                         "LEFT JOIN FETCH a.listLinkContrat " +
                                         "LEFT JOIN FETCH a.listConsort " +
                                         "LEFT JOIN FETCH a.listGarant " +
-                                        "WHERE a.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_inter_contrat_stat c2) " +
+                                        "WHERE a.id_lot = (SELECT MAX(c2.val) FROM LotSequence c2) " +
                                         "ORDER BY a.idCont"
                         )
                         .pageSize(500)

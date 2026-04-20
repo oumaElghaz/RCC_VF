@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RCC version="1.0">
+  <controle entObserv="415" entDeclar="415" idDest="001" dtCreation="2026-04-20T12:37:27"/>
+  <contenu>
+      <comEntPer dtRef="2015-10-05">
+          <entPer actionType="EI" codClient="CF236988" watchList="false" etatAvProcJud="0" revenu="1000000.0" dtRevenu="2015-10-05">
+              <dataCompta annExercCompt="2013" capSocial="600000.0" capPropres="200000.0" actImmobilises="580000.0" totBilan="1506000.0" chiffreAffaire="1200300.0" dtAffairesAnExp="12050.0" detteBancLMT="204000.0" detteBancCT="50000.0" passifCirculant="158000.0" dettesFourn="10000.0" tresoreriePassif="3500.0" actifCirculant="-2000.0" créancesClients="0.0" tresorerieActif="203000.0" caisse="200000.0" achatsRevendus="202000.0" achatsConsom="200000.0" chargesExternes="200000.0" chargesInterets="200000.0" resultatNet="200900.0" tpResultat="tpresultat"/>
+              <dataRiskCli>
+                  <riskCli PDCont="0.0" dtEvalRisques="2015-10-05" modIRBCont="ModIRB1" coteCli="A+" dateCoteCli="2012-10-05" modCoteCli="ModCote1" notAgence="AG401" NomAgence="Agence Principale" dtnotAgc="2014-10-05"/>
+              </dataRiskCli>
+          </entPer>
+      </comEntPer>
+  </contenu>
+</RCC>

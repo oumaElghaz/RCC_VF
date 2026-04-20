@@ -2,7 +2,6 @@ package ma.vivalis.BKAM_CDR_API1.client.batch.StepConfig;
 
 import generated.ComEnt;
 import ma.vivalis.BKAM_CDR_API1.API.model.MyRequestBody;
-import ma.vivalis.BKAM_CDR_API1.API.model.MyResponseBody;
 import ma.vivalis.BKAM_CDR_API1.API.model.sss_cdr_api1;
 import ma.vivalis.BKAM_CDR_API1.API.processor.MyRequestProcessor;
 import ma.vivalis.BKAM_CDR_API1.API.writer.MyRequestWriter;
@@ -42,23 +41,7 @@ public class ClientStepConfig {
 
 
 
-    // ── Step 1 : Comparaison + Mapping direct ──
-    @Bean
-    public Step compareAndMapClientStep(
-            JobRepository jobRepository,
-            PlatformTransactionManager tx,
-            JdbcCursorItemReader<ClientChangeDTO> clientCompareReader,
-            ClientDirectMappingProcessor clientDirectMappingProcessor,
-            ClientDirectWriter clientDirectWriter) {
 
-        return new StepBuilder("compareAndMapClientStep", jobRepository)
-                .<ClientChangeDTO, sss_cdr_inter_client_stat>chunk(500)
-                .transactionManager(tx)
-                .reader(clientCompareReader)
-                .processor(clientDirectMappingProcessor)
-                .writer(clientDirectWriter)
-                .build();
-    }
     // ═══════════════════════════════════════════════════════
     // STEP 1 : Comparaison client
     // ═══════════════════════════════════════════════════════

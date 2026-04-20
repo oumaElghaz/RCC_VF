@@ -25,7 +25,7 @@ public class ClientIntermediaireReader {
                                         "LEFT JOIN FETCH c.donneesInt_pm " +
                                         "LEFT JOIN FETCH c.actionnariats " +
                                         "LEFT JOIN FETCH c.benEffects " +
-                                        "WHERE c.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_inter_client_stat c2) " +
+                                        "WHERE c.id_lot = (SELECT MAX(c2.val) FROM LotSequence c2) " +
                                         "ORDER BY c.id_client"
                         )
                         .pageSize(500)

@@ -29,6 +29,6 @@ public class GarantieCompareWriter implements ItemWriter<sss_cdr_inter_garantie>
         em.flush();
         em.clear();  // Libérer la mémoire du contexte de persistance
 
-        log.info("✅ {} clients écrits dans intermédiaire", chunk.size());
+        log.info("✅ {} garanties écrits dans intermédiaire", chunk.size());
     }
 }

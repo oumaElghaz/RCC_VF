@@ -7,6 +7,7 @@ import ma.vivalis.BKAM_CDR_API1.client_per.model.sss_cdr_inter_client_per;
 import ma.vivalis.BKAM_CDR_API1.client_per.repository.sss_cdr_arch_client_per_repository;
 import ma.vivalis.BKAM_CDR_API1.common.models.lotSequence.LotSequence;
 import ma.vivalis.BKAM_CDR_API1.common.repository.lotSequence.LotSequenceRepository;
+import ma.vivalis.BKAM_CDR_API1.common.service.lotSequenceService;
 import ma.vivalis.BKAM_CDR_API1.entities.Enums.ActionType;
 import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_snapshot_client_per;
 import org.jspecify.annotations.Nullable;
@@ -16,37 +17,54 @@ import org.springframework.batch.infrastructure.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class ClientPerCompare implements ItemProcessor<sss_cdr_snapshot_client_per, sss_cdr_inter_client_per> {
     private final sss_cdr_arch_client_per_repository sss_cdr_arch_client_per_repository;
-    private final LotSequenceRepository lotSequenceRepository;
+    //private final LotSequenceRepository lotSequenceRepository;
+    private final lotSequenceService lotSequenceService;
     // Cache : charger TOUS les archivés en mémoire une seule fois
-    private Map<String, sss_cdr_arch_client_per> archivCache;
+    private Map<String, List<sss_cdr_arch_client_per>> archivCache;
     private static final Logger log = LoggerFactory.getLogger(ClientPerCompare.class);
     private int lot_id;
 
     private boolean initialized = false;
 
-    public ClientPerCompare(sss_cdr_arch_client_per_repository sssCdrArchClientPerRepository, LotSequenceRepository lotSequenceRepository) {
+    public ClientPerCompare(sss_cdr_arch_client_per_repository sssCdrArchClientPerRepository, lotSequenceService lotSequenceService) {
         sss_cdr_arch_client_per_repository = sssCdrArchClientPerRepository;
-        this.lotSequenceRepository = lotSequenceRepository;
+
+        this.lotSequenceService = lotSequenceService;
     }
     @PostConstruct
     public void loadCache() {
         archivCache = new HashMap<>();
+        //sss_cdr_arch_client_per_repository.findAllWithRelations().forEach(a ->
+                //archivCache.put(a.getCodClient(), a));
+
         sss_cdr_arch_client_per_repository.findAllWithRelations().forEach(a ->
-                archivCache.put(a.getCodClient(), a));
+                archivCache.computeIfAbsent(a.getCodClient(), k -> new ArrayList<>()).add(a));
     }
 
 
     @Override
     public @Nullable sss_cdr_inter_client_per process(sss_cdr_snapshot_client_per item) throws Exception {
         // ✅ Initialiser le lot au premier appel
-        initLotIfNeeded();
-        sss_cdr_arch_client_per archiv = archivCache.get(item.getCodClient());
+        //initLotIfNeeded();
+        lot_id = lotSequenceService.retournerCurrentLotId();
+        log.info("Lot ID utilisé client per pour ce run : {}", lot_id);
+        List<sss_cdr_arch_client_per> archivList=new ArrayList<>();
+                archivList = archivCache.get(item.getCodClient());
+        if (archivList == null) {
+            archivList = Collections.emptyList();
+        }
+
+        // Trouver directement l'objet avec le max id_lot
+        sss_cdr_arch_client_per archiv=new sss_cdr_arch_client_per();
+                archiv = archivList.stream()
+                .max(Comparator.comparingInt(sss_cdr_arch_client_per::getId_lot))
+                .orElse(null);
+
 
         if (archiv == null) {
             // NOUVEAU CLIENT → à insérer
@@ -170,9 +188,12 @@ private boolean hasChanged(sss_cdr_snapshot_client_per snapshot, sss_cdr_arch_cl
     private boolean equalsNullSafe(Object a, Object b) {
         if (a == null && b == null) return true;
         if (a == null || b == null) return false;
+        log.info("l objet a est {} ",a.toString());
+        log.info("l objet b est {} ",b.toString());
+        log.info("la comparaison est {} ",a.equals(b));
         return a.equals(b);
     }
-    public synchronized int getNextLotId() {
+/*    public synchronized int getNextLotId() {
 
         LotSequence seq = lotSequenceRepository.findById(1)
                 .orElseGet(() -> {
@@ -201,5 +222,5 @@ private boolean hasChanged(sss_cdr_snapshot_client_per snapshot, sss_cdr_arch_cl
             initialized = true;
             log.info("🔢 Lot ID initialisé = {}", lot_id);
         }
-    }
+    }*/
 }

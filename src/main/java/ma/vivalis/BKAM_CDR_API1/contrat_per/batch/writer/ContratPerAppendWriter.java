@@ -51,7 +51,7 @@ public class ContratPerAppendWriter implements ItemWriter<ComConPer> {
     }
     @Override
     public void write(Chunk<? extends ComConPer> chunk) throws Exception {
-        fileName=fileNameService.retournerFileNames("CCMA");
+        fileName=fileNameService.retournerFileNames("CCMP");
         String filePath = outputDir + fileName;
         File file = new File(filePath);
         log.info("📁 Écriture dans : {} (existe: {}, taille avant: {} bytes)",

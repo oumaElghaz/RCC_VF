@@ -362,15 +362,19 @@ public class ClientTraitementMappingProcessor implements ItemProcessor<sss_cdr_i
                                 .natBenEffect(mappingLoader.map("NATI", ben.getNatBenEffect()))
                                 .build();
                         if((ben.getTypIdBenEffect()==null || ben.getTypIdBenEffect().isEmpty()) && "MAR".equalsIgnoreCase(ben.getNatBenEffect())){
-                            finalClient.getDonneesInt_pp().setTpIdPrincipal("I");
+                            //finalClient.getDonneesInt_pp().setTpIdPrincipal("I");
+                            b.setTypIdBenEffect("I");
                         }else if((ben.getTypIdBenEffect()==null || ben.getTypIdBenEffect().isEmpty()) && !"MAR".equalsIgnoreCase(ben.getNatBenEffect())){
-                            finalClient.getDonneesInt_pp().setTpIdPrincipal("C");
+                            //finalClient.getDonneesInt_pp().setTpIdPrincipal("C");
+                            b.setTypIdBenEffect("C");
                         }
                         b.setClient(finalClient);  // ← Lier au parent
                         return b;
                     }).collect(Collectors.toSet());
             finalClient.setBenEffects(bensFinal);
         }
+
+
 
         return finalClient;
     }

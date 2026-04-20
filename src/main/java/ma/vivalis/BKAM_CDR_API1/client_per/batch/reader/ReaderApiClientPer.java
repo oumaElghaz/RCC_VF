@@ -23,7 +23,7 @@ public class ReaderApiClientPer {
 
     @Bean
     public ItemReader<MyRequestBody> readerClientPer() {
-        fileName=fileNameService.retournerFileNames("CEMA");
+        fileName=fileNameService.retournerFileNames("CEMP");
         String filePath = outputDir + fileName;
         return new MyRequestBodyReader(filePath);
     }

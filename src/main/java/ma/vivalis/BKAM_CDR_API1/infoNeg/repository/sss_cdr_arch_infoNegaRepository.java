@@ -16,8 +16,9 @@ import java.util.Optional;
 public interface sss_cdr_arch_infoNegaRepository  extends JpaRepository<sss_cdr_arch_infoNegative, Long> {
 
     @Query("SELECT DISTINCT a FROM sss_cdr_arch_infoNegative a " +
-            "LEFT JOIN FETCH a.comInfNegs com " +
-            "WHERE a.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_arch_infoNegative c2) ")
+            "LEFT JOIN FETCH a.comInfNegs com " //+
+            //"WHERE a.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_arch_infoNegative c2) "
+        )
     List<sss_cdr_arch_infoNegative> findAllWithRelations();
 
     //Optional<sss_cdr_arch_infoNegative> findById_lotAndDateExtractionAndId(Integer id_lot, Date dateExtraction, Long id);

@@ -20,7 +20,7 @@ public class infoNegaIntermediaireItemReader {
                         .queryString(
                                 "SELECT DISTINCT c FROM sss_cdr_inter_infoNegative c " +
                                         "LEFT JOIN FETCH c.comInfNegs " +
-                                        "WHERE c.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_inter_infoNegative c2) " +
+                                        "WHERE c.id_lot = (SELECT MAX(c2.val) FROM LotSequence c2) " +
                                         "ORDER BY c.id"
                         )
                         .pageSize(500)

@@ -9,6 +9,7 @@ import org.jspecify.annotations.Nullable;
 import org.springframework.batch.infrastructure.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Component
@@ -22,7 +23,7 @@ public class MyRequestProcessor implements ItemProcessor<MyRequestBody, sss_cdr_
 
     @Override
     public @Nullable sss_cdr_api1 process(MyRequestBody item) throws Exception {
-        Date dateDeclaration=sss_cdr_inter_client_stat_Repository.findDateExtractionByMaxId_lot();
+        LocalDateTime dateDeclaration=sss_cdr_inter_client_stat_Repository.findDateExtractionByMaxId_lot();
         MyResponseBody resultatApi = apiService.sendDataToApi(item);
         sss_cdr_api1 api1=sss_cdr_api1.builder()
                 .id_Lot(resultatApi.getId_Lot())

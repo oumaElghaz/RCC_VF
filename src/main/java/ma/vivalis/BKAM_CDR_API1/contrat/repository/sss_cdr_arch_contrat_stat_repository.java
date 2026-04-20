@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +20,8 @@ public interface sss_cdr_arch_contrat_stat_repository extends JpaRepository<sss_
             "LEFT JOIN FETCH a.listCliContrat " +
             "LEFT JOIN FETCH a.listLinkContrat " +
             "LEFT JOIN FETCH a.listConsort " +
-            "LEFT JOIN FETCH a.listGarant " +
-            "WHERE a.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_arch_contrat_stat c2) "
+            "LEFT JOIN FETCH a.listGarant " //+
+            //"WHERE a.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_arch_contrat_stat c2) "
     )
     List<sss_cdr_arch_contrat_stat> findAllWithRelations();
 

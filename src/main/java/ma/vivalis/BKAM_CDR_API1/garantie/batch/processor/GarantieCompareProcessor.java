@@ -4,6 +4,7 @@ import jakarta.annotation.PostConstruct;
 
 import ma.vivalis.BKAM_CDR_API1.common.models.lotSequence.LotSequence;
 import ma.vivalis.BKAM_CDR_API1.common.repository.lotSequence.LotSequenceRepository;
+import ma.vivalis.BKAM_CDR_API1.common.service.lotSequenceService;
 import ma.vivalis.BKAM_CDR_API1.entities.Enums.ActionType;
 import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_snapshot_garantie;
 import ma.vivalis.BKAM_CDR_API1.garantie.model.sss_cdr_arch_garantie;
@@ -16,35 +17,49 @@ import org.springframework.batch.infrastructure.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class GarantieCompareProcessor implements ItemProcessor<sss_cdr_snapshot_garantie, sss_cdr_inter_garantie> {
     private final sss_cdr_arch_garantie_repository sss_cdr_arch_garantie_repository;
-    private final LotSequenceRepository lotSequenceRepository;
+    //private final LotSequenceRepository lotSequenceRepository;
+    private final lotSequenceService lotSequenceService;
     // Cache : charger TOUS les archivés en mémoire une seule fois
-    private Map<String, sss_cdr_arch_garantie> archivCache;
+    private Map<String, List<sss_cdr_arch_garantie>> archivCache;
     private static final Logger log = LoggerFactory.getLogger(GarantieCompareProcessor.class);
     private int lot_id;
 
     private boolean initialized = false;
 
-    public GarantieCompareProcessor(sss_cdr_arch_garantie_repository sssCdrArchGarantieRepository, LotSequenceRepository lotSequenceRepository) {
+    public GarantieCompareProcessor(sss_cdr_arch_garantie_repository sssCdrArchGarantieRepository,  lotSequenceService lotSequenceService) {
         sss_cdr_arch_garantie_repository = sssCdrArchGarantieRepository;
-        this.lotSequenceRepository = lotSequenceRepository;
+        this.lotSequenceService = lotSequenceService;
+        //this.lotSequenceRepository = lotSequenceRepository;
     }
     @PostConstruct
     public void loadCache() {
         archivCache = new HashMap<>();
+        //sss_cdr_arch_garantie_repository.findAllWithRelations().forEach(a ->
+                //archivCache.put(a.getIdGar(), a));
         sss_cdr_arch_garantie_repository.findAllWithRelations().forEach(a ->
-                archivCache.put(a.getIdGar(), a));
+                archivCache.computeIfAbsent(a.getIdGar(), k -> new ArrayList<>()).add(a));
     }
     @Override
     public @Nullable sss_cdr_inter_garantie process(sss_cdr_snapshot_garantie item) throws Exception {
         // ✅ Initialiser le lot au premier appel
-        initLotIfNeeded();
-        sss_cdr_arch_garantie archiv = archivCache.get(item.getIdGar());
+        //initLotIfNeeded();
+        lot_id = lotSequenceService.retournerCurrentLotId();
+        log.info("Lot ID utilisé garantie pour ce run : {}", lot_id);
+        List<sss_cdr_arch_garantie> archivList=new ArrayList<>();
+                archivList = archivCache.get(item.getIdGar());
+        if (archivList == null) {
+            archivList = Collections.emptyList();
+        }
+        // Trouver directement l'objet avec le max id_lot
+        sss_cdr_arch_garantie archiv = new sss_cdr_arch_garantie();
+                archiv =archivList.stream()
+                .max(Comparator.comparingInt(sss_cdr_arch_garantie::getId_lot))
+                .orElse(null);
 
         if (archiv == null) {
             // NOUVEAU CLIENT → à insérer
@@ -139,7 +154,7 @@ public class GarantieCompareProcessor implements ItemProcessor<sss_cdr_snapshot_
         if (a == null || b == null) return false;
         return a.equals(b);
     }
-    public synchronized int getNextLotId() {
+   /* public synchronized int getNextLotId() {
 
         LotSequence seq = lotSequenceRepository.findById(1)
                 .orElseGet(() -> {
@@ -168,5 +183,5 @@ public class GarantieCompareProcessor implements ItemProcessor<sss_cdr_snapshot_
             initialized = true;
             log.info("🔢 Lot ID initialisé = {}", lot_id);
         }
-    }
+    }*/
 }

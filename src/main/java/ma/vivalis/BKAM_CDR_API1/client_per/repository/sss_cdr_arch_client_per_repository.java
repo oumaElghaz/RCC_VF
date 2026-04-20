@@ -14,8 +14,8 @@ import java.util.Optional;
 @Repository
 public interface sss_cdr_arch_client_per_repository extends JpaRepository<sss_cdr_arch_client_per, String> {
 
-    @Query("SELECT DISTINCT a FROM sss_cdr_arch_client_per a " +
-            "WHERE a.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_arch_client_per c2) "
+    @Query("SELECT DISTINCT a FROM sss_cdr_arch_client_per a " //+
+           // "WHERE a.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_arch_client_per c2) "
     )
     List<sss_cdr_arch_client_per> findAllWithRelations();
 

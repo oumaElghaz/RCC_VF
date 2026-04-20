@@ -52,6 +52,7 @@ public class XmlHeaderTasklet implements Tasklet {
                 sss_cdr_inter_client_stat.class
         ).setMaxResults(1).getResultStream().findFirst().orElse(null);
         fileName=fileNameService.retournerFileNames("CENT");
+        log.info("retournerFileNames header  : {}",fileName);
         String filePath = outputDir + fileName;
 
         try (OutputStreamWriter writer = new OutputStreamWriter(

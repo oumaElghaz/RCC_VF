@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 @Entity
 @Table(name = "sss_cdr_api1")
 @Data
@@ -20,7 +20,7 @@ public class sss_cdr_api1 {
     private int id_Lot;
     private String codMsg;
     private String msg;
-    private Date dateExtraction;
+    private LocalDateTime dateExtraction;
 
 
 

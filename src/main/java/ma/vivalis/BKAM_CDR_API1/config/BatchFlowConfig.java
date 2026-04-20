@@ -196,23 +196,37 @@ public class BatchFlowConfig {
             Step mappingGarantieStep,
             Step mappingContratPerStep,
             Step mappingContratStep,
+            JobExecutionDecider myStepDecider,
+            JobExecutionDecider endOfMonthDecider,
             TaskExecutor flowTaskExecutor) {
 
         return new FlowBuilder<SimpleFlow>("phase3")
                 .split(flowTaskExecutor)
                 .add(
                         new FlowBuilder<SimpleFlow>("mappingClientFlow")
-                                .start(mappingClientStep).build(),
+                                .start(myStepDecider) // Ajout du decider
+                                .on("EXECUTE")
+                                .to(mappingClientStep).from(myStepDecider).on("SKIP").end().build(),
                         new FlowBuilder<SimpleFlow>("mappingInfoNegaFlow")
-                        .start(mappingInfoNegaStep).build(),
+                                .start(myStepDecider) // Ajout du decider
+                                .on("EXECUTE")
+                        .to(mappingInfoNegaStep).from(myStepDecider).on("SKIP").end().build(),
                         new FlowBuilder<SimpleFlow>("mappingClientPerFlow")
-                        .start(mappingClientPerStep).build(),
+                                .start(endOfMonthDecider) // Ajout du decider
+                                .on("EXECUTE")
+                        .to(mappingClientPerStep).from(endOfMonthDecider).on("SKIP").end().build(),
                         new FlowBuilder<SimpleFlow>("mappingGarantieFlow")
-                                .start(mappingGarantieStep).build(),
+                                .start(myStepDecider) // Ajout du decider
+                                .on("EXECUTE")
+                                .to(mappingGarantieStep).from(myStepDecider).on("SKIP").end().build(),
                         new FlowBuilder<SimpleFlow>("mappingContratPerFlow")
-                                .start(mappingContratPerStep).build(),
+                                .start(endOfMonthDecider) // Ajout du decider
+                                .on("EXECUTE")
+                                .to(mappingContratPerStep).from(endOfMonthDecider).on("SKIP").end().build(),
                         new FlowBuilder<SimpleFlow>("mappingContratFlow")
-                                .start(mappingContratStep).build()
+                                .start(myStepDecider) // Ajout du decider
+                                .on("EXECUTE")
+                                .to(mappingContratStep).from(myStepDecider).on("SKIP").end().build()
                 )
                 .build();
     }
@@ -227,7 +241,8 @@ public class BatchFlowConfig {
             Step archiverGarantieStep,
             Step archiverContratPerStep,
             Step archiverContratStep,
-
+            JobExecutionDecider myStepDecider,
+            JobExecutionDecider endOfMonthDecider,
             TaskExecutor flowTaskExecutor) {
 
 
@@ -236,17 +251,29 @@ public class BatchFlowConfig {
 
                 .add(
                         new FlowBuilder<SimpleFlow>("archivClientFlow")
-                                .start(archiverClientStep).build(),
+                                .start(myStepDecider) // Ajout du decider
+                                .on("EXECUTE")
+                                .to(archiverClientStep).from(myStepDecider).on("SKIP").end().build(),
                         new FlowBuilder<SimpleFlow>("archivInfoNegaFlow")
-                        .start(archiverInfoStep).build(),
+                                .start(myStepDecider) // Ajout du decider
+                                .on("EXECUTE")
+                        .to(archiverInfoStep).from(myStepDecider).on("SKIP").end().build(),
                         new FlowBuilder<SimpleFlow>("archiverClientPerFlow")
-                        .start(archiverClientPerStep).build(),
+                                .start(endOfMonthDecider) // Ajout du decider
+                                .on("EXECUTE")
+                        .to(archiverClientPerStep).from(endOfMonthDecider).on("SKIP").end().build(),
                         new FlowBuilder<SimpleFlow>("archiverGarantieFlow")
-                                .start(archiverGarantieStep).build(),
+                                .start(myStepDecider) // Ajout du decider
+                                .on("EXECUTE")
+                                .to(archiverGarantieStep).from(myStepDecider).on("SKIP").end().build(),
                         new FlowBuilder<SimpleFlow>("archiverContratPerFlow")
-                                .start(archiverContratPerStep).build(),
+                                .start(endOfMonthDecider) // Ajout du decider
+                                .on("EXECUTE")
+                                .to(archiverContratPerStep).from(endOfMonthDecider).on("SKIP").end().build(),
                         new FlowBuilder<SimpleFlow>("archiverContratFlow")
-                                .start(archiverContratStep).build()
+                                .start(myStepDecider) // Ajout du decider
+                                .on("EXECUTE")
+                                .to(archiverContratStep).from(myStepDecider).on("SKIP").end().build()
                 )
                 .build();
     }

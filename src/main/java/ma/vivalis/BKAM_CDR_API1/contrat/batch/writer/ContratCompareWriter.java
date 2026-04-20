@@ -30,7 +30,7 @@ public class ContratCompareWriter implements ItemWriter<sss_cdr_inter_contrat_st
         em.flush();
         em.clear();  // Libérer la mémoire du contexte de persistance
 
-        log.info("✅ {} clients écrits dans intermédiaire", chunk.size());
+        log.info("✅ {} contrats écrits dans intermédiaire", chunk.size());
 
 
     }

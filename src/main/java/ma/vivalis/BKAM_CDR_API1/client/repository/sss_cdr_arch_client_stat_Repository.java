@@ -22,8 +22,8 @@ public interface sss_cdr_arch_client_stat_Repository extends JpaRepository<sss_c
             "LEFT JOIN FETCH a.donneesInts_pp " +
             "LEFT JOIN FETCH a.donneesInts_pm " +
             "LEFT JOIN FETCH a.actionnariats " +
-            "LEFT JOIN FETCH a.benEffects " +
-            "WHERE a.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_arch_client_stat c2) "
+            "LEFT JOIN FETCH a.benEffects " //+
+            //"WHERE a.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_arch_client_stat c2) "
     )
     List<sss_cdr_arch_client_stat> findAllWithRelations();
 

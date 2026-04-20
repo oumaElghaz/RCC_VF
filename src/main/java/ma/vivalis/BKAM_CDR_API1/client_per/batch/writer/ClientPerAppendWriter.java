@@ -53,7 +53,7 @@ public class ClientPerAppendWriter implements ItemWriter<ComEntPer> {
 
     @Override
     public void write(Chunk<? extends ComEntPer> chunk) throws Exception {
-        fileName=fileNameService.retournerFileNames("CEMA");
+        fileName=fileNameService.retournerFileNames("CEMP");
         String filePath = outputDir + fileName;
         File file = new File(filePath);
         log.info("📁 Écriture dans : {} (existe: {}, taille avant: {} bytes)",

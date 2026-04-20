@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RCC version="1.0">
+  <controle entObserv="415" entDeclar="415" idDest="001" dtCreation="2026-04-16T18:07:19"/>
+  <contenu>
+    <comEnt>
+          <donneesEnt dtRefEnt="2024-05-09" actionType="EU" codClient="CF236988" natClient="3" entLieeEtab="0" codAgEcon="112" tpIdPrincipal="I" idPrincipal="9988" prenom="John" nomFamille="Doe" paysDelivrance="MAR" dtDelivrance="2025-04-08" dtExpiration="2025-02-04" RNAE="RNAE9988" dtNaissance="1995-12-31" sexe="M" nationalite="AFG" sitFamille="C" codCatProf="5" menage="5" qualAcadem="N1" catClient="4" raisonSocial="FOR EDDGAS" formJur="90" codTrib="01" regCommerce="35351" ICE="000000000000012" idFiscal="9988" numTaxeProf="1" codActPrinc="900" codActSec="900" tailleEntrep="TPE" genre="M" dtCreation="2024-05-27" flagSuc="false" tpIdPrincSiege="I">
+              <address adresse="BD SEBTA HAY MERIEM N36" codPostal="28630" codLocal="787" codPays="MAR"/>
+              <lstActionnariat>
+                  <actionnariat natActionnaire="2" formJurAct="90" tpIdPrincAct="I" idPrincAct="BB09988" codTribunAct="03" payResAct="MAR" nomRaisonSocAct="EDDABZI" qtpartCapSocAct="0"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="T009988" nomBenEffect="EL GUASMI" preBenEffect="YOUNESS" natBenEffect="MAR"/>
+              </lstBenEffect>
+          </donneesEnt>
+    </comEnt>
+  </contenu>
+</RCC>

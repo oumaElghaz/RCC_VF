@@ -40,15 +40,15 @@ public class sss_cdr_arch_client_stat {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "adresse_archiv_id")
-    private Adresse_Arch adresse;
+    private Adresse_Arch adresse=new Adresse_Arch();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "donneesInts_pp_id")
-    private DonneesIntPP_Arch donneesInts_pp;
+    private DonneesIntPP_Arch donneesInts_pp=new DonneesIntPP_Arch();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "donneesInts_pm_id")
-    private DonneesIntPM_Arch donneesInts_pm;
+    private DonneesIntPM_Arch donneesInts_pm=new DonneesIntPM_Arch();
 
     @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
     @Builder.Default

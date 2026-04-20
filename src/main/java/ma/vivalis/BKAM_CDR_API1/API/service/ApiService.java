@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Service
@@ -26,7 +27,7 @@ public class ApiService {
     public MyResponseBody sendDataToApi(MyRequestBody body) {
         String url = "https://cdr-int-extranet.bankalmaghrib.ma/ma.cdr.extranet.api/Report/EnvoiDeclarationRCC";
         int lot_id=lotSequenceService.findMaxVal();
-        Date dateDeclaration=sss_cdr_inter_client_stat_Repository.findDateExtractionByMaxId_lot();
+        LocalDateTime dateDeclaration=sss_cdr_inter_client_stat_Repository.findDateExtractionByMaxId_lot();
         return webClient.post()
                 .uri(url)
                 .header("serviceBAM", "RCC")

@@ -31,7 +31,7 @@ public class XmlFooterTaskletContratPer implements Tasklet {
 
     @Override
     public @Nullable RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-        fileName=fileNameService.retournerFileNames("CCMA");
+        fileName=fileNameService.retournerFileNames("CCMP");
         String filePath = outputDir + fileName;
 
         // APPEND mode

@@ -130,27 +130,31 @@ public class PurgeTasklet implements Tasklet {
         int total = 0;
 
         if ("sss_cdr_snapshot_client_stat".equals(tableName)) {
-            // Supprimer les tables enfants d'abord (FK)
             total += deleteAndLog("sss_cdr_snapshot_client_act");
             total += deleteAndLog("sss_cdr_snapshot_client_benef");
             total += deleteAndLog("Adresse");
             total += deleteAndLog("DonneesIntPP");
             total += deleteAndLog("DonneesIntPM");
-            // Puis le parent
             total += deleteAndLog(tableName);
 
-        } else if ("sss_cdr_snapshot_contrat".equals(tableName)) {
-            // Ajouter les tables enfants du contrat ici
-            // total += deleteAndLog("contrat_enfant_table");
+        } else if ("sss_cdr_snapshot_contrat_stat".equals(tableName)) {
+            total += deleteAndLog("ListCliContrat");
+            total += deleteAndLog("ListLinkContrat");
+            total += deleteAndLog("ListConsort");
+            total += deleteAndLog("ListGarant");
             total += deleteAndLog(tableName);
 
         } else if ("sss_cdr_snapshot_garantie".equals(tableName)) {
-            // Ajouter les tables enfants de la garantie ici
-            // total += deleteAndLog("garantie_enfant_table");
             total += deleteAndLog(tableName);
 
+        } else if ("sss_cdr_snapshot_infoNega_stat".equals(tableName)) {
+            // ✅ COMINFNEG référence cette table via FK_INF_NEG_STAT
+            total += deleteAndLog("INFNEG");
+            total += deleteAndLog("COMINFNEG");       // enfant d'abord
+
+            total += deleteAndLog(tableName);          // parent ensuite
+
         } else {
-            // Table sans enfants
             total += deleteAndLog(tableName);
         }
 

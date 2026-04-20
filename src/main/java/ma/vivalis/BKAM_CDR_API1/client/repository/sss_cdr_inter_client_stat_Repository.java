@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -105,5 +106,5 @@ public interface sss_cdr_inter_client_stat_Repository extends JpaRepository<sss_
 
     @Query("SELECT DISTINCT c.dateExtraction FROM sss_cdr_inter_client_stat c " +
             "WHERE c.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_inter_client_stat c2)" )
-    Date findDateExtractionByMaxId_lot();
+    LocalDateTime findDateExtractionByMaxId_lot();
 }

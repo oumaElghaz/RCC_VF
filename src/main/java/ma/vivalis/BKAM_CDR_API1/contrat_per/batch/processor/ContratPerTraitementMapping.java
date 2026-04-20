@@ -1,6 +1,7 @@
 package ma.vivalis.BKAM_CDR_API1.contrat_per.batch.processor;
 
 import generated.ComConPer;
+import lombok.Builder;
 import ma.vivalis.BKAM_CDR_API1.common.MappingLoader;
 import ma.vivalis.BKAM_CDR_API1.contrat_per.model.sss_cdr_contrat_per;
 import ma.vivalis.BKAM_CDR_API1.contrat_per.model.sss_cdr_inter_contrat_per;
@@ -135,6 +136,10 @@ public class ContratPerTraitementMapping implements ItemProcessor<sss_cdr_inter_
 
             case "CTX":
                 ctr_final.setTxProvCont((double) 100);
+                break;
+
+            default:
+                ctr_final.setTxProvCont((double) 0);
                 break;
 
 

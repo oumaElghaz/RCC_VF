@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RCC version="1.0">
+  <controle entObserv="415" entDeclar="415" idDest="001" dtCreation="2026-04-20T12:43:26"/>
+  <contenu>
+    <comEnt>
+          <donneesEnt dtRefEnt="2024-05-09" actionType="EI" codClient="CF21254988" natClient="3" entLieeEtab="0" codAgEcon="112" tpIdPrincipal="I" idPrincipal="9988" prenom="HICHAM" nomFamille="DACIM" paysDelivrance="MAR" dtDelivrance="2026-04-08" dtExpiration="2026-02-04" RNAE="RNAE9588" dtNaissance="1997-12-31" sexe="M" nationalite="MAR" sitFamille="C" codCatProf="5" menage="5" qualAcadem="N1" catClient="4" raisonSocial="FOR EDF" formJur="90" codTrib="01" regCommerce="35351" ICE="000000000000012" idFiscal="9988" numTaxeProf="1" codActPrinc="101" codActSec="101" tailleEntrep="TPE" genre="M" dtCreation="2023-05-22" flagSuc="false" tpIdPrincSiege="I">
+              <lstActionnariat>
+                  <actionnariat natActionnaire="2" formJurAct="90" tpIdPrincAct="I" idPrincAct="BE09988" codTribunAct="03" payResAct="MAR" nomRaisonSocAct="EDDABZI" qtpartCapSocAct="0"/>
+              </lstActionnariat>
+              <lstBenEffect>
+                  <benEffect typIdBenEffect="I" idBenEffect="T009988" nomBenEffect="EL DOLALI" preBenEffect="AMINE" natBenEffect="MAR"/>
+              </lstBenEffect>
+          </donneesEnt>
+    </comEnt>
+  </contenu>
+</RCC>

@@ -33,6 +33,7 @@ public class XmlFooterTasklet implements Tasklet {
     @Override
     public @Nullable RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
         fileName=fileNameService.retournerFileNames("CENT");
+        log.info("retournerFileNames footer  : {}",fileName);
         String filePath = outputDir + fileName;
 
         // APPEND mode

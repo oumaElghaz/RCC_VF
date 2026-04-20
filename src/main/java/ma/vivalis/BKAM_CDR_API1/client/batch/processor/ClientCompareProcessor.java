@@ -7,6 +7,7 @@ import ma.vivalis.BKAM_CDR_API1.client.model.util.*;
 import ma.vivalis.BKAM_CDR_API1.client.repository.sss_cdr_arch_client_stat_Repository;
 import ma.vivalis.BKAM_CDR_API1.common.models.lotSequence.LotSequence;
 import ma.vivalis.BKAM_CDR_API1.common.repository.lotSequence.LotSequenceRepository;
+import ma.vivalis.BKAM_CDR_API1.common.service.lotSequenceService;
 import ma.vivalis.BKAM_CDR_API1.entities.Enums.ActionType;
 import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_snapshot_client_stat;
 import ma.vivalis.BKAM_CDR_API1.entities.util.sss_cdr_snapshot_client_act;
@@ -18,23 +19,23 @@ import org.springframework.batch.infrastructure.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
 public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_client_stat, sss_cdr_inter_client_stat> {
     private final sss_cdr_arch_client_stat_Repository sss_cdr_arch_client_stat_Repository;
-    private final LotSequenceRepository lotSequenceRepository;
+    private final lotSequenceService lotSequenceService;
     // Cache : charger TOUS les archivés en mémoire une seule fois
-    private Map<String, sss_cdr_arch_client_stat> archivCache;
+    private Map<String, List<sss_cdr_arch_client_stat>> archivCache;
     private static final Logger log = LoggerFactory.getLogger(ClientCompareProcessor.class);
     private int lot_id;
     private String natMod;
     private boolean initialized = false;
-    public ClientCompareProcessor(sss_cdr_arch_client_stat_Repository sssCdrArchClientStatRepository, LotSequenceRepository lotSequenceRepository) {
+    public ClientCompareProcessor(sss_cdr_arch_client_stat_Repository sssCdrArchClientStatRepository, lotSequenceService lotSequenceService) {
         sss_cdr_arch_client_stat_Repository = sssCdrArchClientStatRepository;
-        this.lotSequenceRepository = lotSequenceRepository;
+
+        this.lotSequenceService = lotSequenceService;
     }
 
     @PostConstruct
@@ -44,7 +45,7 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
 
         // findAllWithRelations() au lieu de findAll()
         sss_cdr_arch_client_stat_Repository.findAllWithRelations().forEach(a ->
-                archivCache.put(a.getId_client(), a));
+                archivCache.computeIfAbsent(a.getId_client(), k -> new ArrayList<>()).add(a));
 
         //log.info(" Cache archiv chargé (avec relations) : {} entrées",
                 //archivCache.size());
@@ -56,8 +57,13 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
         archivCache.clear();
 
         //  Utiliser findAllWithRelations() ici aussi
+        //sss_cdr_arch_client_stat_Repository.findAllWithRelations().forEach(a ->
+                //archivCache.put(a.getId_client(), a));
+
+
+
         sss_cdr_arch_client_stat_Repository.findAllWithRelations().forEach(a ->
-                archivCache.put(a.getId_client(), a));
+                archivCache.computeIfAbsent(a.getId_client(), k -> new ArrayList<>()).add(a));
 
         //log.info( Reset — cache rechargé : {} entrées", archivCache.size());
     }
@@ -65,8 +71,23 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
     @Override
     public @Nullable sss_cdr_inter_client_stat process(sss_cdr_snapshot_client_stat item) throws Exception {
         //  Initialiser le lot au premier appel
-        initLotIfNeeded();
-        sss_cdr_arch_client_stat archiv = archivCache.get(item.getId_client());
+        //initLotIfNeeded();
+        lot_id = lotSequenceService.retournerCurrentLotId();
+        log.info("Lot ID utilisé client stat pour ce run : {}", lot_id);
+        List<sss_cdr_arch_client_stat> archivList=new ArrayList<>();
+                archivList = archivCache.get(item.getId_client());
+        if (archivList == null) {
+            archivList = Collections.emptyList();
+        }
+        // Trouver directement l'objet avec le max id_lot
+        sss_cdr_arch_client_stat archiv = new sss_cdr_arch_client_stat();
+                archiv = archivList.stream()
+                .max(Comparator.comparingInt(sss_cdr_arch_client_stat::getId_lot))
+                .orElse(null);
+
+
+
+
 
         if (archiv == null) {
             // NOUVEAU CLIENT → à insérer
@@ -77,6 +98,7 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
             //  CLIENT MODIFIÉ → à mettre à jour
             return buildIntermediaire(item, ActionType.EU,lot_id, natMod);
         }
+
 
         //  INCHANGÉ → null = filtré, pas inséré dans intermédiaire
         return null;
@@ -89,7 +111,7 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
         //if (!equalsNullSafe(snapshot.getCodClient(), archiv.getCodClient())) return true;
         if (!equalsNullSafe(snapshot.getEntLieeEtab(), archiv.getEntLieeEtab())) return true;
         //if (!equalsNullSafe(snapshot.getEntDeclar(), archiv.getEntDeclar())) return true;
-        if (!equalsNullSafe(snapshot.getCodAgEcon(), archiv.getCodAgEcon())) return true;
+        //if (!equalsNullSafe(snapshot.getCodAgEcon(), archiv.getCodAgEcon())) return true;  desactivé parce que je fige dans l inter la valeur 112
 
         // Comparer l'adresse
         if (snapshot.getAdresse() != null && archiv.getAdresse() != null) {
@@ -98,7 +120,7 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
                 return true;
             }
             if (!equalsNullSafe(snapshot.getAdresse().getCodPays(), archiv.getAdresse().getCodPays())) return true;
-            if (!equalsNullSafe(snapshot.getAdresse().getCodLocal(), archiv.getAdresse().getCodLocal())) return true;
+            //if (!equalsNullSafe(snapshot.getAdresse().getCodLocal(), archiv.getAdresse().getCodLocal())) return true; desactivé parce que je fige dans l inter la valeur 780
             if (!equalsNullSafe(snapshot.getAdresse().getCodPostal(), archiv.getAdresse().getCodPostal())) return true;
             if (!equalsNullSafe(snapshot.getAdresse().getNumTeleph(), archiv.getAdresse().getNumTeleph())) return true;
         }
@@ -107,6 +129,11 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
         if (snapshot.getDonneesInt_pp() != null && archiv.getDonneesInts_pp() != null) {
             if (!equalsNullSafe(snapshot.getDonneesInt_pp().getNomFamille(), archiv.getDonneesInts_pp().getNomFamille())) return true;
             if (!equalsNullSafe(snapshot.getDonneesInt_pp().getPrenom(), archiv.getDonneesInts_pp().getPrenom())) return true;
+            if (!equalsNullSafe(snapshot.getDonneesInt_pp().getTpIdPrincipal(), archiv.getDonneesInts_pp().getTpIdPrincipal())) return true;
+            if (!equalsNullSafe(snapshot.getDonneesInt_pp().getDtNaissance(), archiv.getDonneesInts_pp().getDtNaissance())) return true;
+            if (!equalsNullSafe(snapshot.getDonneesInt_pp().getNationalite(), archiv.getDonneesInts_pp().getNationalite())) return true;
+            if (!equalsNullSafe(snapshot.getDonneesInt_pp().getSitFamille(), archiv.getDonneesInts_pp().getSitFamille())) return true;
+            if (!equalsNullSafe(snapshot.getDonneesInt_pp().getMenage(), archiv.getDonneesInts_pp().getMenage())) return true;
         }
 
         // Comparer les données PM
@@ -180,6 +207,10 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
     private boolean equalsNullSafe(Object a, Object b) {
         if (a == null && b == null) return true;
         if (a == null || b == null) return false;
+        log.info("l objet a est {} ",a.toString());
+        log.info("l objet b est {} ",b.toString());
+        log.info("la comparaison est {} ",a.equals(b));
+
         return a.equals(b);
     }
 
@@ -322,7 +353,7 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
         return inter;
 
     }
-
+/*
         public synchronized int getNextLotId() {
 
             LotSequence seq = lotSequenceRepository.findById(1)
@@ -344,14 +375,14 @@ public class ClientCompareProcessor implements ItemProcessor<sss_cdr_snapshot_cl
             seq.setVal(next);
             lotSequenceRepository.save(seq);
             return next;
-        }
-
+        }*/
+/*
         private synchronized void initLotIfNeeded() {
             if (!initialized) {
                 lot_id = getNextLotId();
                 initialized = true;
                 log.info(" Lot ID initialisé = {}", lot_id);
             }
-        }
+        }*/
 
 }

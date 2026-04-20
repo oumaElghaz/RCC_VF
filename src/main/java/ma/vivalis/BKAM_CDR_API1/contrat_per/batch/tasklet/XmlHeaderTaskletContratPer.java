@@ -47,7 +47,7 @@ public class XmlHeaderTaskletContratPer implements Tasklet {
                 "SELECT c FROM sss_cdr_inter_contrat_per c WHERE c.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_inter_contrat_per c2) ORDER BY c.idCont",
                 sss_cdr_inter_contrat_per.class
         ).setMaxResults(1).getResultStream().findFirst().orElse(null);
-        fileName=fileNameService.retournerFileNames("CCMA");
+        fileName=fileNameService.retournerFileNames("CCMP");
         String filePath = outputDir + fileName;
 
         try (OutputStreamWriter writer = new OutputStreamWriter(

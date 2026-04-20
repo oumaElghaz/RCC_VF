@@ -20,7 +20,7 @@ public class ClientPerIntermediaireReader {
                         .entityManagerFactory(entityManagerFactory)
                         .queryString(
                                 "SELECT DISTINCT c FROM sss_cdr_inter_client_per c " +
-                                        "WHERE c.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_inter_client_per c2) " +
+                                        "WHERE c.id_lot = (SELECT MAX(c2.val) FROM LotSequence c2) " +
                                         "ORDER BY c.codClient"
                         )
                         .pageSize(500)

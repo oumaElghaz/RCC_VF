@@ -55,6 +55,7 @@ public class ClientXmlAppendWriter implements ItemWriter<ComEnt.DonneesEnt> {
     @Override
     public void write(Chunk<? extends ComEnt.DonneesEnt> chunk) throws Exception {
         fileName=fileNameService.retournerFileNames("CENT");
+        log.info("retournerFileNames ClientXmlAppendWriter  : {}",fileName);
         String filePath = outputDir + fileName;
         File file = new File(filePath);
         log.info("📁 Écriture dans : {} (existe: {}, taille avant: {} bytes)",

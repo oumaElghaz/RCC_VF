@@ -32,7 +32,7 @@ public class XmlFooterTaskletClientPer implements Tasklet {
 
     @Override
     public @Nullable RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-        fileName=fileNameService.retournerFileNames("CEMA");
+        fileName=fileNameService.retournerFileNames("CEMP");
         String filePath = outputDir + fileName;
 
         // APPEND mode

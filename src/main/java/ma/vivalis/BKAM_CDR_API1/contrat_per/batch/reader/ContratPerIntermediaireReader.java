@@ -19,7 +19,7 @@ public class ContratPerIntermediaireReader {
                         .entityManagerFactory(entityManagerFactory)
                         .queryString(
                                 "SELECT DISTINCT c FROM sss_cdr_inter_contrat_per c " +
-                                        "WHERE c.id_lot = (SELECT MAX(c2.id_lot) FROM sss_cdr_inter_contrat_per c2) " +
+                                        "WHERE c.id_lot = (SELECT MAX(c2.val) FROM LotSequence c2) " +
                                         "ORDER BY c.idCont"
                         )
                         .pageSize(500)

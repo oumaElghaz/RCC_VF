@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RCC version="1.0">
+  <controle entObserv="415" entDeclar="415" idDest="001" dtCreation="2026-04-20T12:43:25"/>
+  <contenu>
+      <comInfNeg dtRef="2026-02-05">
+          <InfNeg actionType="EI" codClient="1011" refInfoNeg="ref00066" tpInfNegInc="type12" dtObsInfNegInc="2026-12-04" montInc="14" statInfoNeg="true" dtSortie="2024-11-05"/>
+      </comInfNeg>
+  </contenu>
+</RCC>

@@ -45,15 +45,15 @@ public class sss_cdr_inter_client_stat {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "adresse_inter_id")
-    private Adresse_interm adresse;
+    private Adresse_interm adresse=new Adresse_interm();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "donneesInt_pp_id")
-    private DonneesIntPP_interm donneesInt_pp;
+    private DonneesIntPP_interm donneesInt_pp=new DonneesIntPP_interm();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "donneesInt_pm_id")
-    private DonneesIntPM_interm donneesInt_pm;
+    private DonneesIntPM_interm donneesInt_pm=new DonneesIntPM_interm();
 
     @OneToMany(mappedBy = "client" , cascade = CascadeType.ALL)
     @BatchSize(size = 50)

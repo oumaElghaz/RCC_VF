@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RCC version="1.0">
+  <controle entObserv="415" entDeclar="415" idDest="001" dtCreation="2026-04-20T12:37:27"/>
+  <contenu>
+      <comGar>
+          <garantie actionType="EI" dtRefGar="2025-05-09" dtCreatGar="2014-05-09" dtFinGar="2004-05-09" renGar="false" dtRenGar="2014-05-09" dtFinRenGar="2004-05-09" tpGar="tpGar" codClient="CF01412452" codGarExt="GAR41512252" tpRefExtGar="tpRefExtGar" refExtGar="REFEXT1225122" prixAcqProp="1300.0" codLocalGar="codLocalGar" montGar="15152.0" valOriGar="15462.0" tpValInGar="2" valActGar="158452.0" dtEvalGar="2014-05-09" tpValActGar="tpvalActGar" garEtat="false" nvGarAdossCred="nvGarAdossCred" etatExecGar="false" dtExecGar="2024-05-09"/>
+      </comGar>
+  </contenu>
+</RCC>

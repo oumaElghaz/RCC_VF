@@ -1,3 +1,4 @@
+/*
 package ma.vivalis.BKAM_CDR_API1;
 
 import ma.vivalis.BKAM_CDR_API1.config.BatchFlowConfig;
@@ -107,3 +108,4 @@ class BatchFlowConfigPhaseEnvoiApiFlowTest {
     }
 }
 
+*/

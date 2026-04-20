@@ -5,6 +5,7 @@ import jakarta.annotation.PostConstruct;
 
 import ma.vivalis.BKAM_CDR_API1.common.models.lotSequence.LotSequence;
 import ma.vivalis.BKAM_CDR_API1.common.repository.lotSequence.LotSequenceRepository;
+import ma.vivalis.BKAM_CDR_API1.common.service.lotSequenceService;
 import ma.vivalis.BKAM_CDR_API1.entities.Enums.ActionType;
 import ma.vivalis.BKAM_CDR_API1.entities.sss_cdr_snapshot_infoNega_stat;
 import ma.vivalis.BKAM_CDR_API1.entities.util.ComInfNeg;
@@ -24,24 +25,24 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
 public class InfoNegaCompareProcessor implements ItemProcessor<sss_cdr_snapshot_infoNega_stat, sss_cdr_inter_infoNegative> {
-    private Map<Long, sss_cdr_arch_infoNegative> archivCache;
+    private Map<Long, List<sss_cdr_arch_infoNegative>> archivCache;
     private final sss_cdr_arch_infoNegaRepository sss_cdr_arch_infoNegaRepository;
     private static final Logger log = LoggerFactory.getLogger(InfoNegaCompareProcessor.class);
-    private final LotSequenceRepository lotSequenceRepository;
+    //private final LotSequenceRepository lotSequenceRepository;
+    private final lotSequenceService lotSequenceService;
 
     private int lot_id;
     private boolean initialized = false;
 
-    public InfoNegaCompareProcessor(sss_cdr_arch_infoNegaRepository sssCdrArchInfoNegaRepository, LotSequenceRepository lotSequenceRepository) {
+    public InfoNegaCompareProcessor(sss_cdr_arch_infoNegaRepository sssCdrArchInfoNegaRepository, lotSequenceService lotSequenceService) {
         sss_cdr_arch_infoNegaRepository = sssCdrArchInfoNegaRepository;
-        this.lotSequenceRepository = lotSequenceRepository;
+        this.lotSequenceService = lotSequenceService;
+        //this.lotSequenceRepository = lotSequenceRepository;
     }
 
     @Transactional
@@ -56,7 +57,9 @@ public class InfoNegaCompareProcessor implements ItemProcessor<sss_cdr_snapshot_
                     }
                 }
             }
-            archivCache.put(a.getId(), a);
+            archivCache.computeIfAbsent(a.getId(), k -> new ArrayList<>()).add(a);
+
+
         }
         log.info("Cache archiv chargé (avec relations) : {} entrées", archivCache.size());
     }
@@ -64,9 +67,21 @@ public class InfoNegaCompareProcessor implements ItemProcessor<sss_cdr_snapshot_
     @Override
     public @Nullable sss_cdr_inter_infoNegative process(sss_cdr_snapshot_infoNega_stat item) throws Exception {
         // ✅ Initialiser le lot au premier appel
-        initLotIfNeeded();
+        //initLotIfNeeded();
+        lot_id = lotSequenceService.retournerCurrentLotId();
+        log.info("Lot ID utilisé info nega pour ce run : {}", lot_id);
 
-                sss_cdr_arch_infoNegative archiv = archivCache.get(item.getId());
+                List <sss_cdr_arch_infoNegative> archivList=new ArrayList<>();
+                        archivList = archivCache.get(item.getId());
+        if (archivList == null) {
+            archivList = Collections.emptyList();
+        }
+        // Trouver directement l'objet avec le max id_lot
+        sss_cdr_arch_infoNegative archiv = new sss_cdr_arch_infoNegative();
+        archiv=archivList.stream()
+                .max(Comparator.comparingInt(sss_cdr_arch_infoNegative::getId_lot))
+                .orElse(null);
+
                 if (archiv == null) {
                     // NOUVEAU info → à insérer
                     return buildIntermediaire(item, ActionType.EI,lot_id);
@@ -184,7 +199,7 @@ public class InfoNegaCompareProcessor implements ItemProcessor<sss_cdr_snapshot_
 
 
 
-    public synchronized int getNextLotId() {
+  /*  public synchronized int getNextLotId() {
 
         LotSequence seq = lotSequenceRepository.findById(1)
                 .orElseGet(() -> {
@@ -213,5 +228,5 @@ public class InfoNegaCompareProcessor implements ItemProcessor<sss_cdr_snapshot_
             initialized = true;
             log.info("🔢 Lot ID initialisé = {}", lot_id);
         }
-    }
+    }*/
 }

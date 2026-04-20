@@ -123,7 +123,9 @@ public class ContratPerMappingProcessor implements ItemProcessor<sss_cdr_inter_c
             case "CTX":
                 ctr_final.setTxProvCont((double) 100);
                 break;
-
+            default:
+                ctr_final.setTxProvCont((double) 0);
+                break;
 
         }
 

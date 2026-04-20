@@ -3,6 +3,7 @@ package ma.vivalis.BKAM_CDR_API1.contrat.batch.processor;
 import jakarta.annotation.PostConstruct;
 import ma.vivalis.BKAM_CDR_API1.common.models.lotSequence.LotSequence;
 import ma.vivalis.BKAM_CDR_API1.common.repository.lotSequence.LotSequenceRepository;
+import ma.vivalis.BKAM_CDR_API1.common.service.lotSequenceService;
 import ma.vivalis.BKAM_CDR_API1.contrat.model.sss_cdr_arch_contrat_stat;
 import ma.vivalis.BKAM_CDR_API1.contrat.model.sss_cdr_inter_contrat_stat;
 import ma.vivalis.BKAM_CDR_API1.contrat.model.util.*;
@@ -19,24 +20,25 @@ import org.springframework.batch.infrastructure.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
 public class ContratCompareProcessor implements ItemProcessor<sss_cdr_snapshot_contrat_stat, sss_cdr_inter_contrat_stat> {
     private final sss_cdr_arch_contrat_stat_repository sss_cdr_arch_contrat_stat_repository;
-    private final LotSequenceRepository lotSequenceRepository;
+    //private final LotSequenceRepository lotSequenceRepository;
+    private final lotSequenceService lotSequenceService;
     // Cache : charger TOUS les archivés en mémoire une seule fois
-    private Map<String, sss_cdr_arch_contrat_stat> archivCache;
+    private Map<String, List<sss_cdr_arch_contrat_stat>> archivCache;
     private static final Logger log = LoggerFactory.getLogger(ContratCompareProcessor.class);
     private int lot_id;
 
     private boolean initialized = false;
 
-    public ContratCompareProcessor(sss_cdr_arch_contrat_stat_repository sssCdrArchContratStatRepository, LotSequenceRepository lotSequenceRepository) {
+    public ContratCompareProcessor(sss_cdr_arch_contrat_stat_repository sssCdrArchContratStatRepository,  lotSequenceService lotSequenceService) {
         sss_cdr_arch_contrat_stat_repository = sssCdrArchContratStatRepository;
-        this.lotSequenceRepository = lotSequenceRepository;
+
+        this.lotSequenceService = lotSequenceService;
     }
     @PostConstruct
     public void loadCache() {
@@ -44,8 +46,8 @@ public class ContratCompareProcessor implements ItemProcessor<sss_cdr_snapshot_c
         //lot_id = getNextLotId(); // Initialiser le lot_id pour ce batch
 
         // ✅ findAllWithRelations() au lieu de findAll()
-        sss_cdr_arch_contrat_stat_repository.findAllWithRelations().forEach(a ->
-                archivCache.put(a.getIdCont(), a));
+              sss_cdr_arch_contrat_stat_repository.findAllWithRelations().forEach(a ->
+                archivCache.computeIfAbsent(a.getIdCont(), k -> new ArrayList<>()).add(a));
 
         log.info("✅ Cache archiv chargé (avec relations) : {} entrées",
                 archivCache.size());
@@ -57,8 +59,8 @@ public class ContratCompareProcessor implements ItemProcessor<sss_cdr_snapshot_c
         archivCache.clear();
 
         // ✅ Utiliser findAllWithRelations() ici aussi
-        sss_cdr_arch_contrat_stat_repository.findAllWithRelations().forEach(a ->
-                archivCache.put(a.getIdCont(), a));
+       sss_cdr_arch_contrat_stat_repository.findAllWithRelations().forEach(a ->
+               archivCache.computeIfAbsent(a.getIdCont(), k -> new ArrayList<>()).add(a));
 
         log.info("🔄 Reset — cache rechargé : {} entrées", archivCache.size());
     }
@@ -67,8 +69,20 @@ public class ContratCompareProcessor implements ItemProcessor<sss_cdr_snapshot_c
     @Override
     public @Nullable sss_cdr_inter_contrat_stat process(sss_cdr_snapshot_contrat_stat item) throws Exception {
         // ✅ Initialiser le lot au premier appel
-        initLotIfNeeded();
-        sss_cdr_arch_contrat_stat archiv = archivCache.get(item.getIdCont());
+        //initLotIfNeeded();
+        lot_id = lotSequenceService.retournerCurrentLotId();
+        log.info("Lot ID utilisé contrat stat pour ce run : {}", lot_id);
+        List<sss_cdr_arch_contrat_stat> archivList=new ArrayList<>();
+                archivList = archivCache.get(item.getIdCont());
+        if (archivList == null) {
+            archivList = Collections.emptyList();
+        }
+
+        // Trouver directement l'objet avec le max id_lot
+        sss_cdr_arch_contrat_stat archiv = new sss_cdr_arch_contrat_stat();
+                archiv = archivList.stream()
+                .max(Comparator.comparingInt(sss_cdr_arch_contrat_stat::getId_lot))
+                .orElse(null);
 
         if (archiv == null) {
             // NOUVEAU CONTRAT→ à insérer
@@ -318,7 +332,7 @@ public class ContratCompareProcessor implements ItemProcessor<sss_cdr_snapshot_c
         return inter;
     }
 
-    public synchronized int getNextLotId() {
+   /* public synchronized int getNextLotId() {
 
         LotSequence seq = lotSequenceRepository.findById(1)
                 .orElseGet(() -> {
@@ -347,5 +361,5 @@ public class ContratCompareProcessor implements ItemProcessor<sss_cdr_snapshot_c
             initialized = true;
             log.info("🔢 Lot ID initialisé = {}", lot_id);
         }
-    }
+    }*/
 }

@@ -51,45 +51,106 @@ public class ClientPerTraitementMapping implements ItemProcessor<sss_cdr_inter_c
         ComEntPer.EntPer.DataCompta f=new ComEntPer.EntPer.DataCompta();
         f.setAnnExercCompt (BigInteger.valueOf(client.getAnnExercCompt()));
         f.setCapSocial (BigDecimal.valueOf(client.getCapSocial()));
+        if (client.getCapPropres() != null) {
         f.setCapPropres (BigDecimal.valueOf(client.getCapPropres()));
+        }
+
+        if (client.getActImmobilises() != null) {
         f.setActImmobilises (BigDecimal.valueOf(client.getActImmobilises()));
+        }
+
         f.setTotBilan (BigDecimal.valueOf(client.getTotBilan()));
         f.setChiffreAffaire (BigDecimal.valueOf(client.getChiffreAffaire()));
-        f.setDtAffairesAnExp (BigDecimal.valueOf(client.getDtAffairesAnExp()));
-        f.setDetteBancLMT (BigDecimal.valueOf(client.getDetteBancLMT()));
-        f.setDetteBancCT (BigDecimal.valueOf(client.getDetteBancCT()));
-        f.setPassifCirculant (BigDecimal.valueOf(client.getPassifCirculant()));
-        f.setDettesFourn (BigDecimal.valueOf(client.getDettesFourn()));
-        f.setTresoreriePassif (BigDecimal.valueOf(client.getTresoreriePassif()));
-        f.setActifCirculant (BigDecimal.valueOf(client.getActifCirculant()));
-        f.setCréancesClients (BigDecimal.valueOf(client.getCréancesClients()));
-        f.setTresorerieActif (BigDecimal.valueOf(client.getTresorerieActif()));
-        f.setCaisse (BigDecimal.valueOf(client.getCaisse()));
-        f.setAchatsRevendus (BigDecimal.valueOf(client.getAchatsRevendus()));
-        f.setAchatsConsom (BigDecimal.valueOf(client.getAchatsConsom()));
-        f.setChargesExternes(BigDecimal.valueOf(client.getChargesExternes()));
-        f.setChargesInterets (BigDecimal.valueOf(client.getChargesInterets()));
-        f.setResultatNet(BigDecimal.valueOf(client.getResultatNet()));
-        f.setTpResultat(client.getTpResultat());
+
+        if (client.getDtAffairesAnExp() != null) {
+        f.setDtAffairesAnExp (BigDecimal.valueOf(client.getDtAffairesAnExp()));}
+
+        if (client.getDetteBancLMT() != null) {
+        f.setDetteBancLMT (BigDecimal.valueOf(client.getDetteBancLMT()));}
+
+        if (client.getDetteBancCT() != null) {
+        f.setDetteBancCT (BigDecimal.valueOf(client.getDetteBancCT()));}
+
+        if (client.getPassifCirculant() != null) {
+        f.setPassifCirculant (BigDecimal.valueOf(client.getPassifCirculant()));}
+
+        if (client.getDettesFourn() != null) {
+        f.setDettesFourn (BigDecimal.valueOf(client.getDettesFourn()));}
+
+        if (client.getTresoreriePassif() != null) {
+        f.setTresoreriePassif (BigDecimal.valueOf(client.getTresoreriePassif()));}
+
+        if (client.getActifCirculant() != null) {
+        f.setActifCirculant (BigDecimal.valueOf(client.getActifCirculant()));}
+
+        if (client.getCréancesClients() != null) {
+        f.setCréancesClients (BigDecimal.valueOf(client.getCréancesClients()));}
+
+        if (client.getTresorerieActif() != null) {
+        f.setTresorerieActif (BigDecimal.valueOf(client.getTresorerieActif()));}
+
+        if (client.getCaisse() != null) {
+        f.setCaisse (BigDecimal.valueOf(client.getCaisse()));}
+
+        if (client.getAchatsRevendus() != null) {
+        f.setAchatsRevendus (BigDecimal.valueOf(client.getAchatsRevendus()));}
+
+        if (client.getAchatsConsom() != null) {
+        f.setAchatsConsom (BigDecimal.valueOf(client.getAchatsConsom()));}
+
+        if (client.getChargesExternes() != null) {
+        f.setChargesExternes(BigDecimal.valueOf(client.getChargesExternes()));}
+
+        if (client.getChargesInterets() != null) {
+        f.setChargesInterets (BigDecimal.valueOf(client.getChargesInterets()));}
+
+        if (client.getResultatNet() != null) {
+        f.setResultatNet(BigDecimal.valueOf(client.getResultatNet()));}
+        if (client.getTpResultat() != null) {
+        f.setTpResultat(client.getTpResultat());}
 
 
         ComEntPer.EntPer.DataRiskCli o = new ComEntPer.EntPer.DataRiskCli();
         ComEntPer.EntPer.DataRiskCli.RiskCli n=new ComEntPer.EntPer.DataRiskCli.RiskCli();
 
-        n.setPDCont (BigDecimal.valueOf(client.getPDCont()));
-        n.setDtEvalRisques (convertDateToXml(client.getDtEvalRisques()));
-        n.setModIRBCont(client.getModIRBCont());
-        n.setCoteCli (client.getCoteCli());
-        n.setDateCoteCli(convertDateToXml(client.getDateCoteCli()));
-        n.setModCoteCli (client.getModCoteCli());
-        n.setNotAgence (client.getNotAgence());
-        n.setNomAgence (client.getNomAgence());
-        n.setDtnotAgc(convertDateToXml(client.getDtnotAgc()));
-        o.getRiskCli().add(n);
-        t.getDataRiskCli().add(o);
-        t.getDataCompta().add(f);
+        if (client.getPDCont() != null) {
+        n.setPDCont (BigDecimal.valueOf(client.getPDCont()));}
 
-        comEntPer.getEntPer().add(t);
+        if (client.getDtEvalRisques() != null) {
+        n.setDtEvalRisques (convertDateToXml(client.getDtEvalRisques()));}
+
+        if (client.getModIRBCont() != null) {
+        n.setModIRBCont(client.getModIRBCont());}
+
+        if (client.getCoteCli() != null) {
+        n.setCoteCli (client.getCoteCli());}
+
+        if (client.getDateCoteCli() != null) {
+        n.setDateCoteCli(convertDateToXml(client.getDateCoteCli()));}
+
+        if (client.getModCoteCli() != null) {
+        n.setModCoteCli (client.getModCoteCli());}
+
+        if (client.getNotAgence() != null) {
+        n.setNotAgence (client.getNotAgence());}
+
+        if (client.getNomAgence() != null) {
+        n.setNomAgence (client.getNomAgence());}
+
+        if (client.getDtnotAgc() != null) {
+        n.setDtnotAgc(convertDateToXml(client.getDtnotAgc()));}
+
+        if (o.getRiskCli() != null) {
+        o.getRiskCli().add(n);}
+
+        if (t.getDataRiskCli() != null) {
+        t.getDataRiskCli().add(o);}
+
+        if (t.getDataCompta() != null) {
+        t.getDataCompta().add(f);}
+
+        if (comEntPer.getEntPer() != null) {
+        comEntPer.getEntPer().add(t);}
 
 
 return comEntPer;

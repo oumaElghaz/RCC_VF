@@ -13,7 +13,9 @@ import org.springframework.batch.infrastructure.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
 import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.stream.Collectors;
 
 @Component
@@ -33,65 +35,75 @@ public class ContratTraitementMappingProcessor  implements ItemProcessor<sss_cdr
         ComCon.Con con = mapContratToXmlElement(contrat);
         return con;
     }
+    private BigDecimal toBigDecimal(Number value) {
+        return value != null ? BigDecimal.valueOf(value.doubleValue()) : null;
+    }
+
+    private Boolean toBoolean(String value) {
+        return value != null ? Boolean.valueOf(value) : null;
+    }
+
+    private XMLGregorianCalendar toXmlDate(Date date) throws DatatypeConfigurationException {
+        return date != null ? cleanDate.convertDateToXml(date) : null;
+    }
 
     private ComCon.Con mapContratToXmlElement(sss_cdr_contrat_stat item) throws DatatypeConfigurationException {
         ComCon.Con con= new ComCon.Con();
-                con.setIdCont(item.getIdCont());
-                con.setActionType(String.valueOf(item.getActionType()));
-                con.setDtRefCont(cleanDate.convertDateToXml(item.getDtRefCont()));
-                con.setGuichetAgence(item.getGuichetAgence());
-                con.setCodLocAgence(item.getCodLocAgence());
-                con.setTpCont(item.getTpCont());
-                con.setTpCred(item.getTpCred());
-                con.setDtlTpCred(String.valueOf(item.getDtlTpCred()));
-                con.setCreCoFin(Boolean.valueOf(item.getCreCoFin()));
-                con.setCreConsor(Boolean.valueOf(item.getCreConsor()));
-                con.setObjCred(item.getObjCred());
-                con.setObjCredDetail(item.getObjCredDetail());
-                con.setMonnaie(item.getMonnaie());
-                con.setMontIniAccord(BigDecimal.valueOf(item.getMontIniAccord()));
-                con.setMontCreCoFin(BigDecimal.valueOf(item.getMontCreCoFin()));
-                con.setTxChange(BigDecimal.valueOf(item.getTxChange()));
-                con.setDtContCredt(cleanDate.convertDateToXml(item.getDtContCredt()));
-                con.setDtDebloCred(cleanDate.convertDateToXml(item.getDtDebloCred()));
-                con.setDtClotIni(cleanDate.convertDateToXml(item.getDtClotIni()));
-                con.setDtClotCred(cleanDate.convertDateToXml(item.getDtClotCred()));
-                con.setMotClotCont(item.getMotClotCont());
-                con.setFlagDiff(Boolean.valueOf(item.getFlagDiff()));
-                con.setDtModCondCred(cleanDate.convertDateToXml(item.getDtModCondCred()));
-                con.setMotModCondCred(item.getMotModCondCred());
-                con.setDtDebPerGraCap(cleanDate.convertDateToXml(item.getDtDebPerGraCap()));
-                con.setDtFinPerGraCap(cleanDate.convertDateToXml(item.getDtFinPerGraCap()));
-                con.setModPaiement(item.getModPaiement());
-                con.setTpEche(item.getTpEche());
-                con.setFxEche(Boolean.valueOf(item.getFxEche()));
-                con.setNombreTotEche(BigDecimal.valueOf(item.getNombreTotEche()));
-                con.setPeriodEche(item.getPeriodEche());
-                con.setMtEche(BigDecimal.valueOf(item.getMtEche()));
-                con.setDt1Eche(cleanDate.convertDateToXml(item.getDt1Eche()));
-                con.setMont1Eche(BigDecimal.valueOf(item.getMont1Eche()));
-                con.setMont1EcheDiv(BigDecimal.valueOf(item.getMont1EcheDiv()));
-                con.setFlagTxInt(item.getFlagTxInt());
-                con.setTxRef(item.getTxRef());
-                con.setTxAnnuelPourc(BigDecimal.valueOf(item.getTxAnnuelPourc()));
-                con.setTxTAEG(BigDecimal.valueOf(item.getTxTAEG()));
-                con.setHmRibh(BigDecimal.valueOf(item.getHmRibh()));
-                con.setCmFxWkl(BigDecimal.valueOf(item.getCmFxWkl()));
-                con.setFreqMiseJourTxInt(item.getFreqMiseJourTxInt());
-                con.setLTVIni(BigDecimal.valueOf(item.getLTVIni()));
-                con.setTpSecuritization(Boolean.valueOf(item.getTpSecuritization()));
-                con.setExisGarant(Boolean.valueOf(item.getExisGarant()));
-                con.setMntGarant(BigDecimal.valueOf(item.getMntGarant()));
-
+        con.setIdCont(item.getIdCont());
+        con.setActionType(item.getActionType() != null ? String.valueOf(item.getActionType()) : null);
+        con.setDtRefCont(toXmlDate(item.getDtRefCont()));
+        con.setGuichetAgence(item.getGuichetAgence());
+        con.setCodLocAgence(item.getCodLocAgence());
+        con.setTpCont(item.getTpCont());
+        con.setTpCred(item.getTpCred());
+        con.setDtlTpCred(item.getDtlTpCred() != null ? String.valueOf(item.getDtlTpCred()) : null);
+        con.setCreCoFin(toBoolean(item.getCreCoFin()));
+        con.setCreConsor(toBoolean(item.getCreConsor()));
+        con.setObjCred(item.getObjCred());
+        con.setObjCredDetail(item.getObjCredDetail());
+        con.setMonnaie(item.getMonnaie());
+        con.setMontIniAccord(toBigDecimal(item.getMontIniAccord()));
+        con.setMontCreCoFin(toBigDecimal(item.getMontCreCoFin()));
+        con.setTxChange(toBigDecimal(item.getTxChange()));
+        con.setDtContCredt(toXmlDate(item.getDtContCredt()));
+        con.setDtDebloCred(toXmlDate(item.getDtDebloCred()));
+        con.setDtClotIni(toXmlDate(item.getDtClotIni()));
+        con.setDtClotCred(toXmlDate(item.getDtClotCred()));
+        con.setMotClotCont(item.getMotClotCont());
+        con.setFlagDiff(toBoolean(item.getFlagDiff()));
+        con.setDtModCondCred(toXmlDate(item.getDtModCondCred()));
+        con.setMotModCondCred(item.getMotModCondCred());
+        con.setDtDebPerGraCap(toXmlDate(item.getDtDebPerGraCap()));
+        con.setDtFinPerGraCap(toXmlDate(item.getDtFinPerGraCap()));
+        con.setModPaiement(item.getModPaiement());
+        con.setTpEche(item.getTpEche());
+        con.setFxEche(toBoolean(item.getFxEche()));
+        con.setNombreTotEche(toBigDecimal(item.getNombreTotEche()));
+        con.setPeriodEche(item.getPeriodEche());
+        con.setMtEche(toBigDecimal(item.getMtEche()));
+        con.setDt1Eche(toXmlDate(item.getDt1Eche()));
+        con.setMont1Eche(toBigDecimal(item.getMont1Eche()));
+        con.setMont1EcheDiv(toBigDecimal(item.getMont1EcheDiv()));
+        con.setFlagTxInt(item.getFlagTxInt());
+        con.setTxRef(item.getTxRef());
+        con.setTxAnnuelPourc(toBigDecimal(item.getTxAnnuelPourc()));
+        con.setTxTAEG(toBigDecimal(item.getTxTAEG()));
+        con.setHmRibh(toBigDecimal(item.getHmRibh()));
+        con.setCmFxWkl(toBigDecimal(item.getCmFxWkl()));
+        con.setFreqMiseJourTxInt(item.getFreqMiseJourTxInt());
+        con.setLTVIni(toBigDecimal(item.getLTVIni()));
+        con.setTpSecuritization(toBoolean(item.getTpSecuritization()));
+        con.setExisGarant(toBoolean(item.getExisGarant()));
+        con.setMntGarant(toBigDecimal(item.getMntGarant()));
         //ListCliContrat
         if (item.getListCliContrat() != null && !item.getListCliContrat().isEmpty()) {
             ComCon.Con.ListCliContrat f = new ComCon.Con.ListCliContrat();
             for (sss_cdr_ListCliContrat bnf : item.getListCliContrat()) {
                 if (bnf != null) {
                     ComCon.Con.ListCliContrat.CliContrat n = new ComCon.Con.ListCliContrat.CliContrat();
-                    n.setCapAutoriseEnt(BigDecimal.valueOf(bnf.getCapAutoriseEnt()));
+                    n.setCapAutoriseEnt(toBigDecimal(bnf.getCapAutoriseEnt()));
                     n.setCodClient(bnf.getCodClient());
-                    n.setValProcVersEnt(BigDecimal.valueOf(bnf.getValProcVersEnt()));
+                    n.setValProcVersEnt(toBigDecimal(bnf.getValProcVersEnt()));
 
                     f.getCliContrat().add(n);
                 }

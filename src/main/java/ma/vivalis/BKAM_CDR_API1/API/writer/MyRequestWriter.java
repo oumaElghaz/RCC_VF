@@ -23,6 +23,7 @@ public class MyRequestWriter implements ItemWriter<sss_cdr_api1> {
 
 
             em.persist(api1);
+            log.info("Enregistrement de l'API : id_Lot={}, msg={}, codMsg={} , dateExtraction={}", api1.getId_Lot(), api1.getMsg(), api1.getCodMsg(), api1.getDateExtraction());
 
 
 

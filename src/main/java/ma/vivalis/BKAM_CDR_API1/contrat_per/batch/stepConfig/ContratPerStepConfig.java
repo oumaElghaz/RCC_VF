@@ -126,7 +126,7 @@ public class ContratPerStepConfig {
 
 
         return new StepBuilder("envoiApiContratPerStep", jobRepository)
-                .<MyRequestBody, sss_cdr_api1>chunk(500)
+                .<MyRequestBody, sss_cdr_api1>chunk(2)
                 .transactionManager(tx)
                 .reader(readerContratPer)
                 .processor(myRequestProcessor)

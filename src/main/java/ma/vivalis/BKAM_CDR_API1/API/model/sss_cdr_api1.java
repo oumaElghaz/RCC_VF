@@ -17,7 +17,7 @@ public class sss_cdr_api1 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int id_Lot;
+    private Integer id_Lot;
     private String codMsg;
     private String msg;
     private LocalDateTime dateExtraction;

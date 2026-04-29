@@ -31,6 +31,7 @@ public class ReaderApiClient {
         fileName=fileNameService.retournerFileNames("CENT");
         log.info("retournerFileNames api  : {}",fileName);
         String filePath = outputDir + fileName;
+        log.info("retournerFileNames api filePath  : {}",filePath);
         return new MyRequestBodyReader(filePath);
     }
 }

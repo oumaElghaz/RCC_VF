@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyRequestBodyReader implements ItemReader<MyRequestBody> {
     private String fileName;
+    private boolean alreadyRead = false;
 
 
     public MyRequestBodyReader(@Value("#{jobParameters['fileName']}") String fileName) {
@@ -20,6 +21,10 @@ public class MyRequestBodyReader implements ItemReader<MyRequestBody> {
     }
     @Override
     public @Nullable MyRequestBody read() throws Exception {
+        if (alreadyRead) {
+            return null; // ✅ Stop, Spring Batch termine le step
+        }
+        alreadyRead = true;
         String fichier = XmlToZipBase64.convertXmlToZippedBase64(fileName);
         String version="1.0";
         return new MyRequestBody(version, fichier);

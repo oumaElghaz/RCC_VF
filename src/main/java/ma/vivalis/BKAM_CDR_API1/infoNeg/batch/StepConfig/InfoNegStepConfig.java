@@ -138,7 +138,7 @@ public class InfoNegStepConfig {
 
 
         return new StepBuilder("envoiApiInfoNegaStep", jobRepository)
-                .<MyRequestBody, sss_cdr_api1>chunk(500)
+                .<MyRequestBody, sss_cdr_api1>chunk(2)
                 .transactionManager(tx)
                 .reader(readerInfoNega)
                 .processor(myRequestProcessor)

@@ -151,7 +151,7 @@ public class ClientStepConfig {
 
 
         return new StepBuilder("envoiApiClientStep", jobRepository)
-                .<MyRequestBody, sss_cdr_api1>chunk(500)
+                .<MyRequestBody, sss_cdr_api1>chunk(2)
                 .transactionManager(tx)
                 .reader(readerClient)
                 .processor(myRequestProcessor)

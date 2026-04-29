@@ -135,7 +135,7 @@ public class GarantieStepConfig {
 
 
         return new StepBuilder("envoiApiGarantieStep", jobRepository)
-                .<MyRequestBody, sss_cdr_api1>chunk(500)
+                .<MyRequestBody, sss_cdr_api1>chunk(2)
                 .transactionManager(tx)
                 .reader(readerGarantie)
                 .processor(myRequestProcessor)
